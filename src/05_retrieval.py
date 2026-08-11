@@ -59,12 +59,8 @@ class DenseRetriever:
         """
         print(f"\n[STEP 5 - RETRIEVAL] Searching for Query: '{user_query}'...")
         
-        # 1. QUERY EMBEDDING: Convert query string to 768-dim neural vector
-        res = self.embedder.client.models.embed_content(
-            model=self.embedder.model_name,
-            contents=user_query
-        )
-        query_vector = [float(v) for v in res.embeddings[0].values]
+        # 1. QUERY EMBEDDING: Convert query string to neural vector
+        query_vector = self.embedder.embed_query(user_query)
         
         # 2. VECTOR DB SEARCH: Query Vector Store with Top-K and optional metadata filter
         results = self.vector_store.query(
@@ -106,7 +102,8 @@ if __name__ == "__main__":
     for doc in docs:
         all_chunks.extend(chunk_document_by_sections(doc))
         
-    embedder = GeminiNeuralEmbeddingGenerator(model_name="gemini-embedding-001")
+    BGETextEmbeddingGenerator = getattr(step3_module, "BGETextEmbeddingGenerator", step3_module.GeminiNeuralEmbeddingGenerator)
+    embedder = BGETextEmbeddingGenerator(model_name="BAAI/bge-small-en-v1.5")
     embedded_chunks = embedder.generate_embeddings(all_chunks)
     
     vector_db = LocalVectorStoreHNSW(collection_name="developer_docs_hnsw")

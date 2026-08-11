@@ -41,6 +41,7 @@ step5 = _import_module("step5_module", step5_path)
 
 load_markdown_documents = step1.load_markdown_documents
 chunk_document_by_sections = step2.chunk_document_by_sections
+BGETextEmbeddingGenerator = step3.BGETextEmbeddingGenerator
 GeminiNeuralEmbeddingGenerator = step3.GeminiNeuralEmbeddingGenerator
 LocalVectorStoreHNSW = step4.LocalVectorStoreHNSW
 DenseRetriever = step5.DenseRetriever
@@ -70,8 +71,8 @@ class GroundedRAGAssistant:
         for doc in docs:
             all_chunks.extend(chunk_document_by_sections(doc))
 
-        # 3. Embed
-        self.embedder = GeminiNeuralEmbeddingGenerator(model_name="gemini-embedding-001")
+        # 3. Embed (Local BGE Model)
+        self.embedder = BGETextEmbeddingGenerator(model_name="BAAI/bge-small-en-v1.5")
         embedded_chunks = self.embedder.generate_embeddings(all_chunks)
 
         # 4. Vector Store

@@ -8,7 +8,7 @@ GOAL: Store embedded chunks and metadata into a local Vector Store
 Key Concepts:
 - Vector Database: Stores (1) Vector Embeddings, (2) Document Text, (3) Metadata.
 - HNSW Index: Multi-layer graph algorithm for sub-millisecond similarity search.
-- Cosine Similarity: Measures angle between vectors (1.0 = identical, 0.0 = unrelated).
+- ChromaDB / Persistent Store: Persists indexed vectors to local disk (.chroma_db/).
 """
 
 import importlib.util
@@ -35,48 +35,100 @@ spec3.loader.exec_module(step3_module)
 
 load_markdown_documents = step1_module.load_markdown_documents
 chunk_document_by_sections = step2_module.chunk_document_by_sections
+BGETextEmbeddingGenerator = getattr(step3_module, "BGETextEmbeddingGenerator", step3_module.GeminiNeuralEmbeddingGenerator)
 GeminiNeuralEmbeddingGenerator = step3_module.GeminiNeuralEmbeddingGenerator
+
+# Try importing ChromaDB
+try:
+    import os
+    os.environ["ANONYMIZED_TELEMETRY"] = "False"
+    import chromadb
+    HAS_CHROMADB = True
+except ImportError:
+    HAS_CHROMADB = False
 
 
 class LocalVectorStoreHNSW:
     """
-    In-memory Vector Store with NumPy-based Cosine Similarity search.
-    Mirrors the ChromaDB collection API (add, query, count).
+    Manages vector storage, HNSW indexing, and metadata persistence.
+    Uses ChromaDB PersistentClient when available, falls back to NumPy.
     """
     def __init__(self, collection_name: str = "developer_docs_hnsw"):
         self.collection_name = collection_name
-        self.ids = []
-        self.vectors = []
-        self.documents = []
-        self.metadatas = []
+        self.use_chromadb = False
         print(f"[STEP 4 - VECTOR DB] Initializing Vector Store Collection '{collection_name}'...")
-        print(f"✅ NumPy Vector Store initialized (collection: '{collection_name}')")
+
+        if HAS_CHROMADB:
+            # Initialize local persistent ChromaDB client
+            chroma_dir = Path(__file__).parent.parent / ".chroma_db"
+            self.client = chromadb.PersistentClient(path=str(chroma_dir))
+
+            # Get or create collection (cosine similarity for HNSW space)
+            self.collection = self.client.get_or_create_collection(
+                name=collection_name,
+                metadata={"hnsw:space": "cosine"}
+            )
+            self.use_chromadb = True
+            print(f"✅ Persistent ChromaDB initialized at: {chroma_dir}")
+        else:
+            # Pure-Python fallback: numpy-based cosine similarity search
+            self.ids = []
+            self.vectors = []
+            self.documents = []
+            self.metadatas = []
+            print("✅ NumPy in-memory vector store initialized (ChromaDB not available).")
 
     def add_chunks(self, embedded_chunks: list[dict]):
         """
-        Indexes chunks into the Vector Store with vectors, document text, and metadata.
+        Indexes chunks into the Vector DB with vectors, document text, and metadata.
         """
         print(f"Indexing {len(embedded_chunks)} embedded chunk(s) into HNSW index...")
-        
-        for c in embedded_chunks:
-            self.ids.append(str(c["chunk_id"]))
-            self.vectors.append(c["vector"])
-            self.documents.append(str(c["content"]))
-            self.metadatas.append({
+
+        ids = [str(c["chunk_id"]) for c in embedded_chunks]
+        vectors = [c["vector"] for c in embedded_chunks]
+        documents = [str(c["content"]) for c in embedded_chunks]
+        metadatas = [
+            {
                 "source_file": str(c["source_file"]),
                 "section_title": str(c["section_title"]),
                 "char_count": int(c["char_count"])
-            })
-        
-        print(f"✅ Successfully indexed {len(embedded_chunks)} items into Vector Store!")
+            }
+            for c in embedded_chunks
+        ]
+
+        if self.use_chromadb:
+            self.collection.upsert(
+                ids=ids,
+                embeddings=vectors,
+                documents=documents,
+                metadatas=metadatas
+            )
+            print(f"✅ Successfully indexed {len(ids)} items into ChromaDB HNSW store!")
+        else:
+            self.ids.extend(ids)
+            self.vectors.extend(vectors)
+            self.documents.extend(documents)
+            self.metadatas.extend(metadatas)
+            print(f"✅ Successfully indexed {len(ids)} items into NumPy vector store!")
 
     def query(self, query_embeddings: list, n_results: int = 2, where: dict = None) -> dict:
         """
-        Cosine Similarity search — returns results in ChromaDB-compatible format.
-        
+        Vector similarity search — returns results in ChromaDB-compatible format.
+        Uses ChromaDB HNSW when available, otherwise pure NumPy cosine similarity.
+
         Returns dict with keys: ids, documents, metadatas, distances
-        (distances = 1.0 - similarity, so lower = better match)
+        (distances = 1.0 - similarity for cosine space, so lower = better match)
         """
+        if self.use_chromadb:
+            query_kwargs = {
+                "query_embeddings": query_embeddings,
+                "n_results": n_results
+            }
+            if where:
+                query_kwargs["where"] = where
+            return self.collection.query(**query_kwargs)
+
+        # Pure numpy cosine similarity fallback
         query_vec = np.array(query_embeddings[0])
         all_vecs = np.array(self.vectors)
 
@@ -108,6 +160,8 @@ class LocalVectorStoreHNSW:
 
     def count(self) -> int:
         """Returns total number of indexed vectors."""
+        if self.use_chromadb:
+            return self.collection.count()
         return len(self.ids)
 
 
@@ -120,7 +174,7 @@ if __name__ == "__main__":
     for doc in docs:
         all_chunks.extend(chunk_document_by_sections(doc))
         
-    embedder = GeminiNeuralEmbeddingGenerator(model_name="gemini-embedding-001")
+    embedder = BGETextEmbeddingGenerator(model_name="BAAI/bge-small-en-v1.5")
     embedded_chunks = embedder.generate_embeddings(all_chunks)
     
     vector_db = LocalVectorStoreHNSW(collection_name="developer_docs_hnsw")

@@ -4,12 +4,13 @@ STEP 3: Embedding Model Selection & Dense Vector Generation
 ===================================================================
 GOAL: Convert Section Chunks from Step 2 into Dense Vector Embeddings.
 
-Neural Engine:
-- Google Gemini Embeddings ('gemini-embedding-001'): 768-dim Neural Vector.
-- Converted to pure Python float list for 100% ChromaDB C++ compatibility.
+Supported Engines:
+1. BAAI BGE Model ('BAAI/bge-small-en-v1.5'): 384-dim 100% Local CPU Embedding.
+2. Google Gemini Model ('gemini-embedding-001'): 768-dim Cloud Neural Vector.
 """
 
 import os
+os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
 import importlib.util
 from pathlib import Path
 from dotenv import load_dotenv
@@ -33,6 +34,39 @@ load_markdown_documents = step1_module.load_markdown_documents
 chunk_document_by_sections = step2_module.chunk_document_by_sections
 
 
+class BGETextEmbeddingGenerator:
+    """
+    Generates 384-dimensional dense neural vectors 100% locally on CPU
+    using FastEmbed and BAAI/bge-small-en-v1.5.
+    """
+    def __init__(self, model_name: str = "BAAI/bge-small-en-v1.5"):
+        print(f"[STEP 3 - EMBEDDING] Initializing Local BGE Model '{model_name}'...")
+        from fastembed import TextEmbedding
+        self.model_name = model_name
+        self.model = TextEmbedding(model_name=model_name)
+        print("✅ Local BGE Neural Embeddings initialized successfully!")
+
+    def generate_embeddings(self, chunks: list[dict]) -> list[dict]:
+        """
+        Takes chunk dicts, generates 384-dim neural vectors, and attaches 'vector' key.
+        """
+        print(f"Generating 384-dim dense BGE neural vectors for {len(chunks)} chunk(s)...")
+        texts = [c["content"] for c in chunks]
+        embeddings = list(self.model.embed(texts))
+        
+        for idx, chunk in enumerate(chunks):
+            chunk["vector"] = [float(v) for v in embeddings[idx]]
+            
+        return chunks
+
+    def embed_query(self, query_text: str) -> list[float]:
+        """
+        Embeds a single query string for vector search.
+        """
+        embeddings = list(self.model.embed([query_text]))
+        return [float(v) for v in embeddings[0]]
+
+
 class GeminiNeuralEmbeddingGenerator:
     """
     Generates 768-dimensional dense neural vectors using Google Gemini API.
@@ -52,7 +86,6 @@ class GeminiNeuralEmbeddingGenerator:
     def generate_embeddings(self, chunks: list[dict]) -> list[dict]:
         """
         Takes chunk dicts, generates 768-dim neural vectors, and attaches 'vector' key.
-        Explicitly converts protobuf vector into pure Python float list.
         """
         print(f"Generating 768-dim dense neural vectors for {len(chunks)} chunk(s)...")
         
@@ -61,15 +94,24 @@ class GeminiNeuralEmbeddingGenerator:
                 model=self.model_name,
                 contents=chunk["content"]
             )
-            # Explicitly cast to Python float list for ChromaDB compatibility
             raw_values = res.embeddings[0].values
             chunk["vector"] = [float(v) for v in raw_values]
             
         return chunks
 
+    def embed_query(self, query_text: str) -> list[float]:
+        """
+        Embeds a single query string for vector search.
+        """
+        res = self.client.models.embed_content(
+            model=self.model_name,
+            contents=query_text
+        )
+        return [float(v) for v in res.embeddings[0].values]
+
 
 if __name__ == "__main__":
-    print("=== STEP 3: DENSE NEURAL EMBEDDING GENERATION (Gemini API) ===\n")
+    print("=== STEP 3: DENSE NEURAL EMBEDDING GENERATION (Local BGE Model) ===\n")
     
     docs = load_markdown_documents(DOCS_DIR)
     
@@ -80,7 +122,7 @@ if __name__ == "__main__":
         
     print(f"\nExtracted {len(all_chunks)} section chunks from ingested files.")
     
-    embedder = GeminiNeuralEmbeddingGenerator(model_name="gemini-embedding-001")
+    embedder = BGETextEmbeddingGenerator(model_name="BAAI/bge-small-en-v1.5")
     embedded_chunks = embedder.generate_embeddings(all_chunks)
     
     print("\n✅ Step 3 Complete! Sample Neural Embedded Chunk Metadata:")
