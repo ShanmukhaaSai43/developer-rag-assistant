@@ -1,22 +1,20 @@
 """
 ===================================================================
-STEP 2: Section-Based Chunking & Overlap
+STEP 2: Section-Based & Fixed-Size Chunking (Task Set B)
 ===================================================================
-GOAL: Take the ingested Markdown documents from Step 1 and split them 
-      into structured chunks based on Markdown Headings (##).
+GOAL: Take ingested recipe cards and test TWO chunking strategies:
+1. Strategy 1 (Structure-Aware / Section-Based): Keeps recipe title, ingredient table, 
+   and method prose in their dedicated header blocks.
+2. Strategy 2 (Fixed-Size / Sliding Window): Naive character split (size=250, overlap=50).
 
-Key Concepts:
-- Section-based Chunking keeps headings, parameter tables, and code 
-  snippets together in the same chunk.
-- Every chunk inherits metadata from Step 1 (source_file, section_title).
-- We also include Fixed-size chunking to compare and prove accuracy gains!
+Requirement: Every chunk MUST carry source_file, recipe_id, cuisine, dietary_tags.
 """
 
 import re
 import importlib.util
 from pathlib import Path
 
-# Dynamically import Step 1 module (handles leading digits in filename)
+# Dynamically import Step 1 module
 DOCS_DIR = Path(__file__).parent.parent / "docs"
 step1_path = Path(__file__).parent / "01_ingest_docs.py"
 spec = importlib.util.spec_from_file_location("step1_module", step1_path)
@@ -27,14 +25,16 @@ load_markdown_documents = step1_module.load_markdown_documents
 
 def chunk_document_by_sections(doc: dict) -> list[dict]:
     """
-    STRATEGY 1 (PRIMARY): Section-Based Chunking.
-    Splits a Markdown document using '## ' section headings.
+    STRATEGY 1 (STRUCTURE-AWARE): Section-Based Chunking.
+    Splits document on '## ' section headings so ingredient tables and methods remain unbroken.
+    Inherits all metadata: source_file, recipe_id, cuisine, dietary_tags.
     """
     raw_content = doc["content"]
     source_file = doc["source_file"]
+    recipe_id = doc.get("recipe_id", "unknown")
+    cuisine = doc.get("cuisine", "general")
+    dietary_tags = doc.get("dietary_tags", "none")
     
-    # Split text whenever we encounter a Markdown H2 heading ('\n## ')
-    # Using re.split with capture group keeps the heading title!
     sections = re.split(r'\n(?=##\s+)', raw_content)
     
     chunks = []
@@ -43,12 +43,14 @@ def chunk_document_by_sections(doc: dict) -> list[dict]:
         if not clean_section:
             continue
             
-        # Extract the first line as the Section Header Title
         first_line = clean_section.split("\n")[0].replace("#", "").strip()
         
         chunk_obj = {
-            "chunk_id": f"{source_file}#section_{idx}",
+            "chunk_id": f"{recipe_id}#section_{idx}",
             "source_file": source_file,
+            "recipe_id": recipe_id,
+            "cuisine": cuisine,
+            "dietary_tags": dietary_tags,
             "section_title": first_line,
             "char_count": len(clean_section),
             "content": clean_section
@@ -58,13 +60,17 @@ def chunk_document_by_sections(doc: dict) -> list[dict]:
     return chunks
 
 
-def chunk_document_fixed_size(doc: dict, chunk_size: int = 200, overlap: int = 40) -> list[dict]:
+def chunk_document_fixed_size(doc: dict, chunk_size: int = 250, overlap: int = 50) -> list[dict]:
     """
-    STRATEGY 2 (BENCHMARK): Fixed-size Sliding Window Chunking.
-    Splits text every N characters regardless of headings.
+    STRATEGY 2 (NAIVE FIXED-SIZE): Sliding Window Chunking.
+    Splits text every 250 chars with 50 char overlap regardless of tables or headings.
+    Inherits all metadata: source_file, recipe_id, cuisine, dietary_tags.
     """
     raw_content = doc["content"]
     source_file = doc["source_file"]
+    recipe_id = doc.get("recipe_id", "unknown")
+    cuisine = doc.get("cuisine", "general")
+    dietary_tags = doc.get("dietary_tags", "none")
     
     chunks = []
     step = chunk_size - overlap
@@ -76,8 +82,11 @@ def chunk_document_fixed_size(doc: dict, chunk_size: int = 200, overlap: int = 4
             continue
             
         chunk_obj = {
-            "chunk_id": f"{source_file}#fixed_{chunk_idx}",
+            "chunk_id": f"{recipe_id}#fixed_{chunk_idx}",
             "source_file": source_file,
+            "recipe_id": recipe_id,
+            "cuisine": cuisine,
+            "dietary_tags": dietary_tags,
             "section_title": "Fixed Chunk",
             "char_count": len(text_segment),
             "content": text_segment
@@ -92,25 +101,20 @@ def chunk_document_fixed_size(doc: dict, chunk_size: int = 200, overlap: int = 4
 
 
 if __name__ == "__main__":
-    print("=== STEP 2: CHUNKING & OVERLAP TEST ===\n")
+    print("=== STEP 2: CHUNKING & OVERLAP TEST (RECIPES) ===\n")
     
-    # 1. Ingest documents from Step 1
     docs = load_markdown_documents(DOCS_DIR)
     
     print("=" * 60)
-    print("STRATEGY 1: SECTION-BASED CHUNKING (Primary Strategy)")
+    print("STRATEGY 1: STRUCTURE-AWARE SECTION CHUNKING")
     print("=" * 60)
     
     all_section_chunks = []
     for doc in docs:
         section_chunks = chunk_document_by_sections(doc)
         all_section_chunks.extend(section_chunks)
-        print(f"\n📄 File '{doc['source_file']}' split into {len(section_chunks)} Section Chunk(s):")
+        print(f"\n📄 Recipe '{doc['recipe_id']}' split into {len(section_chunks)} Section Chunk(s):")
         for c in section_chunks:
-            print(f"   - Chunk ID: [{c['chunk_id']}] | Title: '{c['section_title']}' ({c['char_count']} chars)")
+            print(f"   - Chunk ID: [{c['chunk_id']}] | Title: '{c['section_title']}' | Tags: {c['dietary_tags']}")
             
-    print(f"\n✅ Total Section Chunks Generated across all docs: {len(all_section_chunks)}")
-    print("\nSample Section Chunk Content:")
-    print("-" * 50)
-    print(all_section_chunks[1]["content"])
-    print("-" * 50)
+    print(f"\n✅ Total Section Chunks: {len(all_section_chunks)}")

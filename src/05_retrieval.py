@@ -85,8 +85,11 @@ class DenseRetriever:
                     retrieved_chunks.append({
                         "chunk_id": chunk_ids[idx],
                         "similarity_score": similarity_score,
-                        "source_file": metadatas[idx]["source_file"],
-                        "section_title": metadatas[idx]["section_title"],
+                        "source_file": metadatas[idx].get("source_file", ""),
+                        "recipe_id": metadatas[idx].get("recipe_id", ""),
+                        "cuisine": metadatas[idx].get("cuisine", ""),
+                        "dietary_tags": metadatas[idx].get("dietary_tags", ""),
+                        "section_title": metadatas[idx].get("section_title", ""),
                         "content": doc_texts[idx]
                     })
                     

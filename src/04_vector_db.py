@@ -90,6 +90,9 @@ class LocalVectorStoreHNSW:
         metadatas = [
             {
                 "source_file": str(c["source_file"]),
+                "recipe_id": str(c.get("recipe_id", "")),
+                "cuisine": str(c.get("cuisine", "")),
+                "dietary_tags": str(c.get("dietary_tags", "")),
                 "section_title": str(c["section_title"]),
                 "char_count": int(c["char_count"])
             }

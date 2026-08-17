@@ -157,11 +157,11 @@ if __name__ == "__main__":
 
     assistant = GroundedRAGAssistant(score_threshold=0.60)
 
-    # Test 1: In-Domain Query (Rate Limits)
-    assistant.answer_question("What is the rate limit for standard tier API keys?")
+    # Test 1: In-Domain Recipe Query (Ingredient Table)
+    assistant.answer_question("What is the exact fine sea salt weight and percentage for the country sourdough loaf?")
 
-    # Test 2: In-Domain Query (Webhooks HMAC)
-    assistant.answer_question("How do I verify HMAC signatures for webhooks?")
+    # Test 2: In-Domain Recipe Query (Fermentation Step)
+    assistant.answer_question("What temperature range and duration are required for primary fermentation of kombucha?")
 
     # Test 3: Out-of-Domain Query (Should Refuse)
-    assistant.answer_question("What is the return policy for clothing items?")
+    assistant.answer_question("What is the total calorie count and carbohydrate breakdown per slice of sourdough bread?")

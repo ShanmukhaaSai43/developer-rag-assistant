@@ -2,3 +2,7 @@
 .env
 __pycache__/
 *.pyc
+.chroma_db/
+.chroma_db_test/
+week4/.chroma_db/
+scratch/
