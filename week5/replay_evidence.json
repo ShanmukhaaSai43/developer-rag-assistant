@@ -1,0 +1,40 @@
+{
+  "seed": 101,
+  "selected_trace_id": "tr_029_5e95",
+  "user_query": "What is the calorie count and carbohydrate breakdown of sourdough bread?",
+  "prompt_version": "v1.2.0_grounded_recipe",
+  "model_config": {
+    "model_name": "gemini-3.5-flash-lite",
+    "temperature": 0.0,
+    "top_p": 0.95,
+    "max_tokens": 1024
+  },
+  "retrieved_chunks": [
+    {
+      "chunk_id": "recipe_01_sourdough#section_3",
+      "source_file": "recipe_01_country_sourdough.md",
+      "section_title": "Ingredient Table",
+      "similarity_score": 0.7768,
+      "content": "## Ingredient Table\n| Ingredient | Weight (g) | Baker's Percentage (%) |\n|---|---|---|\n| Bread Flour | 1000g | 100.0% |\n| Water | 750g | 75.0% |\n| Active Sourdough Starter | 200g | 20.0% |\n| Fine Sea Salt | 20g | 2.0% |"
+    },
+    {
+      "chunk_id": "recipe_01_sourdough#section_2",
+      "source_file": "recipe_01_country_sourdough.md",
+      "section_title": "Overview",
+      "similarity_score": 0.7296,
+      "content": "## Overview\nA classic naturally leavened rustic country sourdough loaf with 75% hydration and 20% sourdough starter inoculate."
+    },
+    {
+      "chunk_id": "recipe_01_sourdough#section_1",
+      "source_file": "recipe_01_country_sourdough.md",
+      "section_title": "Country Sourdough Bread",
+      "similarity_score": 0.7294,
+      "content": "# Country Sourdough Bread"
+    }
+  ],
+  "original_output": "I cannot find information about this in the provided recipe documentation.",
+  "replayed_output": "I cannot find information about this in the provided recipe documentation.",
+  "original_latency_ms": 1001.8,
+  "replay_latency_ms": 1172.31,
+  "field_audit": "100% complete. No fields were missing. Output reconstructed identically from trace log."
+}

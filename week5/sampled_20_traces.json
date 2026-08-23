@@ -1,0 +1,586 @@
+{
+  "seed": 42,
+  "sample_size": 20,
+  "traces": [
+    {
+      "index": 1,
+      "trace_id": "tr_007_e7c4",
+      "user_query": "How much sugar and starter tea do I need for a 1 gallon batch of kombucha?",
+      "retrieved_chunks": [
+        {
+          "chunk_id": "recipe_03_kombucha#section_3",
+          "source_file": "recipe_03_kombucha_primary.md",
+          "section_title": "Ingredient Table",
+          "similarity_score": 0.7539,
+          "content": "## Ingredient Table\n| Ingredient | Weight (g) | Baker's Percentage (%) |\n|---|---|---|\n| Filtered Spring Water | 3500g | 100.0% |\n| Organic Cane Sugar | 250g | 7.14% |\n| Black Tea Leaves (Assam) | 25g | 0.71% |\n| Active Kombucha Starter Liquid | 350g | 10.0% |\n| Mature SCOBY Pellicle | 150g | 4.28% |"
+        },
+        {
+          "chunk_id": "recipe_03_kombucha#section_1",
+          "source_file": "recipe_03_kombucha_primary.md",
+          "section_title": "Primary Kombucha Fermentation",
+          "similarity_score": 0.7477,
+          "content": "# Primary Kombucha Fermentation"
+        },
+        {
+          "chunk_id": "recipe_03_kombucha#section_4",
+          "source_file": "recipe_03_kombucha_primary.md",
+          "section_title": "Method & Fermentation Steps",
+          "similarity_score": 0.7165,
+          "content": "## Method & Fermentation Steps\n1. Tea Brew: Steep tea in 1000g boiling water for 15 minutes. Strain tea leaves.\n2. Sugar Dissolution: Dissolve organic cane sugar in hot tea concentrate.\n3. Dilution: Add remaining 2500g cold filtered water to bring brew temperature down below 80°F (27°C).\n4. Inoculation: Pour active starter liquid and place SCOBY on top. Cover vessel with breathable cotton cloth and rubber band.\n5. Primary Fermentation: Ferment undisturbed in darkness at 75°F–80°F (24°C–27°C) for 7 to 10 days until pH reaches 2.8 to 3.2."
+        }
+      ],
+      "raw_output": "Based on the provided recipe documentation, you need the following amounts for the ingredients:\n\n* **Organic Cane Sugar:** 250g (7.14% Baker's Percentage) [recipe_03_kombucha_primary.md#Ingredient Table]\n* **Active Kombucha Starter Liquid:** 350g (10.0% Baker's Percentage) [recipe_03_kombucha_primary.md#Ingredient Table]"
+    },
+    {
+      "index": 2,
+      "trace_id": "tr_001_f31e",
+      "user_query": "What is the exact fine sea salt weight and percentage for the country sourdough loaf?",
+      "retrieved_chunks": [
+        {
+          "chunk_id": "recipe_01_sourdough#section_3",
+          "source_file": "recipe_01_country_sourdough.md",
+          "section_title": "Ingredient Table",
+          "similarity_score": 0.8241,
+          "content": "## Ingredient Table\n| Ingredient | Weight (g) | Baker's Percentage (%) |\n|---|---|---|\n| Bread Flour | 1000g | 100.0% |\n| Water | 750g | 75.0% |\n| Active Sourdough Starter | 200g | 20.0% |\n| Fine Sea Salt | 20g | 2.0% |"
+        },
+        {
+          "chunk_id": "recipe_01_sourdough#section_2",
+          "source_file": "recipe_01_country_sourdough.md",
+          "section_title": "Overview",
+          "similarity_score": 0.7754,
+          "content": "## Overview\nA classic naturally leavened rustic country sourdough loaf with 75% hydration and 20% sourdough starter inoculate."
+        },
+        {
+          "chunk_id": "recipe_06_blueberries#section_3",
+          "source_file": "recipe_06_lacto_blueberries.md",
+          "section_title": "Ingredient Table",
+          "similarity_score": 0.7739,
+          "content": "## Ingredient Table\n| Ingredient | Weight (g) | Baker's Percentage (%) |\n|---|---|---|\n| Fresh Organic Blueberries | 500g | 100.0% |\n| Non-Iodized Fine Sea Salt | 10g | 2.0% |"
+        }
+      ],
+      "raw_output": "Based on the provided recipe documentation, the exact weight and percentage for the fine sea salt in the country sourdough loaf are:\n\n* **Weight:** 20g [recipe_01_country_sourdough.md#Ingredient Table]\n* **Baker's Percentage:** 2.0% [recipe_01_country_sourdough.md#Ingredient Table]"
+    },
+    {
+      "index": 3,
+      "trace_id": "tr_018_ddf7",
+      "user_query": "How do I burp lacto-fermented blueberry vacuum bags or mason jars?",
+      "retrieved_chunks": [
+        {
+          "chunk_id": "recipe_06_blueberries#section_4",
+          "source_file": "recipe_06_lacto_blueberries.md",
+          "section_title": "Method & Fermentation Steps",
+          "similarity_score": 0.7763,
+          "content": "## Method & Fermentation Steps\n1. Weighing: Rinse and thoroughly dry blueberries. Weigh precisely on a digital scale (500g).\n2. Salting: Calculate exactly 2.0% salt (10g). Toss blueberries with salt in a stainless steel bowl until berries are evenly frosted with salt crystals.\n3. Vacuum Sealing: Transfer salted berries to a food-grade vacuum bag. Seal on full vacuum pressure without crushing berries.\n4. Fermentation Window: Place bag flat in a dark incubator or room temperature spot (82°F / 28°C).\n5. Monitoring: Over 4 to 5 days, the bag will inflate like a balloon from carbon dioxide production.\n6. Finishing: Pierce bag, drain and reserve lacto-blueberry juice, store berries in an airtight jar refrigerated at 38°F."
+        },
+        {
+          "chunk_id": "recipe_06_blueberries#section_1",
+          "source_file": "recipe_06_lacto_blueberries.md",
+          "section_title": "Lacto-Fermented Blueberries (Noma Style)",
+          "similarity_score": 0.734,
+          "content": "# Lacto-Fermented Blueberries (Noma Style)"
+        },
+        {
+          "chunk_id": "recipe_06_blueberries#section_2",
+          "source_file": "recipe_06_lacto_blueberries.md",
+          "section_title": "Overview",
+          "similarity_score": 0.6716,
+          "content": "## Overview\nA modernist culinary technique using 2.0% salt by weight in a vacuum-sealed bag to create floral, effervescent, and savory-sweet lacto-fermented berries."
+        }
+      ],
+      "raw_output": "ERROR: Generation failed (404 NOT_FOUND. {'error': {'code': 404, 'message': 'This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.6-flash for the latest features and improvements.', 'status': 'NOT_FOUND'}})"
+    },
+    {
+      "index": 4,
+      "trace_id": "tr_034_4267",
+      "user_query": "Why is my sourdough starter not rising after day 3?",
+      "retrieved_chunks": [
+        {
+          "chunk_id": "recipe_01_sourdough#section_4",
+          "source_file": "recipe_01_country_sourdough.md",
+          "section_title": "Method & Fermentation Steps",
+          "similarity_score": 0.6794,
+          "content": "## Method & Fermentation Steps\n1. Autolyse: Mix flour and 700g water; rest for 45 minutes at room temperature (78°F).\n2. Inoculation & Salt: Add starter and remaining 50g water with fine sea salt. Mix thoroughly.\n3. Bulk Fermentation: Perform 4 sets of stretch-and-folds spaced 30 minutes apart. Total bulk time: 4.5 hours.\n4. Shaping: Preshape, bench rest 20 minutes, then final shape into a round banneton.\n5. Cold Proof: Retard in refrigerator at 38°F for 14 hours.\n6. Baking: Preheat Dutch oven to 450°F (230°C). Bake covered 20 mins, uncovered 22 mins."
+        },
+        {
+          "chunk_id": "recipe_01_sourdough#section_3",
+          "source_file": "recipe_01_country_sourdough.md",
+          "section_title": "Ingredient Table",
+          "similarity_score": 0.6785,
+          "content": "## Ingredient Table\n| Ingredient | Weight (g) | Baker's Percentage (%) |\n|---|---|---|\n| Bread Flour | 1000g | 100.0% |\n| Water | 750g | 75.0% |\n| Active Sourdough Starter | 200g | 20.0% |\n| Fine Sea Salt | 20g | 2.0% |"
+        },
+        {
+          "chunk_id": "recipe_01_sourdough#section_2",
+          "source_file": "recipe_01_country_sourdough.md",
+          "section_title": "Overview",
+          "similarity_score": 0.663,
+          "content": "## Overview\nA classic naturally leavened rustic country sourdough loaf with 75% hydration and 20% sourdough starter inoculate."
+        }
+      ],
+      "raw_output": "I cannot find information about this in the provided recipe documentation."
+    },
+    {
+      "index": 5,
+      "trace_id": "tr_031_b97d",
+      "user_query": "Can you give me a quick 30 minute dinner recipe with chicken and lemon?",
+      "retrieved_chunks": [
+        {
+          "chunk_id": "recipe_01_sourdough#section_4",
+          "source_file": "recipe_01_country_sourdough.md",
+          "section_title": "Method & Fermentation Steps",
+          "similarity_score": 0.6205,
+          "content": "## Method & Fermentation Steps\n1. Autolyse: Mix flour and 700g water; rest for 45 minutes at room temperature (78°F).\n2. Inoculation & Salt: Add starter and remaining 50g water with fine sea salt. Mix thoroughly.\n3. Bulk Fermentation: Perform 4 sets of stretch-and-folds spaced 30 minutes apart. Total bulk time: 4.5 hours.\n4. Shaping: Preshape, bench rest 20 minutes, then final shape into a round banneton.\n5. Cold Proof: Retard in refrigerator at 38°F for 14 hours.\n6. Baking: Preheat Dutch oven to 450°F (230°C). Bake covered 20 mins, uncovered 22 mins."
+        },
+        {
+          "chunk_id": "recipe_02_kimchi#section_3",
+          "source_file": "recipe_02_classic_kimchi.md",
+          "section_title": "Ingredient Table",
+          "similarity_score": 0.6158,
+          "content": "## Ingredient Table\n| Ingredient | Weight (g) | Baker's Percentage (%) |\n|---|---|---|\n| Napa Cabbage | 2000g | 100.0% |\n| Coarse Korean Sea Salt | 150g | 7.5% |\n| Korean Chili Flakes (Gochugaru) | 80g | 4.0% |\n| Garlic Cloves | 50g | 2.5% |\n| Fresh Ginger | 20g | 1.0% |\n| Fish Sauce (Anchovy) | 40g | 2.0% |\n| Fermented Salted Shrimp (Saeujeot) | 25g | 1.25% |"
+        },
+        {
+          "chunk_id": "recipe_06_blueberries#section_1",
+          "source_file": "recipe_06_lacto_blueberries.md",
+          "section_title": "Lacto-Fermented Blueberries (Noma Style)",
+          "similarity_score": 0.6145,
+          "content": "# Lacto-Fermented Blueberries (Noma Style)"
+        }
+      ],
+      "raw_output": "I cannot find information about this in the provided recipe documentation."
+    },
+    {
+      "index": 6,
+      "trace_id": "tr_004_0cda",
+      "user_query": "How much xanthan gum should I add to the gluten-free brioche dough?",
+      "retrieved_chunks": [
+        {
+          "chunk_id": "recipe_01_sourdough#section_3",
+          "source_file": "recipe_01_country_sourdough.md",
+          "section_title": "Ingredient Table",
+          "similarity_score": 0.6797,
+          "content": "## Ingredient Table\n| Ingredient | Weight (g) | Baker's Percentage (%) |\n|---|---|---|\n| Bread Flour | 1000g | 100.0% |\n| Water | 750g | 75.0% |\n| Active Sourdough Starter | 200g | 20.0% |\n| Fine Sea Salt | 20g | 2.0% |"
+        },
+        {
+          "chunk_id": "recipe_04_miso#section_3",
+          "source_file": "recipe_04_miso_paste.md",
+          "section_title": "Ingredient Table",
+          "similarity_score": 0.6698,
+          "content": "## Ingredient Table\n| Ingredient | Weight (g) | Baker's Percentage (%) |\n|---|---|---|\n| Dried Soybeans | 500g | 100.0% |\n| Rice Koji (Inoculated) | 500g | 100.0% |\n| Non-Iodized Fine Sea Salt | 230g | 46.0% |\n| Reserved Soybean Cooking Liquid | 150g | 30.0% |"
+        },
+        {
+          "chunk_id": "recipe_02_kimchi#section_3",
+          "source_file": "recipe_02_classic_kimchi.md",
+          "section_title": "Ingredient Table",
+          "similarity_score": 0.6545,
+          "content": "## Ingredient Table\n| Ingredient | Weight (g) | Baker's Percentage (%) |\n|---|---|---|\n| Napa Cabbage | 2000g | 100.0% |\n| Coarse Korean Sea Salt | 150g | 7.5% |\n| Korean Chili Flakes (Gochugaru) | 80g | 4.0% |\n| Garlic Cloves | 50g | 2.5% |\n| Fresh Ginger | 20g | 1.0% |\n| Fish Sauce (Anchovy) | 40g | 2.0% |\n| Fermented Salted Shrimp (Saeujeot) | 25g | 1.25% |"
+        }
+      ],
+      "raw_output": "I cannot find information about this in the provided recipe documentation."
+    },
+    {
+      "index": 7,
+      "trace_id": "tr_024_a191",
+      "user_query": "Is the French brioche recipe gluten-free?",
+      "retrieved_chunks": [
+        {
+          "chunk_id": "recipe_03_kombucha#section_5",
+          "source_file": "recipe_03_kombucha_primary.md",
+          "section_title": "Allergen Note",
+          "similarity_score": 0.6631,
+          "content": "## Allergen Note\nNaturally gluten-free and vegan. Contains trace caffeine and residual ethanol (<0.5% ABV)."
+        },
+        {
+          "chunk_id": "recipe_02_kimchi#section_5",
+          "source_file": "recipe_02_classic_kimchi.md",
+          "section_title": "Allergen Note",
+          "similarity_score": 0.657,
+          "content": "## Allergen Note\nContains Fish (Anchovy) and Crustacean Shellfish (Shrimp). Gluten-free."
+        },
+        {
+          "chunk_id": "recipe_04_miso#section_5",
+          "source_file": "recipe_04_miso_paste.md",
+          "section_title": "Allergen Note",
+          "similarity_score": 0.6523,
+          "content": "## Allergen Note\nContains Soy. Gluten-free if rice koji is cultivated on 100% white rice."
+        }
+      ],
+      "raw_output": "I cannot find information about this in the provided recipe documentation."
+    },
+    {
+      "index": 8,
+      "trace_id": "tr_003_7a88",
+      "user_query": "How much sea salt by weight is required for making traditional red rice miso?",
+      "retrieved_chunks": [
+        {
+          "chunk_id": "recipe_04_miso#section_3",
+          "source_file": "recipe_04_miso_paste.md",
+          "section_title": "Ingredient Table",
+          "similarity_score": 0.7399,
+          "content": "## Ingredient Table\n| Ingredient | Weight (g) | Baker's Percentage (%) |\n|---|---|---|\n| Dried Soybeans | 500g | 100.0% |\n| Rice Koji (Inoculated) | 500g | 100.0% |\n| Non-Iodized Fine Sea Salt | 230g | 46.0% |\n| Reserved Soybean Cooking Liquid | 150g | 30.0% |"
+        },
+        {
+          "chunk_id": "recipe_02_kimchi#section_3",
+          "source_file": "recipe_02_classic_kimchi.md",
+          "section_title": "Ingredient Table",
+          "similarity_score": 0.7084,
+          "content": "## Ingredient Table\n| Ingredient | Weight (g) | Baker's Percentage (%) |\n|---|---|---|\n| Napa Cabbage | 2000g | 100.0% |\n| Coarse Korean Sea Salt | 150g | 7.5% |\n| Korean Chili Flakes (Gochugaru) | 80g | 4.0% |\n| Garlic Cloves | 50g | 2.5% |\n| Fresh Ginger | 20g | 1.0% |\n| Fish Sauce (Anchovy) | 40g | 2.0% |\n| Fermented Salted Shrimp (Saeujeot) | 25g | 1.25% |"
+        },
+        {
+          "chunk_id": "recipe_04_miso#section_2",
+          "source_file": "recipe_04_miso_paste.md",
+          "section_title": "Overview",
+          "similarity_score": 0.7004,
+          "content": "## Overview\nA rich, deeply umami fermented soybean paste made from cooked soybeans, rice koji (*Aspergillus oryzae*), and sea salt aged for 6 to 12 months."
+        }
+      ],
+      "raw_output": "I cannot find information about this in the provided recipe documentation."
+    },
+    {
+      "index": 9,
+      "trace_id": "tr_022_6965",
+      "user_query": "What fish allergen is present in traditional baechu kimchi?",
+      "retrieved_chunks": [
+        {
+          "chunk_id": "recipe_02_kimchi#section_1",
+          "source_file": "recipe_02_classic_kimchi.md",
+          "section_title": "Traditional Baechu Kimchi",
+          "similarity_score": 0.771,
+          "content": "# Traditional Baechu Kimchi"
+        },
+        {
+          "chunk_id": "recipe_02_kimchi#section_5",
+          "source_file": "recipe_02_classic_kimchi.md",
+          "section_title": "Allergen Note",
+          "similarity_score": 0.7409,
+          "content": "## Allergen Note\nContains Fish (Anchovy) and Crustacean Shellfish (Shrimp). Gluten-free."
+        },
+        {
+          "chunk_id": "recipe_01_sourdough#section_5",
+          "source_file": "recipe_01_country_sourdough.md",
+          "section_title": "Allergen Note",
+          "similarity_score": 0.7128,
+          "content": "## Allergen Note\nContains Wheat (Gluten). Manufactured in a facility that handles nuts and sesame."
+        }
+      ],
+      "raw_output": "Based on the provided recipe documentation, traditional baechu kimchi contains fish (anchovy) [recipe_02_classic_kimchi.md#Allergen Note]."
+    },
+    {
+      "index": 10,
+      "trace_id": "tr_028_a43a",
+      "user_query": "What is the best way to ferment cabbage if I am vegan and allergic to seafood?",
+      "retrieved_chunks": [
+        {
+          "chunk_id": "recipe_02_kimchi#section_4",
+          "source_file": "recipe_02_classic_kimchi.md",
+          "section_title": "Method & Fermentation Steps",
+          "similarity_score": 0.7665,
+          "content": "## Method & Fermentation Steps\n1. Salting: Quarter Napa cabbage, rub coarse sea salt between leaves, and soak in brine for 6 hours.\n2. Rinsing: Rinse thoroughly 3 times with cold water to remove excess surface salt and drain for 2 hours.\n3. Paste Preparation: Blend garlic, ginger, fish sauce, salted shrimp, and gochugaru into a thick seasoning paste.\n4. Rubbing: Generously coat each leaf with seasoning paste.\n5. Fermentation: Pack tightly into an airtight onggi or glass jar. Ferment at 65°F (18°C) for 3 days, then store at 36°F in refrigerator."
+        },
+        {
+          "chunk_id": "recipe_02_kimchi#section_2",
+          "source_file": "recipe_02_classic_kimchi.md",
+          "section_title": "Overview",
+          "similarity_score": 0.703,
+          "content": "## Overview\nA traditional Korean fermented cabbage dish salted with coarse salt, seasoned with gochugaru, garlic, ginger, and fermented at room temperature."
+        },
+        {
+          "chunk_id": "recipe_05_pickles#section_5",
+          "source_file": "recipe_05_dill_pickles.md",
+          "section_title": "Allergen Note",
+          "similarity_score": 0.6779,
+          "content": "## Allergen Note\nNaturally gluten-free, nut-free, and vegan. Contains Mustard (Mustard Seeds)."
+        }
+      ],
+      "raw_output": "I cannot find information about this in the provided recipe documentation."
+    },
+    {
+      "index": 11,
+      "trace_id": "tr_032_9124",
+      "user_query": "How do I fix dough that has completely overproofed and turned into soup?",
+      "retrieved_chunks": [
+        {
+          "chunk_id": "recipe_01_sourdough#section_4",
+          "source_file": "recipe_01_country_sourdough.md",
+          "section_title": "Method & Fermentation Steps",
+          "similarity_score": 0.6276,
+          "content": "## Method & Fermentation Steps\n1. Autolyse: Mix flour and 700g water; rest for 45 minutes at room temperature (78°F).\n2. Inoculation & Salt: Add starter and remaining 50g water with fine sea salt. Mix thoroughly.\n3. Bulk Fermentation: Perform 4 sets of stretch-and-folds spaced 30 minutes apart. Total bulk time: 4.5 hours.\n4. Shaping: Preshape, bench rest 20 minutes, then final shape into a round banneton.\n5. Cold Proof: Retard in refrigerator at 38°F for 14 hours.\n6. Baking: Preheat Dutch oven to 450°F (230°C). Bake covered 20 mins, uncovered 22 mins."
+        },
+        {
+          "chunk_id": "recipe_04_miso#section_1",
+          "source_file": "recipe_04_miso_paste.md",
+          "section_title": "Traditional Red Miso Paste (Akamiso)",
+          "similarity_score": 0.6266,
+          "content": "# Traditional Red Miso Paste (Akamiso)"
+        },
+        {
+          "chunk_id": "recipe_01_sourdough#section_1",
+          "source_file": "recipe_01_country_sourdough.md",
+          "section_title": "Country Sourdough Bread",
+          "similarity_score": 0.6256,
+          "content": "# Country Sourdough Bread"
+        }
+      ],
+      "raw_output": "I cannot find information about this in the provided recipe documentation."
+    },
+    {
+      "index": 12,
+      "trace_id": "tr_002_bd95",
+      "user_query": "If I want to scale the country sourdough to 3 loaves, how much water and flour do I need?",
+      "retrieved_chunks": [
+        {
+          "chunk_id": "recipe_01_sourdough#section_3",
+          "source_file": "recipe_01_country_sourdough.md",
+          "section_title": "Ingredient Table",
+          "similarity_score": 0.7492,
+          "content": "## Ingredient Table\n| Ingredient | Weight (g) | Baker's Percentage (%) |\n|---|---|---|\n| Bread Flour | 1000g | 100.0% |\n| Water | 750g | 75.0% |\n| Active Sourdough Starter | 200g | 20.0% |\n| Fine Sea Salt | 20g | 2.0% |"
+        },
+        {
+          "chunk_id": "recipe_01_sourdough#section_1",
+          "source_file": "recipe_01_country_sourdough.md",
+          "section_title": "Country Sourdough Bread",
+          "similarity_score": 0.7349,
+          "content": "# Country Sourdough Bread"
+        },
+        {
+          "chunk_id": "recipe_01_sourdough#section_2",
+          "source_file": "recipe_01_country_sourdough.md",
+          "section_title": "Overview",
+          "similarity_score": 0.7281,
+          "content": "## Overview\nA classic naturally leavened rustic country sourdough loaf with 75% hydration and 20% sourdough starter inoculate."
+        }
+      ],
+      "raw_output": "I cannot find information about this in the provided recipe documentation."
+    },
+    {
+      "index": 13,
+      "trace_id": "tr_019_9fe7",
+      "user_query": "What is the stretch and fold schedule during sourdough bulk fermentation?",
+      "retrieved_chunks": [
+        {
+          "chunk_id": "recipe_01_sourdough#section_4",
+          "source_file": "recipe_01_country_sourdough.md",
+          "section_title": "Method & Fermentation Steps",
+          "similarity_score": 0.7814,
+          "content": "## Method & Fermentation Steps\n1. Autolyse: Mix flour and 700g water; rest for 45 minutes at room temperature (78°F).\n2. Inoculation & Salt: Add starter and remaining 50g water with fine sea salt. Mix thoroughly.\n3. Bulk Fermentation: Perform 4 sets of stretch-and-folds spaced 30 minutes apart. Total bulk time: 4.5 hours.\n4. Shaping: Preshape, bench rest 20 minutes, then final shape into a round banneton.\n5. Cold Proof: Retard in refrigerator at 38°F for 14 hours.\n6. Baking: Preheat Dutch oven to 450°F (230°C). Bake covered 20 mins, uncovered 22 mins."
+        },
+        {
+          "chunk_id": "recipe_01_sourdough#section_2",
+          "source_file": "recipe_01_country_sourdough.md",
+          "section_title": "Overview",
+          "similarity_score": 0.7179,
+          "content": "## Overview\nA classic naturally leavened rustic country sourdough loaf with 75% hydration and 20% sourdough starter inoculate."
+        },
+        {
+          "chunk_id": "recipe_01_sourdough#section_1",
+          "source_file": "recipe_01_country_sourdough.md",
+          "section_title": "Country Sourdough Bread",
+          "similarity_score": 0.7115,
+          "content": "# Country Sourdough Bread"
+        }
+      ],
+      "raw_output": "ERROR: Generation failed (404 NOT_FOUND. {'error': {'code': 404, 'message': 'This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.6-flash for the latest features and improvements.', 'status': 'NOT_FOUND'}})"
+    },
+    {
+      "index": 14,
+      "trace_id": "tr_014_83e2",
+      "user_query": "What oven temperature and baking time are used for the sourdough Dutch oven bake?",
+      "retrieved_chunks": [
+        {
+          "chunk_id": "recipe_01_sourdough#section_4",
+          "source_file": "recipe_01_country_sourdough.md",
+          "section_title": "Method & Fermentation Steps",
+          "similarity_score": 0.7772,
+          "content": "## Method & Fermentation Steps\n1. Autolyse: Mix flour and 700g water; rest for 45 minutes at room temperature (78°F).\n2. Inoculation & Salt: Add starter and remaining 50g water with fine sea salt. Mix thoroughly.\n3. Bulk Fermentation: Perform 4 sets of stretch-and-folds spaced 30 minutes apart. Total bulk time: 4.5 hours.\n4. Shaping: Preshape, bench rest 20 minutes, then final shape into a round banneton.\n5. Cold Proof: Retard in refrigerator at 38°F for 14 hours.\n6. Baking: Preheat Dutch oven to 450°F (230°C). Bake covered 20 mins, uncovered 22 mins."
+        },
+        {
+          "chunk_id": "recipe_01_sourdough#section_1",
+          "source_file": "recipe_01_country_sourdough.md",
+          "section_title": "Country Sourdough Bread",
+          "similarity_score": 0.6985,
+          "content": "# Country Sourdough Bread"
+        },
+        {
+          "chunk_id": "recipe_01_sourdough#section_3",
+          "source_file": "recipe_01_country_sourdough.md",
+          "section_title": "Ingredient Table",
+          "similarity_score": 0.6854,
+          "content": "## Ingredient Table\n| Ingredient | Weight (g) | Baker's Percentage (%) |\n|---|---|---|\n| Bread Flour | 1000g | 100.0% |\n| Water | 750g | 75.0% |\n| Active Sourdough Starter | 200g | 20.0% |\n| Fine Sea Salt | 20g | 2.0% |"
+        }
+      ],
+      "raw_output": "Based on the provided documentation, the Dutch oven is preheated to **450°F (230°C)**, and the bread is baked **covered for 20 minutes** and **uncovered for 22 minutes** [recipe_01_country_sourdough.md#Method & Fermentation Steps]."
+    },
+    {
+      "index": 15,
+      "trace_id": "tr_033_0abc",
+      "user_query": "What is the shelf life of opened red miso stored at room temperature?",
+      "retrieved_chunks": [
+        {
+          "chunk_id": "recipe_04_miso#section_1",
+          "source_file": "recipe_04_miso_paste.md",
+          "section_title": "Traditional Red Miso Paste (Akamiso)",
+          "similarity_score": 0.7036,
+          "content": "# Traditional Red Miso Paste (Akamiso)"
+        },
+        {
+          "chunk_id": "recipe_06_blueberries#section_4",
+          "source_file": "recipe_06_lacto_blueberries.md",
+          "section_title": "Method & Fermentation Steps",
+          "similarity_score": 0.6199,
+          "content": "## Method & Fermentation Steps\n1. Weighing: Rinse and thoroughly dry blueberries. Weigh precisely on a digital scale (500g).\n2. Salting: Calculate exactly 2.0% salt (10g). Toss blueberries with salt in a stainless steel bowl until berries are evenly frosted with salt crystals.\n3. Vacuum Sealing: Transfer salted berries to a food-grade vacuum bag. Seal on full vacuum pressure without crushing berries.\n4. Fermentation Window: Place bag flat in a dark incubator or room temperature spot (82°F / 28°C).\n5. Monitoring: Over 4 to 5 days, the bag will inflate like a balloon from carbon dioxide production.\n6. Finishing: Pierce bag, drain and reserve lacto-blueberry juice, store berries in an airtight jar refrigerated at 38°F."
+        },
+        {
+          "chunk_id": "recipe_04_miso#section_3",
+          "source_file": "recipe_04_miso_paste.md",
+          "section_title": "Ingredient Table",
+          "similarity_score": 0.6153,
+          "content": "## Ingredient Table\n| Ingredient | Weight (g) | Baker's Percentage (%) |\n|---|---|---|\n| Dried Soybeans | 500g | 100.0% |\n| Rice Koji (Inoculated) | 500g | 100.0% |\n| Non-Iodized Fine Sea Salt | 230g | 46.0% |\n| Reserved Soybean Cooking Liquid | 150g | 30.0% |"
+        }
+      ],
+      "raw_output": "I cannot find information about this in the provided recipe documentation."
+    },
+    {
+      "index": 16,
+      "trace_id": "tr_012_895b",
+      "user_query": "At what room temperature should red miso paste ferment and for how many months?",
+      "retrieved_chunks": [
+        {
+          "chunk_id": "recipe_04_miso#section_1",
+          "source_file": "recipe_04_miso_paste.md",
+          "section_title": "Traditional Red Miso Paste (Akamiso)",
+          "similarity_score": 0.7792,
+          "content": "# Traditional Red Miso Paste (Akamiso)"
+        },
+        {
+          "chunk_id": "recipe_04_miso#section_2",
+          "source_file": "recipe_04_miso_paste.md",
+          "section_title": "Overview",
+          "similarity_score": 0.7322,
+          "content": "## Overview\nA rich, deeply umami fermented soybean paste made from cooked soybeans, rice koji (*Aspergillus oryzae*), and sea salt aged for 6 to 12 months."
+        },
+        {
+          "chunk_id": "recipe_04_miso#section_4",
+          "source_file": "recipe_04_miso_paste.md",
+          "section_title": "Method & Fermentation Steps",
+          "similarity_score": 0.732,
+          "content": "## Method & Fermentation Steps\n1. Soak & Boil: Soak dried soybeans for 18 hours. Simmer for 4 hours until beans can be crushed between thumb and pinky.\n2. Mashing: Drain and reserve 150g liquid. Mash hot cooked soybeans into a smooth paste.\n3. Mixing: Cool beans to 100°F (38°C). Mix with rice koji, sea salt, and reserved liquid until homogenous.\n4. Packing: Form paste into balls and throw firmly into a ceramic crock to eliminate air pockets.\n5. Salting Surface: Sprinkle 20g salt over the top surface, apply plastic wrap directly, and weight down with 2kg weights.\n6. Aging: Ferment at room temperature in a dark pantry for 6 to 12 months."
+        }
+      ],
+      "raw_output": "Based on the provided context:\n\n* **Fermentation Temperature:** The recipe specifies fermenting simply at \"room temperature in a dark pantry\" (a specific numerical degree for room temperature is not provided) [recipe_04_miso_paste.md#Method & Fermentation Steps]. *(Note: During mixing, beans are cooled to 100°F / 38°C [recipe_04_miso_paste.md#Method & Fermentation Steps]).*\n* **Fermentation Time:** 6 to 12 months [recipe_04_miso_paste.md#Overview], [recipe_04_miso_paste.md#Method & Fermentation Steps]."
+    },
+    {
+      "index": 17,
+      "trace_id": "tr_023_c5f5",
+      "user_query": "Can I substitute table iodized salt for kosher salt in lacto-fermentation?",
+      "retrieved_chunks": [
+        {
+          "chunk_id": "recipe_02_kimchi#section_2",
+          "source_file": "recipe_02_classic_kimchi.md",
+          "section_title": "Overview",
+          "similarity_score": 0.7167,
+          "content": "## Overview\nA traditional Korean fermented cabbage dish salted with coarse salt, seasoned with gochugaru, garlic, ginger, and fermented at room temperature."
+        },
+        {
+          "chunk_id": "recipe_06_blueberries#section_1",
+          "source_file": "recipe_06_lacto_blueberries.md",
+          "section_title": "Lacto-Fermented Blueberries (Noma Style)",
+          "similarity_score": 0.7113,
+          "content": "# Lacto-Fermented Blueberries (Noma Style)"
+        },
+        {
+          "chunk_id": "recipe_05_pickles#section_1",
+          "source_file": "recipe_05_dill_pickles.md",
+          "section_title": "Naturally Fermented Garlic Dill Pickles",
+          "similarity_score": 0.6903,
+          "content": "# Naturally Fermented Garlic Dill Pickles"
+        }
+      ],
+      "raw_output": "I cannot find information about this in the provided recipe documentation."
+    },
+    {
+      "index": 18,
+      "trace_id": "tr_006_86d6",
+      "user_query": "What weight of salted shrimp (saeujeot) is needed for the kimchi paste?",
+      "retrieved_chunks": [
+        {
+          "chunk_id": "recipe_02_kimchi#section_3",
+          "source_file": "recipe_02_classic_kimchi.md",
+          "section_title": "Ingredient Table",
+          "similarity_score": 0.765,
+          "content": "## Ingredient Table\n| Ingredient | Weight (g) | Baker's Percentage (%) |\n|---|---|---|\n| Napa Cabbage | 2000g | 100.0% |\n| Coarse Korean Sea Salt | 150g | 7.5% |\n| Korean Chili Flakes (Gochugaru) | 80g | 4.0% |\n| Garlic Cloves | 50g | 2.5% |\n| Fresh Ginger | 20g | 1.0% |\n| Fish Sauce (Anchovy) | 40g | 2.0% |\n| Fermented Salted Shrimp (Saeujeot) | 25g | 1.25% |"
+        },
+        {
+          "chunk_id": "recipe_04_miso#section_3",
+          "source_file": "recipe_04_miso_paste.md",
+          "section_title": "Ingredient Table",
+          "similarity_score": 0.7519,
+          "content": "## Ingredient Table\n| Ingredient | Weight (g) | Baker's Percentage (%) |\n|---|---|---|\n| Dried Soybeans | 500g | 100.0% |\n| Rice Koji (Inoculated) | 500g | 100.0% |\n| Non-Iodized Fine Sea Salt | 230g | 46.0% |\n| Reserved Soybean Cooking Liquid | 150g | 30.0% |"
+        },
+        {
+          "chunk_id": "recipe_04_miso#section_2",
+          "source_file": "recipe_04_miso_paste.md",
+          "section_title": "Overview",
+          "similarity_score": 0.7101,
+          "content": "## Overview\nA rich, deeply umami fermented soybean paste made from cooked soybeans, rice koji (*Aspergillus oryzae*), and sea salt aged for 6 to 12 months."
+        }
+      ],
+      "raw_output": "Based on the provided documentation, the weight of Fermented Salted Shrimp (Saeujeot) needed for the kimchi is 25g [recipe_02_classic_kimchi.md#Ingredient Table]."
+    },
+    {
+      "index": 19,
+      "trace_id": "tr_030_aedd",
+      "user_query": "How do I make a chocolate lava cake with molten center?",
+      "retrieved_chunks": [
+        {
+          "chunk_id": "recipe_01_sourdough#section_4",
+          "source_file": "recipe_01_country_sourdough.md",
+          "section_title": "Method & Fermentation Steps",
+          "similarity_score": 0.616,
+          "content": "## Method & Fermentation Steps\n1. Autolyse: Mix flour and 700g water; rest for 45 minutes at room temperature (78°F).\n2. Inoculation & Salt: Add starter and remaining 50g water with fine sea salt. Mix thoroughly.\n3. Bulk Fermentation: Perform 4 sets of stretch-and-folds spaced 30 minutes apart. Total bulk time: 4.5 hours.\n4. Shaping: Preshape, bench rest 20 minutes, then final shape into a round banneton.\n5. Cold Proof: Retard in refrigerator at 38°F for 14 hours.\n6. Baking: Preheat Dutch oven to 450°F (230°C). Bake covered 20 mins, uncovered 22 mins."
+        },
+        {
+          "chunk_id": "recipe_06_blueberries#section_1",
+          "source_file": "recipe_06_lacto_blueberries.md",
+          "section_title": "Lacto-Fermented Blueberries (Noma Style)",
+          "similarity_score": 0.6088,
+          "content": "# Lacto-Fermented Blueberries (Noma Style)"
+        },
+        {
+          "chunk_id": "recipe_06_blueberries#section_2",
+          "source_file": "recipe_06_lacto_blueberries.md",
+          "section_title": "Overview",
+          "similarity_score": 0.5895,
+          "content": "## Overview\nA modernist culinary technique using 2.0% salt by weight in a vacuum-sealed bag to create floral, effervescent, and savory-sweet lacto-fermented berries."
+        }
+      ],
+      "raw_output": "I cannot find information about this in the provided recipe documentation."
+    },
+    {
+      "index": 20,
+      "trace_id": "tr_013_155c",
+      "user_query": "What is the brine salinity percentage and fermentation time for dill pickles?",
+      "retrieved_chunks": [
+        {
+          "chunk_id": "recipe_05_pickles#section_1",
+          "source_file": "recipe_05_dill_pickles.md",
+          "section_title": "Naturally Fermented Garlic Dill Pickles",
+          "similarity_score": 0.8022,
+          "content": "# Naturally Fermented Garlic Dill Pickles"
+        },
+        {
+          "chunk_id": "recipe_05_pickles#section_2",
+          "source_file": "recipe_05_dill_pickles.md",
+          "section_title": "Overview",
+          "similarity_score": 0.7926,
+          "content": "## Overview\nCrisp full-sour deli pickles fermented in a 3.5% sea salt brine with fresh dill heads, mustard seed, and oak leaves for natural tannin crunch."
+        },
+        {
+          "chunk_id": "recipe_05_pickles#section_4",
+          "source_file": "recipe_05_dill_pickles.md",
+          "section_title": "Method & Fermentation Steps",
+          "similarity_score": 0.7477,
+          "content": "## Method & Fermentation Steps\n1. Cucumber Prep: Trim 1/16th inch blossom end off cucumbers (contains softening enzymes). Soak in ice water for 30 minutes.\n2. Brine Creation: Whisk 35g pickling salt into 1000g cold filtered water until completely dissolved (3.5% brine).\n3. Jar Packing: Layer garlic, dill heads, mustard seeds, peppercorns, and tannin leaves at the bottom of a wide-mouth jar. Pack cucumbers vertically as tightly as possible.\n4. Submersion: Pour brine over cucumbers to submerge completely. Place a glass fermentation weight on top.\n5. Fermentation Time: Ferment at 68°F–72°F (20°C–22°C) for 7 days (half-sour) or 14 to 21 days (full-sour)."
+        }
+      ],
+      "raw_output": "ERROR: Generation failed (503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}})"
+    }
+  ]
+}
