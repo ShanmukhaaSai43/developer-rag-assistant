@@ -99,7 +99,7 @@ Public benchmark leaderboards evaluate generalized reasoning on static synthetic
 > **On 2026-08-30, fixing 'Ignores requested batch scaling / unit conversion and outputs default single-batch weights or refuses' by implementing a deterministic Baker's Percentage scaling pre-processor in the RAG prompt will reduce its frequency from 10.0% to 0.0% without increasing 'Refuses practical kitchen troubleshooting, emergency fixes, and ingredient substitutions' above 30.0%.**
 
 ### Pre-Fix Commit Reference
-- **Git Commit Hash:** `[PENDING_COMMIT_HASH]` *(Committed before code changes are implemented)*
+- **Git Commit Hash:** `ee1b2840549eceafb8ba282b37b738c9838dcc51` *(Committed before code changes are implemented)*
 - **Target Mode:** `Ignores requested batch scaling / unit conversion and outputs default single-batch weights or refuses` (Current Frequency: 10.0%, Severity: Ruins the dish)
 - **Baseline Sample Frequency:** 2 / 20 traces (10.0%)
 - **Target Post-Fix Frequency:** 0 / 20 traces (0.0%)
