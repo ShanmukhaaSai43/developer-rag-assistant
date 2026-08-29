@@ -1,0 +1,185 @@
+{
+  "protocol": "BLIND_HUMAN_LABELING",
+  "criterion": "Culinary Chemical Viability & Textural Equivalence",
+  "label_definition": {
+    "1": "PASS - Viable substitution that preserves chemical function, fermentation microbes, or structural integrity",
+    "0": "FAIL - Non-viable substitution that causes structural collapse, microbial death/toxicity, or recipe ruin"
+  },
+  "labels": [
+    {
+      "id": "sub_01",
+      "dish_name": "Country Sourdough Loaf",
+      "proposed_substitution": "All-Purpose Flour (10% protein) 1:1 with 5% hydration reduction",
+      "human_label": 1,
+      "human_rationale": "Slightly lower protein flour compensated by 5% hydration reduction maintains gluten structure and dough workability."
+    },
+    {
+      "id": "sub_02",
+      "dish_name": "Country Sourdough Loaf",
+      "proposed_substitution": "100% Coconut Flour 1:1 without additional binders or water adjustment",
+      "human_label": 0,
+      "human_rationale": "Coconut flour lacks gluten and absorbs 4x more water; 1:1 direct swap yields unworkable dry crumbling sawdust."
+    },
+    {
+      "id": "sub_03",
+      "dish_name": "Country Sourdough (3-Loaf Batch)",
+      "proposed_substitution": "3x Batch Multiplication (3000g Flour, 2250g Water, 600g Starter, 60g Salt)",
+      "human_label": 1,
+      "human_rationale": "Baker's percentages (100% flour, 75% water, 20% starter, 2% salt) are perfectly preserved for 3 standard loaves."
+    },
+    {
+      "id": "sub_04",
+      "dish_name": "Classic Baechu Kimchi",
+      "proposed_substitution": "Yondu Umami Vegetable Broth + Dried Kelp (Dashima) Soaking Water",
+      "human_label": 1,
+      "human_rationale": "Provides rich glutamate-based umami replacing fish sauce without disturbing lactic acid fermentation."
+    },
+    {
+      "id": "sub_05",
+      "dish_name": "Classic Baechu Kimchi",
+      "proposed_substitution": "Iodized Table Salt with Sodium Ferrocyanide Anti-Caking Agent 1:1 by weight",
+      "human_label": 0,
+      "human_rationale": "Iodine and chemical anti-caking agents inhibit lactic acid bacteria, causing limp soggy texture and metallic off-flavors."
+    },
+    {
+      "id": "sub_06",
+      "dish_name": "Primary Kombucha Batch (1 Gallon)",
+      "proposed_substitution": "1 US Gallon Scaling (3785g Water, 270g Cane Sugar, 27g Black Tea, 378g Starter Liquid)",
+      "human_label": 1,
+      "human_rationale": "Exact volumetric scaling preserving 7.14% sucrose, 0.71% tea leaves, and 10% starter acidity for 1 US gallon."
+    },
+    {
+      "id": "sub_07",
+      "dish_name": "Primary Kombucha",
+      "proposed_substitution": "Raw Unpasteurized Antibacterial Honey 1:1 by weight",
+      "human_label": 0,
+      "human_rationale": "Raw unpasteurized honey possesses antimicrobial enzymes and hydrogen peroxide that suppress primary SCOBY cultures."
+    },
+    {
+      "id": "sub_08",
+      "dish_name": "Traditional Red Miso Paste",
+      "proposed_substitution": "Barley Koji (Mugi Koji) cultivated with Aspergillus oryzae 1:1 by weight",
+      "human_label": 1,
+      "human_rationale": "Barley koji is an established traditional miso variant (Mugi Miso) with identical proteolytic enzyme activity."
+    },
+    {
+      "id": "sub_09",
+      "dish_name": "Traditional Red Miso Paste",
+      "proposed_substitution": "Low-Sodium Modification reducing salt to 20g (4.0% ratio)",
+      "human_label": 0,
+      "human_rationale": "Long-term ambient miso aging requires at least 12% salt; 4% salt causes rapid putrefaction and dangerous mold proliferation."
+    },
+    {
+      "id": "sub_10",
+      "dish_name": "Naturally Fermented Garlic Dill Pickles",
+      "proposed_substitution": "Black Tea Leaves (Assam) in cheesecloth sachet (2g) for natural tannins",
+      "human_label": 1,
+      "human_rationale": "Black tea supplies condensed tannins that effectively inhibit pectinase softening enzymes, preserving pickle crunch."
+    },
+    {
+      "id": "sub_11",
+      "dish_name": "Naturally Fermented Garlic Dill Pickles",
+      "proposed_substitution": "Tap Water with Zero Salt to make sodium-free pickles",
+      "human_label": 0,
+      "human_rationale": "Salt-free ambient vegetable soaking invites anaerobic pathogens and rotting microorganisms instead of lactic acid bacteria."
+    },
+    {
+      "id": "sub_12",
+      "dish_name": "Lacto-Fermented Blueberries (Noma Style)",
+      "proposed_substitution": "Fresh Blackberries (500g) with 2.0% Non-Iodized Salt (10g)",
+      "human_label": 1,
+      "human_rationale": "Fresh blackberries host native lactobacillus and ferment cleanly at 2.0% salinity in anaerobic conditions."
+    },
+    {
+      "id": "sub_13",
+      "dish_name": "Lacto-Fermented Blueberries",
+      "proposed_substitution": "Open Bowl with Cheesecloth Cover at Room Temperature",
+      "human_label": 0,
+      "human_rationale": "Exposing salted whole berries to open ambient air promotes Kahm yeast and mold blooms rather than anaerobic lacto-fermentation."
+    },
+    {
+      "id": "sub_14",
+      "dish_name": "Parisian French Brioche",
+      "proposed_substitution": "European Block Cultured Vegan Butter (80% fat) 1:1 by weight",
+      "human_label": 1,
+      "human_rationale": "Solid cold cultured plant butter with 80% fat incorporates into gluten dough creating proper enriched brioche crumb."
+    },
+    {
+      "id": "sub_15",
+      "dish_name": "Parisian French Brioche",
+      "proposed_substitution": "Liquid Extra Virgin Olive Oil (250g) poured in with water",
+      "human_label": 0,
+      "human_rationale": "High proportions of liquid oil destroy the gluten matrix during initial kneading, yielding greasy soupy batter."
+    },
+    {
+      "id": "sub_16",
+      "dish_name": "Country Sourdough Loaf",
+      "proposed_substitution": "Diamond Crystal Kosher Salt (20g by weight)",
+      "human_label": 1,
+      "human_rationale": "Pure sodium chloride without additives measured by mass provides identical ionic dough tightening."
+    },
+    {
+      "id": "sub_17",
+      "dish_name": "Country Sourdough Loaf",
+      "proposed_substitution": "Kosher Salt measured as 1 Tablespoon by volume instead of weight",
+      "human_label": 0,
+      "human_rationale": "Volumetric salt density varies drastically (8g to 18g/Tbsp), leading to severe under-salting or yeast suppression."
+    },
+    {
+      "id": "sub_18",
+      "dish_name": "Classic Baechu Kimchi",
+      "proposed_substitution": "Coarsely Ground Red Aleppo Pepper + Paprika (40g/40g blend)",
+      "human_label": 1,
+      "human_rationale": "Replaces gochugaru heat and color safely without altering pH drops or water activity in the vegetable paste."
+    },
+    {
+      "id": "sub_19",
+      "dish_name": "Classic Baechu Kimchi",
+      "proposed_substitution": "Pure Carolina Reaper Pepper Powder (80g 1:1 by weight)",
+      "human_label": 0,
+      "human_rationale": "Carolina reaper is ~1.5M Scoville; 80g is a hazardous concentration that renders the dish dangerously caustic and inedible."
+    },
+    {
+      "id": "sub_20",
+      "dish_name": "Primary Kombucha",
+      "proposed_substitution": "Pure Essential Oil of Peppermint (25 drops) in place of tea",
+      "human_label": 0,
+      "human_rationale": "Essential oils are concentrated antimicrobials that damage SCOBY cellular membranes and prevent gas exchange."
+    },
+    {
+      "id": "sub_21",
+      "dish_name": "Traditional Red Miso Paste",
+      "proposed_substitution": "Dried Organic Chickpeas (Garbanzo Beans, 500g) 1:1 by weight",
+      "human_label": 1,
+      "human_rationale": "Chickpea miso is a recognized soy-free alternative with similar protein and carbohydrate fermentability."
+    },
+    {
+      "id": "sub_22",
+      "dish_name": "Naturally Fermented Garlic Dill Pickles",
+      "proposed_substitution": "Kosher Salt (35g by weight in 1000g Water = 3.5% Brine)",
+      "human_label": 1,
+      "human_rationale": "Additive-free kosher salt by weight creates an identical 3.5% brine supporting selective lactobacillus growth."
+    },
+    {
+      "id": "sub_23",
+      "dish_name": "Lacto-Fermented Blueberries",
+      "proposed_substitution": "Canned Blueberry Pie Filling in High-Fructose Corn Syrup (500g)",
+      "human_label": 0,
+      "human_rationale": "Cooked canned pie filling has dead microflora, excessive refined syrup, and thickeners incompatible with lacto-fermentation."
+    },
+    {
+      "id": "sub_24",
+      "dish_name": "Country Sourdough Loaf",
+      "proposed_substitution": "Commercial Active Dry Yeast (7g) + Water (100g) + Flour (100g) Poolish",
+      "human_label": 1,
+      "human_rationale": "Commercial yeast poolish delivers reliable gas leavening and aroma while baking a structured country loaf."
+    },
+    {
+      "id": "sub_25",
+      "dish_name": "Primary Kombucha",
+      "proposed_substitution": "Green Tea (Sencha, 25g) for a lighter Jun-style Fermentation",
+      "human_label": 1,
+      "human_rationale": "Green tea provides adequate purines and tannins to feed the SCOBY culture for successful Jun-style kombucha."
+    }
+  ]
+}

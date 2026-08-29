@@ -1,0 +1,669 @@
+[
+  {
+    "id": "sub_01",
+    "dish_name": "Country Sourdough Loaf",
+    "original_ingredient": "Bread Flour (12.5% protein)",
+    "proposed_substitution": "All-Purpose Flour (10% protein) 1:1 with 5% hydration reduction",
+    "taxonomy_mode": "kitchen_troubleshooting_and_substitutions",
+    "is_regression_case": false,
+    "recipe_output": {
+      "title": "Country Sourdough with All-Purpose Flour",
+      "servings": "1 loaf (approx 900g baked)",
+      "ingredients": [
+        {"name": "All-Purpose Flour", "weight": "1000g", "bakers_percentage": "100.0%"},
+        {"name": "Water", "weight": "700g", "bakers_percentage": "70.0%"},
+        {"name": "Active Sourdough Starter", "weight": "200g", "bakers_percentage": "20.0%"},
+        {"name": "Fine Sea Salt", "weight": "20g", "bakers_percentage": "2.0%"}
+      ],
+      "allergen_note": "Contains Wheat (Gluten). Manufactured in a facility handling nuts and sesame.",
+      "baking_temperature": "450°F (230°C)",
+      "method_steps": [
+        "Autolyse: Mix all-purpose flour and 650g water; rest for 45 minutes at room temperature (78°F).",
+        "Inoculation & Salt: Add starter and remaining 50g water with fine sea salt. Mix thoroughly.",
+        "Bulk Fermentation: Perform 4 sets of stretch-and-folds spaced 30 minutes apart.",
+        "Shaping & Cold Proof: Preshape, bench rest 20 minutes, banneton shape, retard in refrigerator at 38°F for 14 hours.",
+        "Baking: Bake in preheated Dutch oven at 450°F (230°C) covered 20 mins, uncovered 22 mins."
+      ]
+    }
+  },
+  {
+    "id": "sub_02",
+    "dish_name": "Country Sourdough Loaf",
+    "original_ingredient": "Bread Flour (Gluten)",
+    "proposed_substitution": "100% Coconut Flour 1:1 without additional binders or water adjustment",
+    "taxonomy_mode": "kitchen_troubleshooting_and_substitutions",
+    "is_regression_case": false,
+    "recipe_output": {
+      "title": "Gluten-Free Coconut Sourdough Attempt",
+      "servings": "1 loaf",
+      "ingredients": [
+        {"name": "Coconut Flour", "weight": "1000g", "bakers_percentage": "100.0%"},
+        {"name": "Water", "weight": "750g", "bakers_percentage": "75.0%"},
+        {"name": "Active Sourdough Starter", "weight": "200g", "bakers_percentage": "20.0%"},
+        {"name": "Fine Sea Salt", "weight": "20g", "bakers_percentage": "2.0%"}
+      ],
+      "allergen_note": "Contains Tree Nuts (Coconut). Gluten-free.",
+      "baking_temperature": "450°F (230°C)",
+      "method_steps": [
+        "Mix coconut flour and water; rest for 45 minutes.",
+        "Add starter and fine sea salt, attempt stretch-and-fold schedule.",
+        "Bake in Dutch oven at 450°F (230°C) for 40 minutes."
+      ]
+    }
+  },
+  {
+    "id": "sub_03",
+    "dish_name": "Country Sourdough (3-Loaf Batch)",
+    "original_ingredient": "1-Loaf Table (1000g Flour, 750g Water, 200g Starter, 20g Salt)",
+    "proposed_substitution": "3x Batch Multiplication (3000g Flour, 2250g Water, 600g Starter, 60g Salt)",
+    "taxonomy_mode": "batch_scaling_and_quantities",
+    "is_regression_case": true,
+    "regression_source_trace": "tr_002_bd95",
+    "recipe_output": {
+      "title": "Scaled 3-Loaf Country Sourdough Batch",
+      "servings": "3 loaves (approx 2700g total dough)",
+      "ingredients": [
+        {"name": "Bread Flour", "weight": "3000g", "bakers_percentage": "100.0%"},
+        {"name": "Water", "weight": "2250g", "bakers_percentage": "75.0%"},
+        {"name": "Active Sourdough Starter", "weight": "600g", "bakers_percentage": "20.0%"},
+        {"name": "Fine Sea Salt", "weight": "60g", "bakers_percentage": "2.0%"}
+      ],
+      "allergen_note": "Contains Wheat (Gluten).",
+      "baking_temperature": "450°F (230°C)",
+      "method_steps": [
+        "Autolyse: Combine 3000g flour with 2100g water in a large tub; rest 45 minutes.",
+        "Inoculation: Add 600g starter, remaining 150g water, and 60g fine sea salt.",
+        "Bulk Fermentation: Perform 4 sets of coil folds every 30 minutes over 4.5 hours.",
+        "Divide & Shape: Divide dough into three equal 970g portions; shape and proof at 38°F for 14 hours.",
+        "Bake: Bake each loaf in Dutch oven at 450°F (230°C) covered 20 mins, uncovered 22 mins."
+      ]
+    }
+  },
+  {
+    "id": "sub_04",
+    "dish_name": "Classic Baechu Kimchi",
+    "original_ingredient": "Fish Sauce (Anchovy) & Salted Shrimp (Saeujeot)",
+    "proposed_substitution": "Yondu Umami Vegetable Broth + Dried Kelp (Dashima) Soaking Water",
+    "taxonomy_mode": "allergen_safety_and_dietary",
+    "is_regression_case": false,
+    "recipe_output": {
+      "title": "Vegan Seafood-Free Classic Baechu Kimchi",
+      "servings": "8 quart servings (2000g cabbage batch)",
+      "ingredients": [
+        {"name": "Napa Cabbage", "weight": "2000g", "bakers_percentage": "100.0%"},
+        {"name": "Coarse Korean Sea Salt", "weight": "150g", "bakers_percentage": "7.5%"},
+        {"name": "Korean Chili Flakes (Gochugaru)", "weight": "80g", "bakers_percentage": "4.0%"},
+        {"name": "Garlic Cloves", "weight": "50g", "bakers_percentage": "2.5%"},
+        {"name": "Fresh Ginger", "weight": "20g", "bakers_percentage": "1.0%"},
+        {"name": "Yondu Vegetable Umami Seasoning", "weight": "40g", "bakers_percentage": "2.0%"},
+        {"name": "Concentrated Kelp Dashima Broth", "weight": "25g", "bakers_percentage": "1.25%"}
+      ],
+      "allergen_note": "Contains Soy. Vegan, 100% Seafood-free and Crustacean-free.",
+      "baking_temperature": "65°F (18°C) room fermentation",
+      "method_steps": [
+        "Quarter Napa cabbage and brine in coarse sea salt for 6 hours.",
+        "Rinse cabbage thoroughly 3 times in cold water and drain 2 hours.",
+        "Blend garlic, ginger, Yondu vegetable seasoning, concentrated kelp broth, and gochugaru into paste.",
+        "Rub seasoning paste between leaves and pack in crock to ferment at 65°F (18°C) for 3 days."
+      ]
+    }
+  },
+  {
+    "id": "sub_05",
+    "dish_name": "Classic Baechu Kimchi",
+    "original_ingredient": "Coarse Korean Sea Salt (Solar Salt)",
+    "proposed_substitution": "Iodized Table Salt with Sodium Ferrocyanide Anti-Caking Agent 1:1 by weight",
+    "taxonomy_mode": "kitchen_troubleshooting_and_substitutions",
+    "is_regression_case": false,
+    "recipe_output": {
+      "title": "Kimchi with Iodized Table Salt",
+      "servings": "8 servings",
+      "ingredients": [
+        {"name": "Napa Cabbage", "weight": "2000g", "bakers_percentage": "100.0%"},
+        {"name": "Iodized Table Salt", "weight": "150g", "bakers_percentage": "7.5%"},
+        {"name": "Korean Chili Flakes (Gochugaru)", "weight": "80g", "bakers_percentage": "4.0%"},
+        {"name": "Garlic Cloves", "weight": "50g", "bakers_percentage": "2.5%"},
+        {"name": "Fresh Ginger", "weight": "20g", "bakers_percentage": "1.0%"},
+        {"name": "Fish Sauce (Anchovy)", "weight": "40g", "bakers_percentage": "2.0%"}
+      ],
+      "allergen_note": "Contains Fish (Anchovy). Gluten-free.",
+      "baking_temperature": "65°F (18°C)",
+      "method_steps": [
+        "Rub iodized table salt between cabbage leaves and soak for 6 hours.",
+        "Rinse cabbage 3 times with cold water.",
+        "Coat with paste of garlic, ginger, fish sauce, and gochugaru.",
+        "Ferment at 65°F (18°C) for 3 days."
+      ]
+    }
+  },
+  {
+    "id": "sub_06",
+    "dish_name": "Primary Kombucha Batch (1 Gallon)",
+    "original_ingredient": "3.5L Metric Water Batch (250g Sugar, 25g Tea, 350g Starter Liquid)",
+    "proposed_substitution": "1 US Gallon Scaling (3785g Water, 270g Cane Sugar, 27g Black Tea, 378g Starter Liquid)",
+    "taxonomy_mode": "batch_scaling_and_quantities",
+    "is_regression_case": true,
+    "regression_source_trace": "tr_007_e7c4",
+    "recipe_output": {
+      "title": "Full 1-Gallon Standard Kombucha Brew",
+      "servings": "1 gallon (16 cups brew)",
+      "ingredients": [
+        {"name": "Filtered Spring Water", "weight": "3785g", "bakers_percentage": "100.0%"},
+        {"name": "Organic Cane Sugar", "weight": "270g", "bakers_percentage": "7.14%"},
+        {"name": "Black Tea Leaves (Assam)", "weight": "27g", "bakers_percentage": "0.71%"},
+        {"name": "Active Kombucha Starter Liquid", "weight": "378g", "bakers_percentage": "10.0%"},
+        {"name": "Mature SCOBY Pellicle", "weight": "160g", "bakers_percentage": "4.28%"}
+      ],
+      "allergen_note": "Naturally gluten-free and vegan. Contains trace caffeine.",
+      "baking_temperature": "78°F (26°C)",
+      "method_steps": [
+        "Steep 27g black tea in 1000g boiling water for 15 minutes, then strain.",
+        "Dissolve 270g organic cane sugar into hot tea concentrate.",
+        "Dilute with 2785g cold filtered water to cool below 80°F (27°C).",
+        "Add 378g starter liquid and SCOBY pellicle; ferment at 78°F (26°C) for 8 days until pH reaches 3.0."
+      ]
+    }
+  },
+  {
+    "id": "sub_07",
+    "dish_name": "Primary Kombucha",
+    "original_ingredient": "Organic Cane Sugar (Sucrose)",
+    "proposed_substitution": "Raw Unpasteurized Antibacterial Honey 1:1 by weight",
+    "taxonomy_mode": "kitchen_troubleshooting_and_substitutions",
+    "is_regression_case": false,
+    "recipe_output": {
+      "title": "Kombucha Attempt with Raw Antibacterial Honey",
+      "servings": "1 gallon",
+      "ingredients": [
+        {"name": "Filtered Spring Water", "weight": "3500g", "bakers_percentage": "100.0%"},
+        {"name": "Raw Manuka Honey", "weight": "250g", "bakers_percentage": "7.14%"},
+        {"name": "Black Tea Leaves", "weight": "25g", "bakers_percentage": "0.71%"},
+        {"name": "Active Kombucha Starter Liquid", "weight": "350g", "bakers_percentage": "10.0%"},
+        {"name": "SCOBY Pellicle", "weight": "150g", "bakers_percentage": "4.28%"}
+      ],
+      "allergen_note": "Naturally gluten-free. Contains Honey (Raw).",
+      "baking_temperature": "75°F (24°C)",
+      "method_steps": [
+        "Steep black tea in hot water for 15 minutes.",
+        "Stir raw Manuka honey into hot water until dissolved.",
+        "Add starter liquid and SCOBY pellicle, cover with breathable cloth.",
+        "Ferment at 75°F (24°C) for 10 days."
+      ]
+    }
+  },
+  {
+    "id": "sub_08",
+    "dish_name": "Traditional Red Miso Paste",
+    "original_ingredient": "Rice Koji (Cultivated with Aspergillus oryzae on White Rice)",
+    "proposed_substitution": "Barley Koji (Mugi Koji) cultivated with Aspergillus oryzae 1:1 by weight",
+    "taxonomy_mode": "near_synonym_phrasing",
+    "is_regression_case": false,
+    "recipe_output": {
+      "title": "Traditional Mugi Miso (Barley Miso Paste)",
+      "servings": "1 ceramic crock (approx 1380g yield)",
+      "ingredients": [
+        {"name": "Dried Soybeans", "weight": "500g", "bakers_percentage": "100.0%"},
+        {"name": "Barley Koji (Mugi Koji)", "weight": "500g", "bakers_percentage": "100.0%"},
+        {"name": "Non-Iodized Fine Sea Salt", "weight": "230g", "bakers_percentage": "46.0%"},
+        {"name": "Reserved Soybean Cooking Liquid", "weight": "150g", "bakers_percentage": "30.0%"}
+      ],
+      "allergen_note": "Contains Soy and Barley (Gluten).",
+      "baking_temperature": "70°F (21°C) room temperature aging",
+      "method_steps": [
+        "Soak soybeans 18 hours; boil 4 hours until tender enough to crush between thumb and pinky.",
+        "Mash cooked soybeans, cool to 100°F (38°C).",
+        "Mix thoroughly with barley koji, sea salt, and reserved liquid.",
+        "Pack tightly into crock, salt surface with 20g salt, and ferment at 70°F (21°C) for 6 to 12 months."
+      ]
+    }
+  },
+  {
+    "id": "sub_09",
+    "dish_name": "Traditional Red Miso Paste",
+    "original_ingredient": "Non-Iodized Fine Sea Salt (46% ratio / 230g)",
+    "proposed_substitution": "Low-Sodium Modification reducing salt to 20g (4.0% ratio)",
+    "taxonomy_mode": "allergen_safety_and_dietary",
+    "is_regression_case": false,
+    "recipe_output": {
+      "title": "Low-Sodium 4% Miso Paste Experiment",
+      "servings": "1 crock",
+      "ingredients": [
+        {"name": "Dried Soybeans", "weight": "500g", "bakers_percentage": "100.0%"},
+        {"name": "Rice Koji", "weight": "500g", "bakers_percentage": "100.0%"},
+        {"name": "Non-Iodized Fine Sea Salt", "weight": "20g", "bakers_percentage": "4.0%"},
+        {"name": "Reserved Soybean Cooking Liquid", "weight": "150g", "bakers_percentage": "30.0%"}
+      ],
+      "allergen_note": "Contains Soy.",
+      "baking_temperature": "70°F (21°C)",
+      "method_steps": [
+        "Soak and boil dried soybeans for 4 hours.",
+        "Mash cooked beans and blend with rice koji, 20g sea salt, and reserved liquid.",
+        "Pack into crock and age at 70°F (21°C) in pantry for 6 months."
+      ]
+    }
+  },
+  {
+    "id": "sub_10",
+    "dish_name": "Naturally Fermented Garlic Dill Pickles",
+    "original_ingredient": "Fresh Tannin Leaves (Oak or Grape Leaves)",
+    "proposed_substitution": "Black Tea Leaves (Assam) in cheesecloth sachet (2g) for natural tannins",
+    "taxonomy_mode": "kitchen_troubleshooting_and_substitutions",
+    "is_regression_case": false,
+    "recipe_output": {
+      "title": "Garlic Dill Pickles with Black Tea Tannin Bag",
+      "servings": "2 quart jars (1000g cucumbers)",
+      "ingredients": [
+        {"name": "Kirby Pickling Cucumbers", "weight": "1000g", "bakers_percentage": "100.0%"},
+        {"name": "Filtered Water", "weight": "1000g", "bakers_percentage": "100.0%"},
+        {"name": "Non-Iodized Pickling Salt", "weight": "35g", "bakers_percentage": "3.5%"},
+        {"name": "Fresh Flowering Dill Heads", "weight": "20g", "bakers_percentage": "2.0%"},
+        {"name": "Garlic Cloves (Crushed)", "weight": "25g", "bakers_percentage": "2.5%"},
+        {"name": "Yellow Mustard Seeds", "weight": "5g", "bakers_percentage": "0.5%"},
+        {"name": "Black Peppercorns", "weight": "4g", "bakers_percentage": "0.4%"},
+        {"name": "Assam Black Tea Bag (Tannin source)", "weight": "2g", "bakers_percentage": "0.2%"}
+      ],
+      "allergen_note": "Naturally gluten-free, nut-free, and vegan. Contains Mustard (Mustard Seeds).",
+      "baking_temperature": "70°F (21°C)",
+      "method_steps": [
+        "Trim blossom ends off cucumbers and ice bath for 30 minutes.",
+        "Dissolve 35g pickling salt into 1000g cold filtered water (3.5% brine).",
+        "Place garlic, dill, mustard seeds, peppercorns, and black tea sachet at bottom of jar.",
+        "Pack cucumbers tightly, submerge with brine and fermentation weight, and ferment at 70°F (21°C) for 14 days."
+      ]
+    }
+  },
+  {
+    "id": "sub_11",
+    "dish_name": "Naturally Fermented Garlic Dill Pickles",
+    "original_ingredient": "3.5% Salt Water Brine (35g Salt / 1000g Water)",
+    "proposed_substitution": "Tap Water with Zero Salt to make sodium-free pickles",
+    "taxonomy_mode": "allergen_safety_and_dietary",
+    "is_regression_case": false,
+    "recipe_output": {
+      "title": "Salt-Free Fermented Cucumber Pickles",
+      "servings": "2 quart jars",
+      "ingredients": [
+        {"name": "Kirby Pickling Cucumbers", "weight": "1000g", "bakers_percentage": "100.0%"},
+        {"name": "Tap Water", "weight": "1000g", "bakers_percentage": "100.0%"},
+        {"name": "Fresh Flowering Dill Heads", "weight": "20g", "bakers_percentage": "2.0%"},
+        {"name": "Garlic Cloves", "weight": "25g", "bakers_percentage": "2.5%"}
+      ],
+      "allergen_note": "Vegan and nut-free.",
+      "baking_temperature": "70°F (21°C)",
+      "method_steps": [
+        "Pack trimmed cucumbers and garlic into jar.",
+        "Pour unchlorinated tap water over cucumbers with no added salt.",
+        "Seal jar and leave on counter at 70°F (21°C) for 14 days."
+      ]
+    }
+  },
+  {
+    "id": "sub_12",
+    "dish_name": "Lacto-Fermented Blueberries (Noma Style)",
+    "original_ingredient": "Fresh Blueberries (500g)",
+    "proposed_substitution": "Fresh Blackberries (500g) with 2.0% Non-Iodized Salt (10g)",
+    "taxonomy_mode": "near_synonym_phrasing",
+    "is_regression_case": false,
+    "recipe_output": {
+      "title": "Lacto-Fermented Blackberries (Noma Style)",
+      "servings": "500g fermented berry yield",
+      "ingredients": [
+        {"name": "Fresh Organic Blackberries", "weight": "500g", "bakers_percentage": "100.0%"},
+        {"name": "Non-Iodized Fine Sea Salt", "weight": "10g", "bakers_percentage": "2.0%"}
+      ],
+      "allergen_note": "Naturally vegan, gluten-free, dairy-free, and nut-free.",
+      "baking_temperature": "82°F (28°C)",
+      "method_steps": [
+        "Rinse and thoroughly dry 500g fresh blackberries.",
+        "Toss with exactly 10g non-iodized fine sea salt until evenly coated.",
+        "Transfer to vacuum bag, seal under full vacuum pressure without crushing.",
+        "Ferment flat in dark chamber at 82°F (28°C) for 4 to 5 days until bag inflates taut like a balloon.",
+        "Pierce bag, strain lacto-juice, and store berries in clean jar at 38°F."
+      ]
+    }
+  },
+  {
+    "id": "sub_13",
+    "dish_name": "Lacto-Fermented Blueberries",
+    "original_ingredient": "Vacuum Bag Sealed under Full Pressure",
+    "proposed_substitution": "Open Bowl with Cheesecloth Cover at Room Temperature",
+    "taxonomy_mode": "kitchen_troubleshooting_and_substitutions",
+    "is_regression_case": false,
+    "recipe_output": {
+      "title": "Open Air Bowl Fermented Blueberries",
+      "servings": "500g yield",
+      "ingredients": [
+        {"name": "Fresh Blueberries", "weight": "500g", "bakers_percentage": "100.0%"},
+        {"name": "Fine Sea Salt", "weight": "10g", "bakers_percentage": "2.0%"}
+      ],
+      "allergen_note": "Vegan and gluten-free.",
+      "baking_temperature": "82°F (28°C)",
+      "method_steps": [
+        "Toss 500g blueberries with 10g fine sea salt in a ceramic bowl.",
+        "Cover loosely with breathable cheesecloth.",
+        "Leave exposed to air at 82°F (28°C) for 5 days stirring once daily."
+      ]
+    }
+  },
+  {
+    "id": "sub_14",
+    "dish_name": "Parisian French Brioche",
+    "original_ingredient": "Unsalted Dairy Butter (82% butterfat, 250g)",
+    "proposed_substitution": "European Block Cultured Vegan Butter (80% fat) 1:1 by weight",
+    "taxonomy_mode": "allergen_safety_and_dietary",
+    "is_regression_case": false,
+    "recipe_output": {
+      "title": "Dairy-Free Parisian Brioche Loaf",
+      "servings": "1 large brioche loaf (approx 850g)",
+      "ingredients": [
+        {"name": "Bread Flour", "weight": "500g", "bakers_percentage": "100.0%"},
+        {"name": "European Vegan Cultured Butter (Solid Cold)", "weight": "250g", "bakers_percentage": "50.0%"},
+        {"name": "Whole Eggs", "weight": "250g", "bakers_percentage": "50.0%"},
+        {"name": "Granulated Sugar", "weight": "50g", "bakers_percentage": "10.0%"},
+        {"name": "Fine Sea Salt", "weight": "10g", "bakers_percentage": "2.0%"},
+        {"name": "Instant Yeast", "weight": "7g", "bakers_percentage": "1.4%"}
+      ],
+      "allergen_note": "Contains Wheat (Gluten), Eggs, and Tree Nuts (Cashew Base in Vegan Butter). Dairy-free.",
+      "baking_temperature": "375°F (190°C)",
+      "method_steps": [
+        "Knead flour, eggs, sugar, salt, and instant yeast for 10 minutes until gluten windowpane forms.",
+        "Incorporate cold diced vegan cultured butter piece by piece until fully emulsified.",
+        "Bulk ferment 2 hours at 75°F (24°C), then chill overnight at 38°F.",
+        "Shape into brioche à tête, egg wash, and bake at 375°F (190°C) for 32 minutes."
+      ]
+    }
+  },
+  {
+    "id": "sub_15",
+    "dish_name": "Parisian French Brioche",
+    "original_ingredient": "Solid Cold Butter (250g)",
+    "proposed_substitution": "Liquid Extra Virgin Olive Oil (250g) poured in with water",
+    "taxonomy_mode": "kitchen_troubleshooting_and_substitutions",
+    "is_regression_case": false,
+    "recipe_output": {
+      "title": "Olive Oil Brioche Attempt",
+      "servings": "1 loaf",
+      "ingredients": [
+        {"name": "Bread Flour", "weight": "500g", "bakers_percentage": "100.0%"},
+        {"name": "Extra Virgin Olive Oil", "weight": "250g", "bakers_percentage": "50.0%"},
+        {"name": "Eggs", "weight": "250g", "bakers_percentage": "50.0%"},
+        {"name": "Sugar", "weight": "50g", "bakers_percentage": "10.0%"},
+        {"name": "Salt", "weight": "10g", "bakers_percentage": "2.0%"},
+        {"name": "Yeast", "weight": "7g", "bakers_percentage": "1.4%"}
+      ],
+      "allergen_note": "Contains Wheat and Eggs. Dairy-free.",
+      "baking_temperature": "375°F (190°C)",
+      "method_steps": [
+        "Pour olive oil, eggs, flour, sugar, salt, and yeast into mixer.",
+        "Mix for 15 minutes into a soupy unformed batter.",
+        "Pour batter into loaf pan and bake at 375°F (190°C) for 35 minutes."
+      ]
+    }
+  },
+  {
+    "id": "sub_16",
+    "dish_name": "Country Sourdough Loaf",
+    "original_ingredient": "Fine Sea Salt (20g)",
+    "proposed_substitution": "Diamond Crystal Kosher Salt (20g by weight)",
+    "taxonomy_mode": "near_synonym_phrasing",
+    "is_regression_case": false,
+    "recipe_output": {
+      "title": "Country Sourdough with Kosher Salt by Weight",
+      "servings": "1 loaf",
+      "ingredients": [
+        {"name": "Bread Flour", "weight": "1000g", "bakers_percentage": "100.0%"},
+        {"name": "Water", "weight": "750g", "bakers_percentage": "75.0%"},
+        {"name": "Active Sourdough Starter", "weight": "200g", "bakers_percentage": "20.0%"},
+        {"name": "Diamond Crystal Kosher Salt", "weight": "20g", "bakers_percentage": "2.0%"}
+      ],
+      "allergen_note": "Contains Wheat (Gluten).",
+      "baking_temperature": "450°F (230°C)",
+      "method_steps": [
+        "Autolyse flour and 700g water for 45 minutes at 78°F (26°C).",
+        "Add starter, 50g water, and 20g Diamond Crystal kosher salt.",
+        "Perform 4 stretch-and-folds over 4.5 hours.",
+        "Cold proof at 38°F and bake in Dutch oven at 450°F (230°C) covered 20 mins, uncovered 22 mins."
+      ]
+    }
+  },
+  {
+    "id": "sub_17",
+    "dish_name": "Country Sourdough Loaf",
+    "original_ingredient": "Fine Sea Salt (20g by weight)",
+    "proposed_substitution": "Kosher Salt measured as 1 Tablespoon by volume instead of weight",
+    "taxonomy_mode": "kitchen_troubleshooting_and_substitutions",
+    "is_regression_case": false,
+    "recipe_output": {
+      "title": "Country Sourdough with Volumetric Salt",
+      "servings": "1 loaf",
+      "ingredients": [
+        {"name": "Bread Flour", "weight": "1000g", "bakers_percentage": "100.0%"},
+        {"name": "Water", "weight": "750g", "bakers_percentage": "75.0%"},
+        {"name": "Active Sourdough Starter", "weight": "200g", "bakers_percentage": "20.0%"},
+        {"name": "Coarse Kosher Salt", "weight": "1 tablespoon", "bakers_percentage": "N/A"}
+      ],
+      "allergen_note": "Contains Wheat (Gluten).",
+      "baking_temperature": "450°F (230°C)",
+      "method_steps": [
+        "Autolyse flour and water for 45 minutes.",
+        "Add starter and 1 tablespoon coarse kosher salt without weighing.",
+        "Bulk ferment for 4.5 hours, shape, and bake at 450°F (230°C)."
+      ]
+    }
+  },
+  {
+    "id": "sub_18",
+    "dish_name": "Classic Baechu Kimchi",
+    "original_ingredient": "Korean Chili Flakes (Gochugaru, 80g)",
+    "proposed_substitution": "Coarsely Ground Red Aleppo Pepper + Paprika (40g/40g blend)",
+    "taxonomy_mode": "kitchen_troubleshooting_and_substitutions",
+    "is_regression_case": false,
+    "recipe_output": {
+      "title": "Mild Aleppo Paprika Kimchi",
+      "servings": "8 servings (2000g cabbage)",
+      "ingredients": [
+        {"name": "Napa Cabbage", "weight": "2000g", "bakers_percentage": "100.0%"},
+        {"name": "Coarse Korean Sea Salt", "weight": "150g", "bakers_percentage": "7.5%"},
+        {"name": "Crushed Aleppo Pepper", "weight": "40g", "bakers_percentage": "2.0%"},
+        {"name": "Sweet Hungarian Paprika", "weight": "40g", "bakers_percentage": "2.0%"},
+        {"name": "Garlic Cloves", "weight": "50g", "bakers_percentage": "2.5%"},
+        {"name": "Fresh Ginger", "weight": "20g", "bakers_percentage": "1.0%"},
+        {"name": "Fish Sauce", "weight": "40g", "bakers_percentage": "2.0%"},
+        {"name": "Salted Shrimp (Saeujeot)", "weight": "25g", "bakers_percentage": "1.25%"}
+      ],
+      "allergen_note": "Contains Fish (Anchovy) and Crustacean Shellfish (Shrimp). Gluten-free.",
+      "baking_temperature": "65°F (18°C)",
+      "method_steps": [
+        "Brine quartered cabbage in sea salt for 6 hours; rinse 3 times and drain 2 hours.",
+        "Blend garlic, ginger, fish sauce, salted shrimp, Aleppo pepper, and sweet paprika into seasoning paste.",
+        "Rub seasoning onto cabbage leaves and ferment at 65°F (18°C) for 3 days."
+      ]
+    }
+  },
+  {
+    "id": "sub_19",
+    "dish_name": "Classic Baechu Kimchi",
+    "original_ingredient": "Korean Chili Flakes (Gochugaru, 80g)",
+    "proposed_substitution": "Pure Carolina Reaper Pepper Powder (80g 1:1 by weight)",
+    "taxonomy_mode": "kitchen_troubleshooting_and_substitutions",
+    "is_regression_case": false,
+    "recipe_output": {
+      "title": "Carolina Reaper Extreme Kimchi",
+      "servings": "8 servings",
+      "ingredients": [
+        {"name": "Napa Cabbage", "weight": "2000g", "bakers_percentage": "100.0%"},
+        {"name": "Coarse Sea Salt", "weight": "150g", "bakers_percentage": "7.5%"},
+        {"name": "Pure Carolina Reaper Powder", "weight": "80g", "bakers_percentage": "4.0%"},
+        {"name": "Garlic Cloves", "weight": "50g", "bakers_percentage": "2.5%"},
+        {"name": "Fresh Ginger", "weight": "20g", "bakers_percentage": "1.0%"},
+        {"name": "Fish Sauce", "weight": "40g", "bakers_percentage": "2.0%"}
+      ],
+      "allergen_note": "Contains Fish. Extremely caustic capsaicin hazard.",
+      "baking_temperature": "65°F (18°C)",
+      "method_steps": [
+        "Salt cabbage for 6 hours, rinse 3 times.",
+        "Mix 80g Carolina Reaper powder with garlic, ginger, and fish sauce.",
+        "Coat cabbage leaves and ferment at 65°F (18°C) for 3 days."
+      ]
+    }
+  },
+  {
+    "id": "sub_20",
+    "dish_name": "Primary Kombucha",
+    "original_ingredient": "Black Tea Leaves (Assam, 25g)",
+    "proposed_substitution": "Pure Essential Oil of Peppermint (25 drops) in place of tea",
+    "taxonomy_mode": "kitchen_troubleshooting_and_substitutions",
+    "is_regression_case": false,
+    "recipe_output": {
+      "title": "Peppermint Essential Oil Kombucha Attempt",
+      "servings": "1 gallon",
+      "ingredients": [
+        {"name": "Filtered Spring Water", "weight": "3500g", "bakers_percentage": "100.0%"},
+        {"name": "Organic Cane Sugar", "weight": "250g", "bakers_percentage": "7.14%"},
+        {"name": "Pure Peppermint Essential Oil", "weight": "5g", "bakers_percentage": "0.14%"},
+        {"name": "Starter Liquid", "weight": "350g", "bakers_percentage": "10.0%"},
+        {"name": "SCOBY", "weight": "150g", "bakers_percentage": "4.28%"}
+      ],
+      "allergen_note": "Contains volatile essential oils.",
+      "baking_temperature": "78°F (26°C)",
+      "method_steps": [
+        "Boil 1000g water and dissolve cane sugar.",
+        "Add peppermint essential oil directly to sweet water.",
+        "Dilute with cold water, add starter liquid and SCOBY.",
+        "Ferment for 10 days at 78°F (26°C)."
+      ]
+    }
+  },
+  {
+    "id": "sub_21",
+    "dish_name": "Traditional Red Miso Paste",
+    "original_ingredient": "Dried Soybeans (500g)",
+    "proposed_substitution": "Dried Organic Chickpeas (Garbanzo Beans, 500g) 1:1 by weight",
+    "taxonomy_mode": "allergen_safety_and_dietary",
+    "is_regression_case": false,
+    "recipe_output": {
+      "title": "Soy-Free Chickpea Miso Paste (Chickpea-Koji Miso)",
+      "servings": "1 ceramic crock (approx 1380g yield)",
+      "ingredients": [
+        {"name": "Dried Organic Chickpeas", "weight": "500g", "bakers_percentage": "100.0%"},
+        {"name": "Rice Koji (Cultivated on White Rice)", "weight": "500g", "bakers_percentage": "100.0%"},
+        {"name": "Non-Iodized Fine Sea Salt", "weight": "230g", "bakers_percentage": "46.0%"},
+        {"name": "Reserved Chickpea Cooking Liquid", "weight": "150g", "bakers_percentage": "30.0%"}
+      ],
+      "allergen_note": "100% Soy-Free and Gluten-Free. Vegan.",
+      "baking_temperature": "70°F (21°C) dark pantry storage",
+      "method_steps": [
+        "Soak dried chickpeas for 18 hours; simmer for 4 hours until soft enough to smash between thumb and pinky.",
+        "Mash cooked chickpeas smooth, reserve 150g cooking liquid, and cool to 100°F (38°C).",
+        "Mix with rice koji, 230g non-iodized sea salt, and reserved chickpea broth until homogenous.",
+        "Pack firmly into crock, top with 20g salt and plastic wrap, weight down with 2kg weights, and ferment at 70°F (21°C) for 6 to 12 months."
+      ]
+    }
+  },
+  {
+    "id": "sub_22",
+    "dish_name": "Naturally Fermented Garlic Dill Pickles",
+    "original_ingredient": "Non-Iodized Pickling Salt (35g in 1000g Water = 3.5% Brine)",
+    "proposed_substitution": "Kosher Salt (35g by weight in 1000g Water = 3.5% Brine)",
+    "taxonomy_mode": "near_synonym_phrasing",
+    "is_regression_case": false,
+    "recipe_output": {
+      "title": "Full-Sour Garlic Dill Pickles with Kosher Salt",
+      "servings": "2 quart jars (1000g cucumbers)",
+      "ingredients": [
+        {"name": "Kirby Pickling Cucumbers", "weight": "1000g", "bakers_percentage": "100.0%"},
+        {"name": "Filtered Water", "weight": "1000g", "bakers_percentage": "100.0%"},
+        {"name": "Pure Kosher Salt (No Additives)", "weight": "35g", "bakers_percentage": "3.5%"},
+        {"name": "Fresh Flowering Dill Heads", "weight": "20g", "bakers_percentage": "2.0%"},
+        {"name": "Garlic Cloves (Crushed)", "weight": "25g", "bakers_percentage": "2.5%"},
+        {"name": "Yellow Mustard Seeds", "weight": "5g", "bakers_percentage": "0.5%"},
+        {"name": "Black Peppercorns", "weight": "4g", "bakers_percentage": "0.4%"},
+        {"name": "Fresh Grape Leaves", "weight": "2 leaves", "bakers_percentage": "N/A"}
+      ],
+      "allergen_note": "Naturally gluten-free and vegan. Contains Mustard (Mustard Seeds).",
+      "baking_temperature": "70°F (21°C)",
+      "method_steps": [
+        "Trim blossom ends off cucumbers and crisp in ice water for 30 minutes.",
+        "Whisk 35g kosher salt into 1000g filtered water until dissolved.",
+        "Layer spices, grape leaves, and garlic at bottom of jar, pack cucumbers vertically, and submerge under brine.",
+        "Ferment at 70°F (21°C) for 14 to 21 days for full-sour flavor."
+      ]
+    }
+  },
+  {
+    "id": "sub_23",
+    "dish_name": "Lacto-Fermented Blueberries",
+    "original_ingredient": "Fresh Organic Blueberries (500g)",
+    "proposed_substitution": "Canned Blueberry Pie Filling in High-Fructose Corn Syrup (500g)",
+    "taxonomy_mode": "out_of_corpus_domain",
+    "is_regression_case": false,
+    "recipe_output": {
+      "title": "Canned Pie Filling Lacto Experiment",
+      "servings": "500g",
+      "ingredients": [
+        {"name": "Canned Sweet Blueberry Pie Filling", "weight": "500g", "bakers_percentage": "100.0%"},
+        {"name": "Fine Sea Salt", "weight": "10g", "bakers_percentage": "2.0%"}
+      ],
+      "allergen_note": "Vegan and gluten-free.",
+      "baking_temperature": "82°F (28°C)",
+      "method_steps": [
+        "Open canned pie filling and mix with 10g fine sea salt.",
+        "Seal inside vacuum bag and incubate at 82°F (28°C) for 5 days."
+      ]
+    }
+  },
+  {
+    "id": "sub_24",
+    "dish_name": "Country Sourdough Loaf",
+    "original_ingredient": "Active Sourdough Starter (200g, 20%)",
+    "proposed_substitution": "Commercial Active Dry Yeast (7g) + Water (100g) + Flour (100g) Poolish",
+    "taxonomy_mode": "kitchen_troubleshooting_and_substitutions",
+    "is_regression_case": false,
+    "recipe_output": {
+      "title": "Hybrid Country Loaf with Commercial Yeast Poolish",
+      "servings": "1 loaf (approx 900g)",
+      "ingredients": [
+        {"name": "Bread Flour", "weight": "1000g", "bakers_percentage": "100.0%"},
+        {"name": "Water", "weight": "750g", "bakers_percentage": "75.0%"},
+        {"name": "Overnight Poolish (Flour 100g, Water 100g, Yeast 7g)", "weight": "207g", "bakers_percentage": "20.7%"},
+        {"name": "Fine Sea Salt", "weight": "20g", "bakers_percentage": "2.0%"}
+      ],
+      "allergen_note": "Contains Wheat (Gluten).",
+      "baking_temperature": "450°F (230°C)",
+      "method_steps": [
+        "Prepare overnight poolish: whisk 100g flour, 100g water, and 7g active dry yeast; ferment 12 hours.",
+        "Autolyse 900g bread flour and 650g water for 45 minutes at 78°F (26°C).",
+        "Mix in poolish and 20g fine sea salt with remaining 50g water.",
+        "Bulk ferment 2.5 hours with 3 stretch-and-folds, preshape, bench rest, and retard at 38°F.",
+        "Bake in Dutch oven at 450°F (230°C) covered 20 mins, uncovered 22 mins."
+      ]
+    }
+  },
+  {
+    "id": "sub_25",
+    "dish_name": "Primary Kombucha",
+    "original_ingredient": "Assam Black Tea Leaves (25g)",
+    "proposed_substitution": "Green Tea (Sencha, 25g) for a lighter Jun-style Fermentation",
+    "taxonomy_mode": "near_synonym_phrasing",
+    "is_regression_case": false,
+    "recipe_output": {
+      "title": "Green Tea Kombucha (Sencha Base)",
+      "servings": "1 gallon batch",
+      "ingredients": [
+        {"name": "Filtered Spring Water", "weight": "3500g", "bakers_percentage": "100.0%"},
+        {"name": "Organic Cane Sugar", "weight": "250g", "bakers_percentage": "7.14%"},
+        {"name": "Japanese Sencha Green Tea Leaves", "weight": "25g", "bakers_percentage": "0.71%"},
+        {"name": "Active Kombucha Starter Liquid", "weight": "350g", "bakers_percentage": "10.0%"},
+        {"name": "Mature SCOBY Pellicle", "weight": "150g", "bakers_percentage": "4.28%"}
+      ],
+      "allergen_note": "Naturally gluten-free and vegan. Contains trace caffeine.",
+      "baking_temperature": "75°F (24°C)",
+      "method_steps": [
+        "Steep 25g Sencha green tea in 1000g water at 175°F (80°C) for 10 minutes to avoid bitter tannins.",
+        "Dissolve 250g organic cane sugar into warm green tea.",
+        "Dilute with 2500g cold filtered water down to 75°F (24°C).",
+        "Incorporate starter liquid and SCOBY; ferment undisturbed in dark closet at 75°F (24°C) for 7 to 9 days."
+      ]
+    }
+  }
+]
