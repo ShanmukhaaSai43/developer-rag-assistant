@@ -6,3 +6,6 @@ __pycache__/
 .chroma_db_test/
 week4/.chroma_db/
 scratch/
+
+# Local untracked / unpushed files
+unpushed/
