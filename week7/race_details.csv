@@ -1,0 +1,11 @@
+request_id,type,query,agent_pass,agent_latency_s,agent_tokens,agent_cost_usd,wf_pass,wf_latency_s,wf_tokens,wf_cost_usd
+req_01,standard,"Find Fettuccine Alfredo, scale it to 4 servings, and make it gluten-free.",True,4.23,4652,0.000458,True,2.53,1333,0.000205
+req_02,standard,"Find Classic Peanut Butter Cookies, scale it to 8 servings, and substitute the egg for an egg allergy.",True,4.14,4451,0.000431,True,2.41,1226,0.000186
+req_03,standard,"Find Honey Nut Breakfast Granola, scale to 12 servings, and make it nut-free by substituting almonds.",True,4.0,4524,0.000443,True,2.47,1247,0.000188
+req_04,standard,"Find Fluffy Banana Pancakes, scale to 6 servings, and substitute whole milk to make it dairy-free.",True,4.36,4507,0.000443,True,2.41,1267,0.000192
+req_05,standard,"Find Genovese Basil Pesto Pasta, scale it to 2 servings, and make it gluten-free.",False,48.81,2942,0.000239,False,2.92,1314,0.000207
+req_06,standard,"Find Fettuccine Alfredo, scale to 6 servings, and substitute the butter for a dairy allergy.",False,4.05,4651,0.000459,False,2.62,1322,0.000202
+req_07,standard,"Find Fluffy Banana Pancakes, scale to 9 servings, and make it gluten-free by substituting the flour.",True,4.12,4534,0.000449,False,2.55,1217,0.00019
+req_08,cascade,"Find Classic Peanut Butter Cookies, scale to 4 servings. The diner has a severe peanut allergy AND a tree nut allergy, so replace peanut butter with something safe from both.",True,20.41,5936,0.000549,False,2.54,1247,0.000186
+req_09,cascade,"Find Fettuccine Alfredo, scale to 4 servings. I am allergic to dairy AND tree nuts. Adapt the heavy cream so it is strictly free of both dairy and nuts.",True,7.13,9614,0.000857,False,2.66,1402,0.000217
+req_10,cascade,"Find Cold Sesame Peanut Noodles, scale to 4 servings. I have both a sesame allergy AND a peanut allergy. Replace the sesame oil safely with an oil free of both.",False,47.53,1644,0.000134,False,2.72,1296,0.000203

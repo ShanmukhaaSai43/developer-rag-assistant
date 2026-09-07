@@ -1,0 +1,18 @@
+===================================================================
+WEEK 7 - BUDGET-TRIGGERED TERMINATION LOG
+===================================================================
+Model: gemini-3.5-flash-lite
+Configured Budgets:
+  - max_iterations: 2
+  - max_tokens: 20000
+  - max_cost: $0.05
+  - wall_clock_timeout: 25.0s
+-------------------------------------------------------------------
+User Query: Find Classic Peanut Butter Cookies, scale to 4 servings. The diner has a severe peanut allergy AND a tree nut allergy, so replace peanut butter with something safe from both.
+-------------------------------------------------------------------
+TERMINATION RESULT:
+  Status: budget_exceeded
+  Budget Fired: max_iterations
+  Laps Executed: 3
+  Clean Exit: True (No infinite loop, terminated safely)
+===================================================================
