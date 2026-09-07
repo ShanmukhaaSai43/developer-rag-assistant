@@ -9,3 +9,5 @@ scratch/
 
 # Local untracked / unpushed files
 unpushed/
+node_modules/
+dist/
