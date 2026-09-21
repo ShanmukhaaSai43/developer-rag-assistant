@@ -1,0 +1,2906 @@
+[
+  {
+    "case": {
+      "id": "req_01",
+      "type": "standard",
+      "query": "Find Fettuccine Alfredo, scale it to 4 servings, and make it gluten-free.",
+      "dish_name": "alfredo",
+      "recipe_id": "rec_creamy_alfredo",
+      "target_servings": 4,
+      "avoid_allergens": [
+        "gluten"
+      ],
+      "target_ingredient_to_swap": "fettuccine pasta",
+      "expected_terminal_substitute": "gluten-free corn fettuccine",
+      "optimal_steps": 3,
+      "accepts_alternate_paths": true,
+      "alternate_path_rationale": "Commutative ordering: Scaling portions to 4 servings before finding the gluten-free substitute vs. finding the gluten-free substitute before scaling yields mathematically and culinarily identical results.",
+      "valid_tool_sequences": [
+        [
+          "search_recipes",
+          "scale_recipe",
+          "substitute_ingredient"
+        ],
+        [
+          "search_recipes",
+          "substitute_ingredient",
+          "scale_recipe"
+        ]
+      ]
+    },
+    "run_output": {
+      "status": "completed",
+      "budget_fired": null,
+      "laps_completed": 4,
+      "latency_seconds": 20.91,
+      "total_tokens": 4723,
+      "total_cost_usd": 0.000463,
+      "tool_sequence": [
+        "search_recipes",
+        "scale_recipe",
+        "substitute_ingredient"
+      ],
+      "trajectory_steps": [
+        {
+          "step_index": 1,
+          "lap": 1,
+          "tool_name": "search_recipes",
+          "arguments": {
+            "query": "Fettuccine Alfredo"
+          },
+          "observation": {
+            "status": "success",
+            "matches_count": 1,
+            "recipes": [
+              {
+                "id": "rec_creamy_alfredo",
+                "title": "Fettuccine Alfredo",
+                "base_servings": 2,
+                "ingredients": [
+                  {
+                    "name": "fettuccine pasta",
+                    "quantity": 200,
+                    "unit": "g",
+                    "allergens": [
+                      "gluten"
+                    ]
+                  },
+                  {
+                    "name": "heavy cream",
+                    "quantity": 150,
+                    "unit": "ml",
+                    "allergens": [
+                      "dairy"
+                    ]
+                  },
+                  {
+                    "name": "parmesan cheese",
+                    "quantity": 60,
+                    "unit": "g",
+                    "allergens": [
+                      "dairy"
+                    ]
+                  },
+                  {
+                    "name": "butter",
+                    "quantity": 30,
+                    "unit": "g",
+                    "allergens": [
+                      "dairy"
+                    ]
+                  },
+                  {
+                    "name": "garlic",
+                    "quantity": 2,
+                    "unit": "cloves",
+                    "allergens": []
+                  }
+                ],
+                "method": [
+                  "Boil fettuccine pasta in salted water until al dente.",
+                  "Melt butter in a pan over medium heat and saut\u00e9 minced garlic.",
+                  "Stir in heavy cream and simmer for 2 minutes.",
+                  "Reduce heat, stir in grated parmesan cheese until creamy.",
+                  "Toss cooked pasta into sauce and season with black pepper."
+                ]
+              }
+            ]
+          },
+          "lap_tokens": 686,
+          "lap_cost_usd": 5.59e-05,
+          "lap_latency_s": 10.932
+        },
+        {
+          "step_index": 2,
+          "lap": 2,
+          "tool_name": "scale_recipe",
+          "arguments": {
+            "recipe_id": "rec_creamy_alfredo",
+            "target_servings": 4
+          },
+          "observation": {
+            "status": "success",
+            "recipe_id": "rec_creamy_alfredo",
+            "title": "Fettuccine Alfredo",
+            "base_servings": 2,
+            "target_servings": 4,
+            "scale_factor": 2.0,
+            "scaled_ingredients": [
+              {
+                "name": "fettuccine pasta",
+                "quantity": 400.0,
+                "unit": "g",
+                "allergens": [
+                  "gluten"
+                ]
+              },
+              {
+                "name": "heavy cream",
+                "quantity": 300.0,
+                "unit": "ml",
+                "allergens": [
+                  "dairy"
+                ]
+              },
+              {
+                "name": "parmesan cheese",
+                "quantity": 120.0,
+                "unit": "g",
+                "allergens": [
+                  "dairy"
+                ]
+              },
+              {
+                "name": "butter",
+                "quantity": 60.0,
+                "unit": "g",
+                "allergens": [
+                  "dairy"
+                ]
+              },
+              {
+                "name": "garlic",
+                "quantity": 4.0,
+                "unit": "cloves",
+                "allergens": []
+              }
+            ],
+            "method": [
+              "Boil fettuccine pasta in salted water until al dente.",
+              "Melt butter in a pan over medium heat and saut\u00e9 minced garlic.",
+              "Stir in heavy cream and simmer for 2 minutes.",
+              "Reduce heat, stir in grated parmesan cheese until creamy.",
+              "Toss cooked pasta into sauce and season with black pepper."
+            ]
+          },
+          "lap_tokens": 982,
+          "lap_cost_usd": 8.06e-05,
+          "lap_latency_s": 1.464
+        },
+        {
+          "step_index": 3,
+          "lap": 3,
+          "tool_name": "substitute_ingredient",
+          "arguments": {
+            "avoid_allergen": "gluten",
+            "ingredient_name": "fettuccine pasta"
+          },
+          "observation": {
+            "status": "success",
+            "original_ingredient": "fettuccine pasta",
+            "avoided_allergen": "gluten",
+            "replacement_ingredient": "gluten-free corn fettuccine",
+            "quantity_ratio": 1.0,
+            "inherent_allergens": [],
+            "culinary_notes": "Maintains toothsome bite."
+          },
+          "lap_tokens": 1288,
+          "lap_cost_usd": 0.0001038,
+          "lap_latency_s": 4.201
+        }
+      ],
+      "final_recipe": {
+        "title": "Fettuccine Alfredo",
+        "servings": 4,
+        "ingredients": [
+          {
+            "name": "gluten-free corn fettuccine",
+            "quantity": 400.0,
+            "unit": "g",
+            "allergens": []
+          },
+          {
+            "name": "heavy cream",
+            "quantity": 300.0,
+            "unit": "ml",
+            "allergens": [
+              "dairy"
+            ]
+          },
+          {
+            "name": "parmesan cheese",
+            "quantity": 120.0,
+            "unit": "g",
+            "allergens": [
+              "dairy"
+            ]
+          },
+          {
+            "name": "butter",
+            "quantity": 60.0,
+            "unit": "g",
+            "allergens": [
+              "dairy"
+            ]
+          },
+          {
+            "name": "garlic",
+            "quantity": 4.0,
+            "unit": "cloves",
+            "allergens": []
+          }
+        ],
+        "method": [
+          "Boil fettuccine pasta in salted water until al dente.",
+          "Melt butter in a pan over medium heat and saut\u00e9 minced garlic.",
+          "Stir in heavy cream and simmer for 2 minutes.",
+          "Reduce heat, stir in grated parmesan cheese until creamy.",
+          "Toss cooked pasta into sauce and season with black pepper."
+        ],
+        "adaptation_notes": "Scaled recipe from 2 to 4 servings. Replaced fettuccine pasta with gluten-free corn fettuccine to eliminate gluten."
+      },
+      "raw_output_text": "```json\n{\n  \"title\": \"Fettuccine Alfredo\",\n  \"servings\": 4,\n  \"ingredients\": [\n    {\n      \"name\": \"gluten-free corn fettuccine\",\n      \"quantity\": 400.0,\n      \"unit\": \"g\",\n      \"allergens\": []\n    },\n    {\n      \"name\": \"heavy cream\",\n      \"quantity\": 300.0,\n      \"unit\": \"ml\",\n      \"allergens\": [\n        \"dairy\"\n      ]\n    },\n    {\n      \"name\": \"parmesan cheese\",\n      \"quantity\": 120.0,\n      \"unit\": \"g\",\n      \"allergens\": [\n        \"dairy\"\n      ]\n    },\n    {\n      \"name\": \"butter\",\n      \"quantity\": 60.0,\n      \"unit\": \"g\",\n      \"allergens\": [\n        \"dairy\"\n      ]\n    },\n    {\n      \"name\": \"garlic\",\n      \"quantity\": 4.0,\n      \"unit\": \"cloves\",\n      \"allergens\": []\n    }\n  ],\n  \"method\": [\n    \"Boil fettuccine pasta in salted water until al dente.\",\n    \"Melt butter in a pan over medium heat and saut\u00e9 minced garlic.\",\n    \"Stir in heavy cream and simmer for 2 minutes.\",\n    \"Reduce heat, stir in grated parmesan cheese until creamy.\",\n    \"Toss cooked pasta into sauce and season with black pepper.\"\n  ],\n  \"adaptation_notes\": \"Scaled recipe from 2 to 4 servings. Replaced fettuccine pasta with gluten-free corn fettuccine to eliminate gluten.\"\n}\n```"
+    },
+    "eval_record": {
+      "case_id": "req_01",
+      "type": "standard",
+      "query": "Find Fettuccine Alfredo, scale it to 4 servings, and make it gluten-free.",
+      "tool_sequence": [
+        "search_recipes",
+        "scale_recipe",
+        "substitute_ingredient"
+      ],
+      "trajectory_passed": true,
+      "outcome_passed": true,
+      "is_right_answer_wrong_path": false,
+      "tool_choice_accuracy": 1.0,
+      "argument_validity_rate": 1.0,
+      "optimal_steps": 3,
+      "actual_steps": 3,
+      "step_efficiency": 1.0,
+      "steps_taken_over_needed": 1.0,
+      "tokens": 4723,
+      "cost_usd": 0.000463,
+      "latency_s": 20.91,
+      "argument_errors": [],
+      "outcome_errors": [],
+      "failure_modes": [
+        "No Failure (Clean Execution)"
+      ]
+    }
+  },
+  {
+    "case": {
+      "id": "req_02",
+      "type": "standard",
+      "query": "Find Classic Peanut Butter Cookies, scale it to 8 servings, and substitute the egg for an egg allergy.",
+      "dish_name": "peanut butter cookies",
+      "recipe_id": "rec_pb_cookies",
+      "target_servings": 8,
+      "avoid_allergens": [
+        "eggs"
+      ],
+      "target_ingredient_to_swap": "egg",
+      "expected_terminal_substitute": "flax egg (1 tbsp ground flax + 3 tbsp water)",
+      "optimal_steps": 3,
+      "accepts_alternate_paths": true,
+      "alternate_path_rationale": "Commutative ordering: Scaling cookie yield to 8 servings before or after substituting the binder (egg -> flax egg) produces the exact same adapted recipe.",
+      "valid_tool_sequences": [
+        [
+          "search_recipes",
+          "scale_recipe",
+          "substitute_ingredient"
+        ],
+        [
+          "search_recipes",
+          "substitute_ingredient",
+          "scale_recipe"
+        ]
+      ]
+    },
+    "run_output": {
+      "status": "completed",
+      "budget_fired": null,
+      "laps_completed": 4,
+      "latency_seconds": 10.34,
+      "total_tokens": 4521,
+      "total_cost_usd": 0.000436,
+      "tool_sequence": [
+        "search_recipes",
+        "scale_recipe",
+        "substitute_ingredient"
+      ],
+      "trajectory_steps": [
+        {
+          "step_index": 1,
+          "lap": 1,
+          "tool_name": "search_recipes",
+          "arguments": {
+            "query": "Classic Peanut Butter Cookies"
+          },
+          "observation": {
+            "status": "success",
+            "matches_count": 1,
+            "recipes": [
+              {
+                "id": "rec_pb_cookies",
+                "title": "Classic Peanut Butter Cookies",
+                "base_servings": 4,
+                "ingredients": [
+                  {
+                    "name": "peanut butter",
+                    "quantity": 250,
+                    "unit": "g",
+                    "allergens": [
+                      "peanuts"
+                    ]
+                  },
+                  {
+                    "name": "granulated sugar",
+                    "quantity": 200,
+                    "unit": "g",
+                    "allergens": []
+                  },
+                  {
+                    "name": "egg",
+                    "quantity": 1,
+                    "unit": "whole",
+                    "allergens": [
+                      "eggs"
+                    ]
+                  },
+                  {
+                    "name": "vanilla extract",
+                    "quantity": 5,
+                    "unit": "ml",
+                    "allergens": []
+                  }
+                ],
+                "method": [
+                  "Preheat oven to 180C (350F).",
+                  "In a medium bowl, mix peanut butter, sugar, and egg until smooth.",
+                  "Roll mixture into small balls and place onto a lined baking sheet.",
+                  "Press criss-cross pattern using a fork.",
+                  "Bake for 10-12 minutes until edges are golden."
+                ]
+              }
+            ]
+          },
+          "lap_tokens": 687,
+          "lap_cost_usd": 5.58e-05,
+          "lap_latency_s": 1.376
+        },
+        {
+          "step_index": 2,
+          "lap": 2,
+          "tool_name": "scale_recipe",
+          "arguments": {
+            "recipe_id": "rec_pb_cookies",
+            "target_servings": 8
+          },
+          "observation": {
+            "status": "success",
+            "recipe_id": "rec_pb_cookies",
+            "title": "Classic Peanut Butter Cookies",
+            "base_servings": 4,
+            "target_servings": 8,
+            "scale_factor": 2.0,
+            "scaled_ingredients": [
+              {
+                "name": "peanut butter",
+                "quantity": 500.0,
+                "unit": "g",
+                "allergens": [
+                  "peanuts"
+                ]
+              },
+              {
+                "name": "granulated sugar",
+                "quantity": 400.0,
+                "unit": "g",
+                "allergens": []
+              },
+              {
+                "name": "egg",
+                "quantity": 2.0,
+                "unit": "whole",
+                "allergens": [
+                  "eggs"
+                ]
+              },
+              {
+                "name": "vanilla extract",
+                "quantity": 10.0,
+                "unit": "ml",
+                "allergens": []
+              }
+            ],
+            "method": [
+              "Preheat oven to 180C (350F).",
+              "In a medium bowl, mix peanut butter, sugar, and egg until smooth.",
+              "Roll mixture into small balls and place onto a lined baking sheet.",
+              "Press criss-cross pattern using a fork.",
+              "Bake for 10-12 minutes until edges are golden."
+            ]
+          },
+          "lap_tokens": 951,
+          "lap_cost_usd": 7.78e-05,
+          "lap_latency_s": 2.089
+        },
+        {
+          "step_index": 3,
+          "lap": 3,
+          "tool_name": "substitute_ingredient",
+          "arguments": {
+            "ingredient_name": "egg",
+            "avoid_allergen": "eggs"
+          },
+          "observation": {
+            "status": "success",
+            "original_ingredient": "egg",
+            "avoided_allergen": "eggs",
+            "replacement_ingredient": "flax egg (1 tbsp ground flax + 3 tbsp water)",
+            "quantity_ratio": 1.0,
+            "inherent_allergens": [],
+            "culinary_notes": "Plant binding agent."
+          },
+          "lap_tokens": 1223,
+          "lap_cost_usd": 9.8e-05,
+          "lap_latency_s": 3.95
+        }
+      ],
+      "final_recipe": {
+        "title": "Classic Peanut Butter Cookies",
+        "servings": 8,
+        "ingredients": [
+          {
+            "name": "peanut butter",
+            "quantity": 500.0,
+            "unit": "g",
+            "allergens": [
+              "peanuts"
+            ]
+          },
+          {
+            "name": "granulated sugar",
+            "quantity": 400.0,
+            "unit": "g",
+            "allergens": []
+          },
+          {
+            "name": "flax egg (1 tbsp ground flax + 3 tbsp water)",
+            "quantity": 2.0,
+            "unit": "whole",
+            "allergens": []
+          },
+          {
+            "name": "vanilla extract",
+            "quantity": 10.0,
+            "unit": "ml",
+            "allergens": []
+          }
+        ],
+        "method": [
+          "Preheat oven to 180C (350F).",
+          "In a medium bowl, mix peanut butter, sugar, and flax egg until smooth.",
+          "Roll mixture into small balls and place onto a lined baking sheet.",
+          "Press criss-cross pattern using a fork.",
+          "Bake for 10-12 minutes until edges are golden."
+        ],
+        "adaptation_notes": "Scaled recipe from 4 servings to 8 servings (scale factor: 2). Substituted the eggs with flax eggs to accommodate an egg allergy."
+      },
+      "raw_output_text": "```json\n{\n  \"title\": \"Classic Peanut Butter Cookies\",\n  \"servings\": 8,\n  \"ingredients\": [\n    {\n      \"name\": \"peanut butter\",\n      \"quantity\": 500.0,\n      \"unit\": \"g\",\n      \"allergens\": [\n        \"peanuts\"\n      ]\n    },\n    {\n      \"name\": \"granulated sugar\",\n      \"quantity\": 400.0,\n      \"unit\": \"g\",\n      \"allergens\": []\n    },\n    {\n      \"name\": \"flax egg (1 tbsp ground flax + 3 tbsp water)\",\n      \"quantity\": 2.0,\n      \"unit\": \"whole\",\n      \"allergens\": []\n    },\n    {\n      \"name\": \"vanilla extract\",\n      \"quantity\": 10.0,\n      \"unit\": \"ml\",\n      \"allergens\": []\n    }\n  ],\n  \"method\": [\n    \"Preheat oven to 180C (350F).\",\n    \"In a medium bowl, mix peanut butter, sugar, and flax egg until smooth.\",\n    \"Roll mixture into small balls and place onto a lined baking sheet.\",\n    \"Press criss-cross pattern using a fork.\",\n    \"Bake for 10-12 minutes until edges are golden.\"\n  ],\n  \"adaptation_notes\": \"Scaled recipe from 4 servings to 8 servings (scale factor: 2). Substituted the eggs with flax eggs to accommodate an egg allergy.\"\n}\n```"
+    },
+    "eval_record": {
+      "case_id": "req_02",
+      "type": "standard",
+      "query": "Find Classic Peanut Butter Cookies, scale it to 8 servings, and substitute the egg for an egg allergy.",
+      "tool_sequence": [
+        "search_recipes",
+        "scale_recipe",
+        "substitute_ingredient"
+      ],
+      "trajectory_passed": true,
+      "outcome_passed": true,
+      "is_right_answer_wrong_path": false,
+      "tool_choice_accuracy": 1.0,
+      "argument_validity_rate": 1.0,
+      "optimal_steps": 3,
+      "actual_steps": 3,
+      "step_efficiency": 1.0,
+      "steps_taken_over_needed": 1.0,
+      "tokens": 4521,
+      "cost_usd": 0.000436,
+      "latency_s": 10.34,
+      "argument_errors": [],
+      "outcome_errors": [],
+      "failure_modes": [
+        "No Failure (Clean Execution)"
+      ]
+    }
+  },
+  {
+    "case": {
+      "id": "req_03",
+      "type": "standard",
+      "query": "Find Honey Nut Breakfast Granola, scale to 12 servings, and make it nut-free by substituting almonds.",
+      "dish_name": "granola",
+      "recipe_id": "rec_nutty_granola",
+      "target_servings": 12,
+      "avoid_allergens": [
+        "tree_nuts"
+      ],
+      "target_ingredient_to_swap": "almonds",
+      "expected_terminal_substitute": "pumpkin seeds",
+      "optimal_steps": 3,
+      "accepts_alternate_paths": true,
+      "alternate_path_rationale": "Commutative ordering: Multiplying batch weight to 12 servings prior to swapping almonds with pumpkin seeds is equally valid to swapping the ingredient first and scaling the batch second.",
+      "valid_tool_sequences": [
+        [
+          "search_recipes",
+          "scale_recipe",
+          "substitute_ingredient"
+        ],
+        [
+          "search_recipes",
+          "substitute_ingredient",
+          "scale_recipe"
+        ]
+      ]
+    },
+    "run_output": {
+      "status": "completed",
+      "budget_fired": null,
+      "laps_completed": 4,
+      "latency_seconds": 7.1,
+      "total_tokens": 4580,
+      "total_cost_usd": 0.000444,
+      "tool_sequence": [
+        "search_recipes",
+        "scale_recipe",
+        "substitute_ingredient"
+      ],
+      "trajectory_steps": [
+        {
+          "step_index": 1,
+          "lap": 1,
+          "tool_name": "search_recipes",
+          "arguments": {
+            "query": "Honey Nut Breakfast Granola"
+          },
+          "observation": {
+            "status": "success",
+            "matches_count": 1,
+            "recipes": [
+              {
+                "id": "rec_nutty_granola",
+                "title": "Honey Nut Breakfast Granola",
+                "base_servings": 6,
+                "ingredients": [
+                  {
+                    "name": "rolled oats",
+                    "quantity": 300,
+                    "unit": "g",
+                    "allergens": []
+                  },
+                  {
+                    "name": "almonds",
+                    "quantity": 100,
+                    "unit": "g",
+                    "allergens": [
+                      "tree_nuts"
+                    ]
+                  },
+                  {
+                    "name": "honey",
+                    "quantity": 80,
+                    "unit": "ml",
+                    "allergens": []
+                  },
+                  {
+                    "name": "coconut oil",
+                    "quantity": 40,
+                    "unit": "ml",
+                    "allergens": []
+                  },
+                  {
+                    "name": "cinnamon",
+                    "quantity": 5,
+                    "unit": "g",
+                    "allergens": []
+                  }
+                ],
+                "method": [
+                  "Preheat oven to 160C (320F).",
+                  "Combine oats, chopped almonds, honey, melted coconut oil, and cinnamon.",
+                  "Spread evenly across a baking tray.",
+                  "Bake for 20-25 minutes, stirring halfway through until golden brown."
+                ]
+              }
+            ]
+          },
+          "lap_tokens": 690,
+          "lap_cost_usd": 5.62e-05,
+          "lap_latency_s": 1.19
+        },
+        {
+          "step_index": 2,
+          "lap": 2,
+          "tool_name": "scale_recipe",
+          "arguments": {
+            "target_servings": 12,
+            "recipe_id": "rec_nutty_granola"
+          },
+          "observation": {
+            "status": "success",
+            "recipe_id": "rec_nutty_granola",
+            "title": "Honey Nut Breakfast Granola",
+            "base_servings": 6,
+            "target_servings": 12,
+            "scale_factor": 2.0,
+            "scaled_ingredients": [
+              {
+                "name": "rolled oats",
+                "quantity": 600.0,
+                "unit": "g",
+                "allergens": []
+              },
+              {
+                "name": "almonds",
+                "quantity": 200.0,
+                "unit": "g",
+                "allergens": [
+                  "tree_nuts"
+                ]
+              },
+              {
+                "name": "honey",
+                "quantity": 160.0,
+                "unit": "ml",
+                "allergens": []
+              },
+              {
+                "name": "coconut oil",
+                "quantity": 80.0,
+                "unit": "ml",
+                "allergens": []
+              },
+              {
+                "name": "cinnamon",
+                "quantity": 10.0,
+                "unit": "g",
+                "allergens": []
+              }
+            ],
+            "method": [
+              "Preheat oven to 160C (320F).",
+              "Combine oats, chopped almonds, honey, melted coconut oil, and cinnamon.",
+              "Spread evenly across a baking tray.",
+              "Bake for 20-25 minutes, stirring halfway through until golden brown."
+            ]
+          },
+          "lap_tokens": 963,
+          "lap_cost_usd": 7.94e-05,
+          "lap_latency_s": 2.072
+        },
+        {
+          "step_index": 3,
+          "lap": 3,
+          "tool_name": "substitute_ingredient",
+          "arguments": {
+            "ingredient_name": "almonds",
+            "avoid_allergen": "tree_nuts"
+          },
+          "observation": {
+            "status": "success",
+            "original_ingredient": "almonds",
+            "avoided_allergen": "tree_nuts",
+            "replacement_ingredient": "pumpkin seeds",
+            "quantity_ratio": 1.0,
+            "inherent_allergens": [],
+            "culinary_notes": "Nut-free crunch."
+          },
+          "lap_tokens": 1246,
+          "lap_cost_usd": 0.0001004,
+          "lap_latency_s": 1.222
+        }
+      ],
+      "final_recipe": {
+        "title": "Honey Nut Breakfast Granola",
+        "servings": 12,
+        "ingredients": [
+          {
+            "name": "rolled oats",
+            "quantity": 600.0,
+            "unit": "g",
+            "allergens": []
+          },
+          {
+            "name": "pumpkin seeds",
+            "quantity": 200.0,
+            "unit": "g",
+            "allergens": []
+          },
+          {
+            "name": "honey",
+            "quantity": 160.0,
+            "unit": "ml",
+            "allergens": []
+          },
+          {
+            "name": "coconut oil",
+            "quantity": 80.0,
+            "unit": "ml",
+            "allergens": []
+          },
+          {
+            "name": "cinnamon",
+            "quantity": 10.0,
+            "unit": "g",
+            "allergens": []
+          }
+        ],
+        "method": [
+          "Preheat oven to 160C (320F).",
+          "Combine oats, chopped pumpkin seeds, honey, melted coconut oil, and cinnamon.",
+          "Spread evenly across a baking tray.",
+          "Bake for 20-25 minutes, stirring halfway through until golden brown."
+        ],
+        "adaptation_notes": "Scaled recipe from 6 to 12 servings (scale factor 2.0). Replaced almonds with pumpkin seeds to eliminate tree nut allergens."
+      },
+      "raw_output_text": "```json\n{\n  \"title\": \"Honey Nut Breakfast Granola\",\n  \"servings\": 12,\n  \"ingredients\": [\n    {\n      \"name\": \"rolled oats\",\n      \"quantity\": 600.0,\n      \"unit\": \"g\",\n      \"allergens\": []\n    },\n    {\n      \"name\": \"pumpkin seeds\",\n      \"quantity\": 200.0,\n      \"unit\": \"g\",\n      \"allergens\": []\n    },\n    {\n      \"name\": \"honey\",\n      \"quantity\": 160.0,\n      \"unit\": \"ml\",\n      \"allergens\": []\n    },\n    {\n      \"name\": \"coconut oil\",\n      \"quantity\": 80.0,\n      \"unit\": \"ml\",\n      \"allergens\": []\n    },\n    {\n      \"name\": \"cinnamon\",\n      \"quantity\": 10.0,\n      \"unit\": \"g\",\n      \"allergens\": []\n    }\n  ],\n  \"method\": [\n    \"Preheat oven to 160C (320F).\",\n    \"Combine oats, chopped pumpkin seeds, honey, melted coconut oil, and cinnamon.\",\n    \"Spread evenly across a baking tray.\",\n    \"Bake for 20-25 minutes, stirring halfway through until golden brown.\"\n  ],\n  \"adaptation_notes\": \"Scaled recipe from 6 to 12 servings (scale factor 2.0). Replaced almonds with pumpkin seeds to eliminate tree nut allergens.\"\n}\n```"
+    },
+    "eval_record": {
+      "case_id": "req_03",
+      "type": "standard",
+      "query": "Find Honey Nut Breakfast Granola, scale to 12 servings, and make it nut-free by substituting almonds.",
+      "tool_sequence": [
+        "search_recipes",
+        "scale_recipe",
+        "substitute_ingredient"
+      ],
+      "trajectory_passed": true,
+      "outcome_passed": true,
+      "is_right_answer_wrong_path": false,
+      "tool_choice_accuracy": 1.0,
+      "argument_validity_rate": 1.0,
+      "optimal_steps": 3,
+      "actual_steps": 3,
+      "step_efficiency": 1.0,
+      "steps_taken_over_needed": 1.0,
+      "tokens": 4580,
+      "cost_usd": 0.000444,
+      "latency_s": 7.1,
+      "argument_errors": [],
+      "outcome_errors": [],
+      "failure_modes": [
+        "No Failure (Clean Execution)"
+      ]
+    }
+  },
+  {
+    "case": {
+      "id": "req_04",
+      "type": "standard",
+      "query": "Find Fluffy Banana Pancakes, scale to 6 servings, and substitute whole milk to make it dairy-free.",
+      "dish_name": "banana pancakes",
+      "recipe_id": "rec_banana_pancakes",
+      "target_servings": 6,
+      "avoid_allergens": [
+        "dairy"
+      ],
+      "target_ingredient_to_swap": "whole milk",
+      "expected_terminal_substitute": "unsweetened oat milk",
+      "optimal_steps": 3,
+      "accepts_alternate_paths": true,
+      "alternate_path_rationale": "Commutative ordering: Whether the liquid volume is scaled to 6 servings before or after replacing whole milk with oat milk does not affect final composition.",
+      "valid_tool_sequences": [
+        [
+          "search_recipes",
+          "scale_recipe",
+          "substitute_ingredient"
+        ],
+        [
+          "search_recipes",
+          "substitute_ingredient",
+          "scale_recipe"
+        ]
+      ]
+    },
+    "run_output": {
+      "status": "completed",
+      "budget_fired": null,
+      "laps_completed": 4,
+      "latency_seconds": 7.56,
+      "total_tokens": 4571,
+      "total_cost_usd": 0.000446,
+      "tool_sequence": [
+        "search_recipes",
+        "scale_recipe",
+        "substitute_ingredient"
+      ],
+      "trajectory_steps": [
+        {
+          "step_index": 1,
+          "lap": 1,
+          "tool_name": "search_recipes",
+          "arguments": {
+            "query": "Fluffy Banana Pancakes"
+          },
+          "observation": {
+            "status": "success",
+            "matches_count": 1,
+            "recipes": [
+              {
+                "id": "rec_banana_pancakes",
+                "title": "Fluffy Banana Pancakes",
+                "base_servings": 3,
+                "ingredients": [
+                  {
+                    "name": "all-purpose flour",
+                    "quantity": 150,
+                    "unit": "g",
+                    "allergens": [
+                      "gluten"
+                    ]
+                  },
+                  {
+                    "name": "ripe bananas",
+                    "quantity": 2,
+                    "unit": "whole",
+                    "allergens": []
+                  },
+                  {
+                    "name": "whole milk",
+                    "quantity": 180,
+                    "unit": "ml",
+                    "allergens": [
+                      "dairy"
+                    ]
+                  },
+                  {
+                    "name": "egg",
+                    "quantity": 1,
+                    "unit": "whole",
+                    "allergens": [
+                      "eggs"
+                    ]
+                  },
+                  {
+                    "name": "baking powder",
+                    "quantity": 8,
+                    "unit": "g",
+                    "allergens": []
+                  }
+                ],
+                "method": [
+                  "Mash bananas in a large bowl.",
+                  "Whisk in egg and whole milk.",
+                  "Gently fold in flour and baking powder until just combined.",
+                  "Cook ladlefuls on a greased griddle over medium heat for 2-3 mins per side."
+                ]
+              }
+            ]
+          },
+          "lap_tokens": 688,
+          "lap_cost_usd": 5.59e-05,
+          "lap_latency_s": 0.927
+        },
+        {
+          "step_index": 2,
+          "lap": 2,
+          "tool_name": "scale_recipe",
+          "arguments": {
+            "target_servings": 6,
+            "recipe_id": "rec_banana_pancakes"
+          },
+          "observation": {
+            "status": "success",
+            "recipe_id": "rec_banana_pancakes",
+            "title": "Fluffy Banana Pancakes",
+            "base_servings": 3,
+            "target_servings": 6,
+            "scale_factor": 2.0,
+            "scaled_ingredients": [
+              {
+                "name": "all-purpose flour",
+                "quantity": 300.0,
+                "unit": "g",
+                "allergens": [
+                  "gluten"
+                ]
+              },
+              {
+                "name": "ripe bananas",
+                "quantity": 4.0,
+                "unit": "whole",
+                "allergens": []
+              },
+              {
+                "name": "whole milk",
+                "quantity": 360.0,
+                "unit": "ml",
+                "allergens": [
+                  "dairy"
+                ]
+              },
+              {
+                "name": "egg",
+                "quantity": 2.0,
+                "unit": "whole",
+                "allergens": [
+                  "eggs"
+                ]
+              },
+              {
+                "name": "baking powder",
+                "quantity": 16.0,
+                "unit": "g",
+                "allergens": []
+              }
+            ],
+            "method": [
+              "Mash bananas in a large bowl.",
+              "Whisk in egg and whole milk.",
+              "Gently fold in flour and baking powder until just combined.",
+              "Cook ladlefuls on a greased griddle over medium heat for 2-3 mins per side."
+            ]
+          },
+          "lap_tokens": 958,
+          "lap_cost_usd": 7.88e-05,
+          "lap_latency_s": 1.44
+        },
+        {
+          "step_index": 3,
+          "lap": 3,
+          "tool_name": "substitute_ingredient",
+          "arguments": {
+            "avoid_allergen": "dairy",
+            "ingredient_name": "whole milk"
+          },
+          "observation": {
+            "status": "success",
+            "original_ingredient": "whole milk",
+            "avoided_allergen": "dairy",
+            "replacement_ingredient": "unsweetened oat milk",
+            "quantity_ratio": 1.0,
+            "inherent_allergens": [],
+            "culinary_notes": "Creamy neutral dairy-free milk."
+          },
+          "lap_tokens": 1235,
+          "lap_cost_usd": 9.91e-05,
+          "lap_latency_s": 3.076
+        }
+      ],
+      "final_recipe": {
+        "title": "Fluffy Banana Pancakes",
+        "servings": 6,
+        "ingredients": [
+          {
+            "name": "all-purpose flour",
+            "quantity": 300.0,
+            "unit": "g",
+            "allergens": [
+              "gluten"
+            ]
+          },
+          {
+            "name": "ripe bananas",
+            "quantity": 4.0,
+            "unit": "whole",
+            "allergens": []
+          },
+          {
+            "name": "unsweetened oat milk",
+            "quantity": 360.0,
+            "unit": "ml",
+            "allergens": []
+          },
+          {
+            "name": "egg",
+            "quantity": 2.0,
+            "unit": "whole",
+            "allergens": [
+              "eggs"
+            ]
+          },
+          {
+            "name": "baking powder",
+            "quantity": 16.0,
+            "unit": "g",
+            "allergens": []
+          }
+        ],
+        "method": [
+          "Mash bananas in a large bowl.",
+          "Whisk in egg and unsweetened oat milk.",
+          "Gently fold in flour and baking powder until just combined.",
+          "Cook ladlefuls on a greased griddle over medium heat for 2-3 mins per side."
+        ],
+        "adaptation_notes": "Scaled recipe from 3 to 6 servings (multiplier of 2x). Substituted whole milk with unsweetened oat milk to make the recipe dairy-free."
+      },
+      "raw_output_text": "```json\n{\n  \"title\": \"Fluffy Banana Pancakes\",\n  \"servings\": 6,\n  \"ingredients\": [\n    {\n      \"name\": \"all-purpose flour\",\n      \"quantity\": 300.0,\n      \"unit\": \"g\",\n      \"allergens\": [\n        \"gluten\"\n      ]\n    },\n    {\n      \"name\": \"ripe bananas\",\n      \"quantity\": 4.0,\n      \"unit\": \"whole\",\n      \"allergens\": []\n    },\n    {\n      \"name\": \"unsweetened oat milk\",\n      \"quantity\": 360.0,\n      \"unit\": \"ml\",\n      \"allergens\": []\n    },\n    {\n      \"name\": \"egg\",\n      \"quantity\": 2.0,\n      \"unit\": \"whole\",\n      \"allergens\": [\n        \"eggs\"\n      ]\n    },\n    {\n      \"name\": \"baking powder\",\n      \"quantity\": 16.0,\n      \"unit\": \"g\",\n      \"allergens\": []\n    }\n  ],\n  \"method\": [\n    \"Mash bananas in a large bowl.\",\n    \"Whisk in egg and unsweetened oat milk.\",\n    \"Gently fold in flour and baking powder until just combined.\",\n    \"Cook ladlefuls on a greased griddle over medium heat for 2-3 mins per side.\"\n  ],\n  \"adaptation_notes\": \"Scaled recipe from 3 to 6 servings (multiplier of 2x). Substituted whole milk with unsweetened oat milk to make the recipe dairy-free.\"\n}\n```"
+    },
+    "eval_record": {
+      "case_id": "req_04",
+      "type": "standard",
+      "query": "Find Fluffy Banana Pancakes, scale to 6 servings, and substitute whole milk to make it dairy-free.",
+      "tool_sequence": [
+        "search_recipes",
+        "scale_recipe",
+        "substitute_ingredient"
+      ],
+      "trajectory_passed": true,
+      "outcome_passed": true,
+      "is_right_answer_wrong_path": false,
+      "tool_choice_accuracy": 1.0,
+      "argument_validity_rate": 1.0,
+      "optimal_steps": 3,
+      "actual_steps": 3,
+      "step_efficiency": 1.0,
+      "steps_taken_over_needed": 1.0,
+      "tokens": 4571,
+      "cost_usd": 0.000446,
+      "latency_s": 7.56,
+      "argument_errors": [],
+      "outcome_errors": [],
+      "failure_modes": [
+        "No Failure (Clean Execution)"
+      ]
+    }
+  },
+  {
+    "case": {
+      "id": "req_05",
+      "type": "standard",
+      "query": "Find Genovese Basil Pesto Pasta, scale it to 2 servings, and make it gluten-free.",
+      "dish_name": "pesto",
+      "recipe_id": "rec_classic_pesto",
+      "target_servings": 2,
+      "avoid_allergens": [
+        "gluten"
+      ],
+      "target_ingredient_to_swap": "spaghetti",
+      "expected_terminal_substitute": "brown rice spaghetti",
+      "optimal_steps": 3,
+      "accepts_alternate_paths": true,
+      "alternate_path_rationale": "Commutative ordering: Halving pasta weight to 2 servings before substituting spaghetti with brown rice spaghetti vs. swapping pasta and then downscaling are both correct.",
+      "valid_tool_sequences": [
+        [
+          "search_recipes",
+          "scale_recipe",
+          "substitute_ingredient"
+        ],
+        [
+          "search_recipes",
+          "substitute_ingredient",
+          "scale_recipe"
+        ]
+      ]
+    },
+    "run_output": {
+      "status": "completed",
+      "budget_fired": null,
+      "laps_completed": 4,
+      "latency_seconds": 21.41,
+      "total_tokens": 4809,
+      "total_cost_usd": 0.000476,
+      "tool_sequence": [
+        "search_recipes",
+        "scale_recipe",
+        "substitute_ingredient"
+      ],
+      "trajectory_steps": [
+        {
+          "step_index": 1,
+          "lap": 1,
+          "tool_name": "search_recipes",
+          "arguments": {
+            "query": "Genovese Basil Pesto Pasta"
+          },
+          "observation": {
+            "status": "success",
+            "matches_count": 1,
+            "recipes": [
+              {
+                "id": "rec_classic_pesto",
+                "title": "Genovese Basil Pesto Pasta",
+                "base_servings": 4,
+                "ingredients": [
+                  {
+                    "name": "fresh basil leaves",
+                    "quantity": 60,
+                    "unit": "g",
+                    "allergens": []
+                  },
+                  {
+                    "name": "pine nuts",
+                    "quantity": 40,
+                    "unit": "g",
+                    "allergens": [
+                      "tree_nuts"
+                    ]
+                  },
+                  {
+                    "name": "parmesan cheese",
+                    "quantity": 50,
+                    "unit": "g",
+                    "allergens": [
+                      "dairy"
+                    ]
+                  },
+                  {
+                    "name": "extra virgin olive oil",
+                    "quantity": 100,
+                    "unit": "ml",
+                    "allergens": []
+                  },
+                  {
+                    "name": "garlic",
+                    "quantity": 2,
+                    "unit": "cloves",
+                    "allergens": []
+                  },
+                  {
+                    "name": "spaghetti",
+                    "quantity": 350,
+                    "unit": "g",
+                    "allergens": [
+                      "gluten"
+                    ]
+                  }
+                ],
+                "method": [
+                  "Toast pine nuts lightly in a dry skillet over medium heat.",
+                  "Blend basil, toasted pine nuts, garlic, and parmesan in a food processor.",
+                  "Slowly drizzle in olive oil while blending until emulsified.",
+                  "Toss with freshly boiled spaghetti and a splash of pasta water."
+                ]
+              }
+            ]
+          },
+          "lap_tokens": 691,
+          "lap_cost_usd": 5.68e-05,
+          "lap_latency_s": 17.192
+        },
+        {
+          "step_index": 2,
+          "lap": 2,
+          "tool_name": "scale_recipe",
+          "arguments": {
+            "recipe_id": "rec_classic_pesto",
+            "target_servings": 2
+          },
+          "observation": {
+            "status": "success",
+            "recipe_id": "rec_classic_pesto",
+            "title": "Genovese Basil Pesto Pasta",
+            "base_servings": 4,
+            "target_servings": 2,
+            "scale_factor": 0.5,
+            "scaled_ingredients": [
+              {
+                "name": "fresh basil leaves",
+                "quantity": 30.0,
+                "unit": "g",
+                "allergens": []
+              },
+              {
+                "name": "pine nuts",
+                "quantity": 20.0,
+                "unit": "g",
+                "allergens": [
+                  "tree_nuts"
+                ]
+              },
+              {
+                "name": "parmesan cheese",
+                "quantity": 25.0,
+                "unit": "g",
+                "allergens": [
+                  "dairy"
+                ]
+              },
+              {
+                "name": "extra virgin olive oil",
+                "quantity": 50.0,
+                "unit": "ml",
+                "allergens": []
+              },
+              {
+                "name": "garlic",
+                "quantity": 1.0,
+                "unit": "cloves",
+                "allergens": []
+              },
+              {
+                "name": "spaghetti",
+                "quantity": 175.0,
+                "unit": "g",
+                "allergens": [
+                  "gluten"
+                ]
+              }
+            ],
+            "method": [
+              "Toast pine nuts lightly in a dry skillet over medium heat.",
+              "Blend basil, toasted pine nuts, garlic, and parmesan in a food processor.",
+              "Slowly drizzle in olive oil while blending until emulsified.",
+              "Toss with freshly boiled spaghetti and a splash of pasta water."
+            ]
+          },
+          "lap_tokens": 996,
+          "lap_cost_usd": 8.15e-05,
+          "lap_latency_s": 0.91
+        },
+        {
+          "step_index": 3,
+          "lap": 3,
+          "tool_name": "substitute_ingredient",
+          "arguments": {
+            "ingredient_name": "spaghetti",
+            "avoid_allergen": "gluten"
+          },
+          "observation": {
+            "status": "success",
+            "original_ingredient": "spaghetti",
+            "avoided_allergen": "gluten",
+            "replacement_ingredient": "brown rice spaghetti",
+            "quantity_ratio": 1.0,
+            "inherent_allergens": [],
+            "culinary_notes": "Mild gluten-free pasta."
+          },
+          "lap_tokens": 1309,
+          "lap_cost_usd": 0.0001047,
+          "lap_latency_s": 1.102
+        }
+      ],
+      "final_recipe": {
+        "title": "Genovese Basil Pesto Pasta",
+        "servings": 2,
+        "ingredients": [
+          {
+            "name": "fresh basil leaves",
+            "quantity": 30.0,
+            "unit": "g",
+            "allergens": []
+          },
+          {
+            "name": "pine nuts",
+            "quantity": 20.0,
+            "unit": "g",
+            "allergens": [
+              "tree_nuts"
+            ]
+          },
+          {
+            "name": "parmesan cheese",
+            "quantity": 25.0,
+            "unit": "g",
+            "allergens": [
+              "dairy"
+            ]
+          },
+          {
+            "name": "extra virgin olive oil",
+            "quantity": 50.0,
+            "unit": "ml",
+            "allergens": []
+          },
+          {
+            "name": "garlic",
+            "quantity": 1.0,
+            "unit": "cloves",
+            "allergens": []
+          },
+          {
+            "name": "brown rice spaghetti",
+            "quantity": 175.0,
+            "unit": "g",
+            "allergens": []
+          }
+        ],
+        "method": [
+          "Toast pine nuts lightly in a dry skillet over medium heat.",
+          "Blend basil, toasted pine nuts, garlic, and parmesan in a food processor.",
+          "Slowly drizzle in olive oil while blending until emulsified.",
+          "Toss with freshly boiled brown rice spaghetti and a splash of pasta water."
+        ],
+        "adaptation_notes": "Scaled recipe from 4 servings down to 2 servings (scale factor 0.5). Substituted standard wheat spaghetti with brown rice spaghetti to make the recipe gluten-free."
+      },
+      "raw_output_text": "```json\n{\n  \"title\": \"Genovese Basil Pesto Pasta\",\n  \"servings\": 2,\n  \"ingredients\": [\n    {\n      \"name\": \"fresh basil leaves\",\n      \"quantity\": 30.0,\n      \"unit\": \"g\",\n      \"allergens\": []\n    },\n    {\n      \"name\": \"pine nuts\",\n      \"quantity\": 20.0,\n      \"unit\": \"g\",\n      \"allergens\": [\n        \"tree_nuts\"\n      ]\n    },\n    {\n      \"name\": \"parmesan cheese\",\n      \"quantity\": 25.0,\n      \"unit\": \"g\",\n      \"allergens\": [\n        \"dairy\"\n      ]\n    },\n    {\n      \"name\": \"extra virgin olive oil\",\n      \"quantity\": 50.0,\n      \"unit\": \"ml\",\n      \"allergens\": []\n    },\n    {\n      \"name\": \"garlic\",\n      \"quantity\": 1.0,\n      \"unit\": \"cloves\",\n      \"allergens\": []\n    },\n    {\n      \"name\": \"brown rice spaghetti\",\n      \"quantity\": 175.0,\n      \"unit\": \"g\",\n      \"allergens\": []\n    }\n  ],\n  \"method\": [\n    \"Toast pine nuts lightly in a dry skillet over medium heat.\",\n    \"Blend basil, toasted pine nuts, garlic, and parmesan in a food processor.\",\n    \"Slowly drizzle in olive oil while blending until emulsified.\",\n    \"Toss with freshly boiled brown rice spaghetti and a splash of pasta water.\"\n  ],\n  \"adaptation_notes\": \"Scaled recipe from 4 servings down to 2 servings (scale factor 0.5). Substituted standard wheat spaghetti with brown rice spaghetti to make the recipe gluten-free.\"\n}\n```"
+    },
+    "eval_record": {
+      "case_id": "req_05",
+      "type": "standard",
+      "query": "Find Genovese Basil Pesto Pasta, scale it to 2 servings, and make it gluten-free.",
+      "tool_sequence": [
+        "search_recipes",
+        "scale_recipe",
+        "substitute_ingredient"
+      ],
+      "trajectory_passed": true,
+      "outcome_passed": true,
+      "is_right_answer_wrong_path": false,
+      "tool_choice_accuracy": 1.0,
+      "argument_validity_rate": 1.0,
+      "optimal_steps": 3,
+      "actual_steps": 3,
+      "step_efficiency": 1.0,
+      "steps_taken_over_needed": 1.0,
+      "tokens": 4809,
+      "cost_usd": 0.000476,
+      "latency_s": 21.41,
+      "argument_errors": [],
+      "outcome_errors": [],
+      "failure_modes": [
+        "No Failure (Clean Execution)"
+      ]
+    }
+  },
+  {
+    "case": {
+      "id": "req_06",
+      "type": "standard",
+      "query": "Find Fettuccine Alfredo, scale to 6 servings, and substitute the butter for a dairy allergy.",
+      "dish_name": "alfredo",
+      "recipe_id": "rec_creamy_alfredo",
+      "target_servings": 6,
+      "avoid_allergens": [
+        "dairy"
+      ],
+      "target_ingredient_to_swap": "butter",
+      "expected_terminal_substitute": "vegan plant butter",
+      "optimal_steps": 3,
+      "accepts_alternate_paths": true,
+      "alternate_path_rationale": "Commutative ordering: Scaling butter weight to 6 servings before swapping for vegan plant butter vs. swapping butter first and scaling are equally valid culinary trajectories.",
+      "valid_tool_sequences": [
+        [
+          "search_recipes",
+          "scale_recipe",
+          "substitute_ingredient"
+        ],
+        [
+          "search_recipes",
+          "substitute_ingredient",
+          "scale_recipe"
+        ]
+      ]
+    },
+    "run_output": {
+      "status": "completed",
+      "budget_fired": null,
+      "laps_completed": 4,
+      "latency_seconds": 5.01,
+      "total_tokens": 4721,
+      "total_cost_usd": 0.000463,
+      "tool_sequence": [
+        "search_recipes",
+        "scale_recipe",
+        "substitute_ingredient"
+      ],
+      "trajectory_steps": [
+        {
+          "step_index": 1,
+          "lap": 1,
+          "tool_name": "search_recipes",
+          "arguments": {
+            "query": "Fettuccine Alfredo"
+          },
+          "observation": {
+            "status": "success",
+            "matches_count": 1,
+            "recipes": [
+              {
+                "id": "rec_creamy_alfredo",
+                "title": "Fettuccine Alfredo",
+                "base_servings": 2,
+                "ingredients": [
+                  {
+                    "name": "fettuccine pasta",
+                    "quantity": 200,
+                    "unit": "g",
+                    "allergens": [
+                      "gluten"
+                    ]
+                  },
+                  {
+                    "name": "heavy cream",
+                    "quantity": 150,
+                    "unit": "ml",
+                    "allergens": [
+                      "dairy"
+                    ]
+                  },
+                  {
+                    "name": "parmesan cheese",
+                    "quantity": 60,
+                    "unit": "g",
+                    "allergens": [
+                      "dairy"
+                    ]
+                  },
+                  {
+                    "name": "butter",
+                    "quantity": 30,
+                    "unit": "g",
+                    "allergens": [
+                      "dairy"
+                    ]
+                  },
+                  {
+                    "name": "garlic",
+                    "quantity": 2,
+                    "unit": "cloves",
+                    "allergens": []
+                  }
+                ],
+                "method": [
+                  "Boil fettuccine pasta in salted water until al dente.",
+                  "Melt butter in a pan over medium heat and saut\u00e9 minced garlic.",
+                  "Stir in heavy cream and simmer for 2 minutes.",
+                  "Reduce heat, stir in grated parmesan cheese until creamy.",
+                  "Toss cooked pasta into sauce and season with black pepper."
+                ]
+              }
+            ]
+          },
+          "lap_tokens": 687,
+          "lap_cost_usd": 5.6e-05,
+          "lap_latency_s": 0.873
+        },
+        {
+          "step_index": 2,
+          "lap": 2,
+          "tool_name": "scale_recipe",
+          "arguments": {
+            "recipe_id": "rec_creamy_alfredo",
+            "target_servings": 6
+          },
+          "observation": {
+            "status": "success",
+            "recipe_id": "rec_creamy_alfredo",
+            "title": "Fettuccine Alfredo",
+            "base_servings": 2,
+            "target_servings": 6,
+            "scale_factor": 3.0,
+            "scaled_ingredients": [
+              {
+                "name": "fettuccine pasta",
+                "quantity": 600.0,
+                "unit": "g",
+                "allergens": [
+                  "gluten"
+                ]
+              },
+              {
+                "name": "heavy cream",
+                "quantity": 450.0,
+                "unit": "ml",
+                "allergens": [
+                  "dairy"
+                ]
+              },
+              {
+                "name": "parmesan cheese",
+                "quantity": 180.0,
+                "unit": "g",
+                "allergens": [
+                  "dairy"
+                ]
+              },
+              {
+                "name": "butter",
+                "quantity": 90.0,
+                "unit": "g",
+                "allergens": [
+                  "dairy"
+                ]
+              },
+              {
+                "name": "garlic",
+                "quantity": 6.0,
+                "unit": "cloves",
+                "allergens": []
+              }
+            ],
+            "method": [
+              "Boil fettuccine pasta in salted water until al dente.",
+              "Melt butter in a pan over medium heat and saut\u00e9 minced garlic.",
+              "Stir in heavy cream and simmer for 2 minutes.",
+              "Reduce heat, stir in grated parmesan cheese until creamy.",
+              "Toss cooked pasta into sauce and season with black pepper."
+            ]
+          },
+          "lap_tokens": 983,
+          "lap_cost_usd": 8.07e-05,
+          "lap_latency_s": 0.967
+        },
+        {
+          "step_index": 3,
+          "lap": 3,
+          "tool_name": "substitute_ingredient",
+          "arguments": {
+            "ingredient_name": "butter",
+            "avoid_allergen": "dairy"
+          },
+          "observation": {
+            "status": "success",
+            "original_ingredient": "butter",
+            "avoided_allergen": "dairy",
+            "replacement_ingredient": "vegan plant butter",
+            "quantity_ratio": 1.0,
+            "inherent_allergens": [],
+            "culinary_notes": "Solid at room temp, melts identically."
+          },
+          "lap_tokens": 1285,
+          "lap_cost_usd": 0.0001027,
+          "lap_latency_s": 1.078
+        }
+      ],
+      "final_recipe": {
+        "title": "Fettuccine Alfredo",
+        "servings": 6,
+        "ingredients": [
+          {
+            "name": "fettuccine pasta",
+            "quantity": 600.0,
+            "unit": "g",
+            "allergens": [
+              "gluten"
+            ]
+          },
+          {
+            "name": "heavy cream",
+            "quantity": 450.0,
+            "unit": "ml",
+            "allergens": [
+              "dairy"
+            ]
+          },
+          {
+            "name": "parmesan cheese",
+            "quantity": 180.0,
+            "unit": "g",
+            "allergens": [
+              "dairy"
+            ]
+          },
+          {
+            "name": "vegan plant butter",
+            "quantity": 90.0,
+            "unit": "g",
+            "allergens": []
+          },
+          {
+            "name": "garlic",
+            "quantity": 6.0,
+            "unit": "cloves",
+            "allergens": []
+          }
+        ],
+        "method": [
+          "Boil fettuccine pasta in salted water until al dente.",
+          "Melt vegan plant butter in a pan over medium heat and saut\u00e9 minced garlic.",
+          "Stir in heavy cream and simmer for 2 minutes.",
+          "Reduce heat, stir in grated parmesan cheese until creamy.",
+          "Toss cooked pasta into sauce and season with black pepper."
+        ],
+        "adaptation_notes": "Scaled from 2 to 6 servings (scale factor 3.0). Substituted butter with vegan plant butter (1:1 ratio) to accommodate dairy allergy."
+      },
+      "raw_output_text": "```json\n{\n  \"title\": \"Fettuccine Alfredo\",\n  \"servings\": 6,\n  \"ingredients\": [\n    {\n      \"name\": \"fettuccine pasta\",\n      \"quantity\": 600.0,\n      \"unit\": \"g\",\n      \"allergens\": [\n        \"gluten\"\n      ]\n    },\n    {\n      \"name\": \"heavy cream\",\n      \"quantity\": 450.0,\n      \"unit\": \"ml\",\n      \"allergens\": [\n        \"dairy\"\n      ]\n    },\n    {\n      \"name\": \"parmesan cheese\",\n      \"quantity\": 180.0,\n      \"unit\": \"g\",\n      \"allergens\": [\n        \"dairy\"\n      ]\n    },\n    {\n      \"name\": \"vegan plant butter\",\n      \"quantity\": 90.0,\n      \"unit\": \"g\",\n      \"allergens\": []\n    },\n    {\n      \"name\": \"garlic\",\n      \"quantity\": 6.0,\n      \"unit\": \"cloves\",\n      \"allergens\": []\n    }\n  ],\n  \"method\": [\n    \"Boil fettuccine pasta in salted water until al dente.\",\n    \"Melt vegan plant butter in a pan over medium heat and saut\u00e9 minced garlic.\",\n    \"Stir in heavy cream and simmer for 2 minutes.\",\n    \"Reduce heat, stir in grated parmesan cheese until creamy.\",\n    \"Toss cooked pasta into sauce and season with black pepper.\"\n  ],\n  \"adaptation_notes\": \"Scaled from 2 to 6 servings (scale factor 3.0). Substituted butter with vegan plant butter (1:1 ratio) to accommodate dairy allergy.\"\n}\n```"
+    },
+    "eval_record": {
+      "case_id": "req_06",
+      "type": "standard",
+      "query": "Find Fettuccine Alfredo, scale to 6 servings, and substitute the butter for a dairy allergy.",
+      "tool_sequence": [
+        "search_recipes",
+        "scale_recipe",
+        "substitute_ingredient"
+      ],
+      "trajectory_passed": true,
+      "outcome_passed": false,
+      "is_right_answer_wrong_path": false,
+      "tool_choice_accuracy": 1.0,
+      "argument_validity_rate": 1.0,
+      "optimal_steps": 3,
+      "actual_steps": 3,
+      "step_efficiency": 1.0,
+      "steps_taken_over_needed": 1.0,
+      "tokens": 4721,
+      "cost_usd": 0.000463,
+      "latency_s": 5.01,
+      "argument_errors": [],
+      "outcome_errors": [
+        "Allergen violation: Contains prohibited allergen 'dairy'"
+      ],
+      "failure_modes": [
+        "No Failure (Clean Execution)"
+      ]
+    }
+  },
+  {
+    "case": {
+      "id": "req_07",
+      "type": "standard",
+      "query": "Find Fluffy Banana Pancakes, scale to 9 servings, and make it gluten-free by substituting the flour.",
+      "dish_name": "banana pancakes",
+      "recipe_id": "rec_banana_pancakes",
+      "target_servings": 9,
+      "avoid_allergens": [
+        "gluten"
+      ],
+      "target_ingredient_to_swap": "all-purpose flour",
+      "expected_terminal_substitute": "1-to-1 gluten-free baking blend",
+      "optimal_steps": 3,
+      "accepts_alternate_paths": true,
+      "alternate_path_rationale": "Commutative ordering: Scaling flour to 9 servings before swapping for 1-to-1 gluten-free blend vs. swapping flour first and then calculating 9 servings are equivalent valid paths.",
+      "valid_tool_sequences": [
+        [
+          "search_recipes",
+          "scale_recipe",
+          "substitute_ingredient"
+        ],
+        [
+          "search_recipes",
+          "substitute_ingredient",
+          "scale_recipe"
+        ]
+      ]
+    },
+    "run_output": {
+      "status": "completed",
+      "budget_fired": null,
+      "laps_completed": 4,
+      "latency_seconds": 5.43,
+      "total_tokens": 4594,
+      "total_cost_usd": 0.000451,
+      "tool_sequence": [
+        "search_recipes",
+        "scale_recipe",
+        "substitute_ingredient"
+      ],
+      "trajectory_steps": [
+        {
+          "step_index": 1,
+          "lap": 1,
+          "tool_name": "search_recipes",
+          "arguments": {
+            "query": "Fluffy Banana Pancakes"
+          },
+          "observation": {
+            "status": "success",
+            "matches_count": 1,
+            "recipes": [
+              {
+                "id": "rec_banana_pancakes",
+                "title": "Fluffy Banana Pancakes",
+                "base_servings": 3,
+                "ingredients": [
+                  {
+                    "name": "all-purpose flour",
+                    "quantity": 150,
+                    "unit": "g",
+                    "allergens": [
+                      "gluten"
+                    ]
+                  },
+                  {
+                    "name": "ripe bananas",
+                    "quantity": 2,
+                    "unit": "whole",
+                    "allergens": []
+                  },
+                  {
+                    "name": "whole milk",
+                    "quantity": 180,
+                    "unit": "ml",
+                    "allergens": [
+                      "dairy"
+                    ]
+                  },
+                  {
+                    "name": "egg",
+                    "quantity": 1,
+                    "unit": "whole",
+                    "allergens": [
+                      "eggs"
+                    ]
+                  },
+                  {
+                    "name": "baking powder",
+                    "quantity": 8,
+                    "unit": "g",
+                    "allergens": []
+                  }
+                ],
+                "method": [
+                  "Mash bananas in a large bowl.",
+                  "Whisk in egg and whole milk.",
+                  "Gently fold in flour and baking powder until just combined.",
+                  "Cook ladlefuls on a greased griddle over medium heat for 2-3 mins per side."
+                ]
+              }
+            ]
+          },
+          "lap_tokens": 688,
+          "lap_cost_usd": 5.59e-05,
+          "lap_latency_s": 1.135
+        },
+        {
+          "step_index": 2,
+          "lap": 2,
+          "tool_name": "scale_recipe",
+          "arguments": {
+            "recipe_id": "rec_banana_pancakes",
+            "target_servings": 9
+          },
+          "observation": {
+            "status": "success",
+            "recipe_id": "rec_banana_pancakes",
+            "title": "Fluffy Banana Pancakes",
+            "base_servings": 3,
+            "target_servings": 9,
+            "scale_factor": 3.0,
+            "scaled_ingredients": [
+              {
+                "name": "all-purpose flour",
+                "quantity": 450.0,
+                "unit": "g",
+                "allergens": [
+                  "gluten"
+                ]
+              },
+              {
+                "name": "ripe bananas",
+                "quantity": 6.0,
+                "unit": "whole",
+                "allergens": []
+              },
+              {
+                "name": "whole milk",
+                "quantity": 540.0,
+                "unit": "ml",
+                "allergens": [
+                  "dairy"
+                ]
+              },
+              {
+                "name": "egg",
+                "quantity": 3.0,
+                "unit": "whole",
+                "allergens": [
+                  "eggs"
+                ]
+              },
+              {
+                "name": "baking powder",
+                "quantity": 24.0,
+                "unit": "g",
+                "allergens": []
+              }
+            ],
+            "method": [
+              "Mash bananas in a large bowl.",
+              "Whisk in egg and whole milk.",
+              "Gently fold in flour and baking powder until just combined.",
+              "Cook ladlefuls on a greased griddle over medium heat for 2-3 mins per side."
+            ]
+          },
+          "lap_tokens": 958,
+          "lap_cost_usd": 7.88e-05,
+          "lap_latency_s": 1.213
+        },
+        {
+          "step_index": 3,
+          "lap": 3,
+          "tool_name": "substitute_ingredient",
+          "arguments": {
+            "avoid_allergen": "gluten",
+            "ingredient_name": "all-purpose flour"
+          },
+          "observation": {
+            "status": "success",
+            "original_ingredient": "all-purpose flour",
+            "avoided_allergen": "gluten",
+            "replacement_ingredient": "1-to-1 gluten-free baking blend",
+            "quantity_ratio": 1.0,
+            "inherent_allergens": [],
+            "culinary_notes": "Includes xanthan gum."
+          },
+          "lap_tokens": 1237,
+          "lap_cost_usd": 9.97e-05,
+          "lap_latency_s": 1.122
+        }
+      ],
+      "final_recipe": {
+        "title": "Fluffy Banana Pancakes",
+        "servings": 9,
+        "ingredients": [
+          {
+            "name": "1-to-1 gluten-free baking blend",
+            "quantity": 450.0,
+            "unit": "g",
+            "allergens": []
+          },
+          {
+            "name": "ripe bananas",
+            "quantity": 6.0,
+            "unit": "whole",
+            "allergens": []
+          },
+          {
+            "name": "whole milk",
+            "quantity": 540.0,
+            "unit": "ml",
+            "allergens": [
+              "dairy"
+            ]
+          },
+          {
+            "name": "egg",
+            "quantity": 3.0,
+            "unit": "whole",
+            "allergens": [
+              "eggs"
+            ]
+          },
+          {
+            "name": "baking powder",
+            "quantity": 24.0,
+            "unit": "g",
+            "allergens": []
+          }
+        ],
+        "method": [
+          "Mash bananas in a large bowl.",
+          "Whisk in egg and whole milk.",
+          "Gently fold in 1-to-1 gluten-free baking blend and baking powder until just combined.",
+          "Cook ladlefuls on a greased griddle over medium heat for 2-3 mins per side."
+        ],
+        "adaptation_notes": "Scaled from 3 servings to 9 servings (scale factor of 3). Replaced all-purpose flour with 1-to-1 gluten-free baking blend to eliminate gluten."
+      },
+      "raw_output_text": "```json\n{\n  \"title\": \"Fluffy Banana Pancakes\",\n  \"servings\": 9,\n  \"ingredients\": [\n    {\n      \"name\": \"1-to-1 gluten-free baking blend\",\n      \"quantity\": 450.0,\n      \"unit\": \"g\",\n      \"allergens\": []\n    },\n    {\n      \"name\": \"ripe bananas\",\n      \"quantity\": 6.0,\n      \"unit\": \"whole\",\n      \"allergens\": []\n    },\n    {\n      \"name\": \"whole milk\",\n      \"quantity\": 540.0,\n      \"unit\": \"ml\",\n      \"allergens\": [\n        \"dairy\"\n      ]\n    },\n    {\n      \"name\": \"egg\",\n      \"quantity\": 3.0,\n      \"unit\": \"whole\",\n      \"allergens\": [\n        \"eggs\"\n      ]\n    },\n    {\n      \"name\": \"baking powder\",\n      \"quantity\": 24.0,\n      \"unit\": \"g\",\n      \"allergens\": []\n    }\n  ],\n  \"method\": [\n    \"Mash bananas in a large bowl.\",\n    \"Whisk in egg and whole milk.\",\n    \"Gently fold in 1-to-1 gluten-free baking blend and baking powder until just combined.\",\n    \"Cook ladlefuls on a greased griddle over medium heat for 2-3 mins per side.\"\n  ],\n  \"adaptation_notes\": \"Scaled from 3 servings to 9 servings (scale factor of 3). Replaced all-purpose flour with 1-to-1 gluten-free baking blend to eliminate gluten.\"\n}\n```"
+    },
+    "eval_record": {
+      "case_id": "req_07",
+      "type": "standard",
+      "query": "Find Fluffy Banana Pancakes, scale to 9 servings, and make it gluten-free by substituting the flour.",
+      "tool_sequence": [
+        "search_recipes",
+        "scale_recipe",
+        "substitute_ingredient"
+      ],
+      "trajectory_passed": true,
+      "outcome_passed": true,
+      "is_right_answer_wrong_path": false,
+      "tool_choice_accuracy": 1.0,
+      "argument_validity_rate": 1.0,
+      "optimal_steps": 3,
+      "actual_steps": 3,
+      "step_efficiency": 1.0,
+      "steps_taken_over_needed": 1.0,
+      "tokens": 4594,
+      "cost_usd": 0.000451,
+      "latency_s": 5.43,
+      "argument_errors": [],
+      "outcome_errors": [],
+      "failure_modes": [
+        "No Failure (Clean Execution)"
+      ]
+    }
+  },
+  {
+    "case": {
+      "id": "req_08",
+      "type": "cascade",
+      "query": "Find Classic Peanut Butter Cookies, scale to 4 servings. The diner has a severe peanut allergy AND a tree nut allergy, so replace peanut butter with something safe from both.",
+      "dish_name": "peanut butter cookies",
+      "recipe_id": "rec_pb_cookies",
+      "target_servings": 4,
+      "avoid_allergens": [
+        "peanuts",
+        "tree_nuts"
+      ],
+      "target_ingredient_to_swap": "peanut butter",
+      "intermediate_allergen_sub": "almond butter",
+      "expected_terminal_substitute": "sunflower seed butter",
+      "optimal_steps": 4,
+      "accepts_alternate_paths": true,
+      "alternate_path_rationale": "Commutative ordering in multi-step swaps: Scaling can occur immediately after search, between the first and second substitution, or after both substitutions are resolved.",
+      "valid_tool_sequences": [
+        [
+          "search_recipes",
+          "substitute_ingredient",
+          "scale_recipe",
+          "substitute_ingredient"
+        ],
+        [
+          "search_recipes",
+          "scale_recipe",
+          "substitute_ingredient",
+          "substitute_ingredient"
+        ],
+        [
+          "search_recipes",
+          "substitute_ingredient",
+          "substitute_ingredient",
+          "scale_recipe"
+        ]
+      ]
+    },
+    "run_output": {
+      "status": "completed",
+      "budget_fired": null,
+      "laps_completed": 5,
+      "latency_seconds": 57.97,
+      "total_tokens": 5981,
+      "total_cost_usd": 0.000541,
+      "tool_sequence": [
+        "search_recipes",
+        "scale_recipe",
+        "substitute_ingredient",
+        "substitute_ingredient"
+      ],
+      "trajectory_steps": [
+        {
+          "step_index": 1,
+          "lap": 1,
+          "tool_name": "search_recipes",
+          "arguments": {
+            "query": "Classic Peanut Butter Cookies"
+          },
+          "observation": {
+            "status": "success",
+            "matches_count": 1,
+            "recipes": [
+              {
+                "id": "rec_pb_cookies",
+                "title": "Classic Peanut Butter Cookies",
+                "base_servings": 4,
+                "ingredients": [
+                  {
+                    "name": "peanut butter",
+                    "quantity": 250,
+                    "unit": "g",
+                    "allergens": [
+                      "peanuts"
+                    ]
+                  },
+                  {
+                    "name": "granulated sugar",
+                    "quantity": 200,
+                    "unit": "g",
+                    "allergens": []
+                  },
+                  {
+                    "name": "egg",
+                    "quantity": 1,
+                    "unit": "whole",
+                    "allergens": [
+                      "eggs"
+                    ]
+                  },
+                  {
+                    "name": "vanilla extract",
+                    "quantity": 5,
+                    "unit": "ml",
+                    "allergens": []
+                  }
+                ],
+                "method": [
+                  "Preheat oven to 180C (350F).",
+                  "In a medium bowl, mix peanut butter, sugar, and egg until smooth.",
+                  "Roll mixture into small balls and place onto a lined baking sheet.",
+                  "Press criss-cross pattern using a fork.",
+                  "Bake for 10-12 minutes until edges are golden."
+                ]
+              }
+            ]
+          },
+          "lap_tokens": 700,
+          "lap_cost_usd": 5.68e-05,
+          "lap_latency_s": 4.355
+        },
+        {
+          "step_index": 2,
+          "lap": 2,
+          "tool_name": "scale_recipe",
+          "arguments": {
+            "target_servings": 4,
+            "recipe_id": "rec_pb_cookies"
+          },
+          "observation": {
+            "status": "success",
+            "recipe_id": "rec_pb_cookies",
+            "title": "Classic Peanut Butter Cookies",
+            "base_servings": 4,
+            "target_servings": 4,
+            "scale_factor": 1.0,
+            "scaled_ingredients": [
+              {
+                "name": "peanut butter",
+                "quantity": 250.0,
+                "unit": "g",
+                "allergens": [
+                  "peanuts"
+                ]
+              },
+              {
+                "name": "granulated sugar",
+                "quantity": 200.0,
+                "unit": "g",
+                "allergens": []
+              },
+              {
+                "name": "egg",
+                "quantity": 1.0,
+                "unit": "whole",
+                "allergens": [
+                  "eggs"
+                ]
+              },
+              {
+                "name": "vanilla extract",
+                "quantity": 5.0,
+                "unit": "ml",
+                "allergens": []
+              }
+            ],
+            "method": [
+              "Preheat oven to 180C (350F).",
+              "In a medium bowl, mix peanut butter, sugar, and egg until smooth.",
+              "Roll mixture into small balls and place onto a lined baking sheet.",
+              "Press criss-cross pattern using a fork.",
+              "Bake for 10-12 minutes until edges are golden."
+            ]
+          },
+          "lap_tokens": 964,
+          "lap_cost_usd": 7.88e-05,
+          "lap_latency_s": 0.989
+        },
+        {
+          "step_index": 3,
+          "lap": 3,
+          "tool_name": "substitute_ingredient",
+          "arguments": {
+            "avoid_allergen": "peanuts",
+            "ingredient_name": "peanut butter"
+          },
+          "observation": {
+            "status": "success",
+            "original_ingredient": "peanut butter",
+            "avoided_allergen": "peanuts",
+            "replacement_ingredient": "almond butter",
+            "quantity_ratio": 1.0,
+            "inherent_allergens": [
+              "tree_nuts"
+            ],
+            "culinary_notes": "Rich flavor, contains tree nuts."
+          },
+          "lap_tokens": 1237,
+          "lap_cost_usd": 9.95e-05,
+          "lap_latency_s": 1.369
+        },
+        {
+          "step_index": 4,
+          "lap": 4,
+          "tool_name": "substitute_ingredient",
+          "arguments": {
+            "avoid_allergen": "tree_nuts",
+            "ingredient_name": "almond butter"
+          },
+          "observation": {
+            "status": "success",
+            "original_ingredient": "almond butter",
+            "avoided_allergen": "tree_nuts",
+            "replacement_ingredient": "sunflower seed butter",
+            "quantity_ratio": 1.0,
+            "inherent_allergens": [],
+            "culinary_notes": "100% nut-free seed butter."
+          },
+          "lap_tokens": 1349,
+          "lap_cost_usd": 0.0001084,
+          "lap_latency_s": 2.41
+        }
+      ],
+      "final_recipe": {
+        "title": "Classic Peanut Butter Cookies (Allergen-Adapted)",
+        "servings": 4,
+        "ingredients": [
+          {
+            "name": "sunflower seed butter",
+            "quantity": 250.0,
+            "unit": "g",
+            "allergens": []
+          },
+          {
+            "name": "granulated sugar",
+            "quantity": 200.0,
+            "unit": "g",
+            "allergens": []
+          },
+          {
+            "name": "egg",
+            "quantity": 1.0,
+            "unit": "whole",
+            "allergens": [
+              "eggs"
+            ]
+          },
+          {
+            "name": "vanilla extract",
+            "quantity": 5.0,
+            "unit": "ml",
+            "allergens": []
+          }
+        ],
+        "method": [
+          "Preheat oven to 180C (350F).",
+          "In a medium bowl, mix sunflower seed butter, sugar, and egg until smooth.",
+          "Roll mixture into small balls and place onto a lined baking sheet.",
+          "Press criss-cross pattern using a fork.",
+          "Bake for 10-12 minutes until edges are golden."
+        ],
+        "adaptation_notes": "Scaled to 4 servings. Replaced peanut butter with almond butter due to peanut allergy, then replaced almond butter with sunflower seed butter due to tree nut allergy."
+      },
+      "raw_output_text": "```json\n{\n  \"title\": \"Classic Peanut Butter Cookies (Allergen-Adapted)\",\n  \"servings\": 4,\n  \"ingredients\": [\n    {\"name\": \"sunflower seed butter\", \"quantity\": 250.0, \"unit\": \"g\", \"allergens\": []},\n    {\"name\": \"granulated sugar\", \"quantity\": 200.0, \"unit\": \"g\", \"allergens\": []},\n    {\"name\": \"egg\", \"quantity\": 1.0, \"unit\": \"whole\", \"allergens\": [\"eggs\"]},\n    {\"name\": \"vanilla extract\", \"quantity\": 5.0, \"unit\": \"ml\", \"allergens\": []}\n  ],\n  \"method\": [\n    \"Preheat oven to 180C (350F).\",\n    \"In a medium bowl, mix sunflower seed butter, sugar, and egg until smooth.\",\n    \"Roll mixture into small balls and place onto a lined baking sheet.\",\n    \"Press criss-cross pattern using a fork.\",\n    \"Bake for 10-12 minutes until edges are golden.\"\n  ],\n  \"adaptation_notes\": \"Scaled to 4 servings. Replaced peanut butter with almond butter due to peanut allergy, then replaced almond butter with sunflower seed butter due to tree nut allergy.\"\n}\n```"
+    },
+    "eval_record": {
+      "case_id": "req_08",
+      "type": "cascade",
+      "query": "Find Classic Peanut Butter Cookies, scale to 4 servings. The diner has a severe peanut allergy AND a tree nut allergy, so replace peanut butter with something safe from both.",
+      "tool_sequence": [
+        "search_recipes",
+        "scale_recipe",
+        "substitute_ingredient",
+        "substitute_ingredient"
+      ],
+      "trajectory_passed": true,
+      "outcome_passed": true,
+      "is_right_answer_wrong_path": false,
+      "tool_choice_accuracy": 1.0,
+      "argument_validity_rate": 1.0,
+      "optimal_steps": 4,
+      "actual_steps": 4,
+      "step_efficiency": 1.0,
+      "steps_taken_over_needed": 1.0,
+      "tokens": 5981,
+      "cost_usd": 0.000541,
+      "latency_s": 57.97,
+      "argument_errors": [],
+      "outcome_errors": [],
+      "failure_modes": [
+        "No Failure (Clean Execution)"
+      ]
+    }
+  },
+  {
+    "case": {
+      "id": "req_09",
+      "type": "cascade",
+      "query": "Find Fettuccine Alfredo, scale to 4 servings. I am allergic to dairy AND tree nuts. Adapt the heavy cream so it is strictly free of both dairy and nuts.",
+      "dish_name": "alfredo",
+      "recipe_id": "rec_creamy_alfredo",
+      "target_servings": 4,
+      "avoid_allergens": [
+        "dairy",
+        "tree_nuts"
+      ],
+      "target_ingredient_to_swap": "heavy cream",
+      "intermediate_allergen_sub": "almond milk creamer",
+      "expected_terminal_substitute": "canned coconut cream",
+      "optimal_steps": 4,
+      "accepts_alternate_paths": true,
+      "alternate_path_rationale": "Commutative ordering in multi-step swaps: Scaling recipe portions can legitimately occur before any swaps, between intermediate swap and terminal swap, or after both swaps.",
+      "valid_tool_sequences": [
+        [
+          "search_recipes",
+          "substitute_ingredient",
+          "scale_recipe",
+          "substitute_ingredient"
+        ],
+        [
+          "search_recipes",
+          "scale_recipe",
+          "substitute_ingredient",
+          "substitute_ingredient"
+        ],
+        [
+          "search_recipes",
+          "substitute_ingredient",
+          "substitute_ingredient",
+          "scale_recipe"
+        ]
+      ]
+    },
+    "run_output": {
+      "status": "completed",
+      "budget_fired": null,
+      "laps_completed": 7,
+      "latency_seconds": 8.98,
+      "total_tokens": 9733,
+      "total_cost_usd": 0.000864,
+      "tool_sequence": [
+        "search_recipes",
+        "scale_recipe",
+        "substitute_ingredient",
+        "substitute_ingredient",
+        "substitute_ingredient",
+        "substitute_ingredient"
+      ],
+      "trajectory_steps": [
+        {
+          "step_index": 1,
+          "lap": 1,
+          "tool_name": "search_recipes",
+          "arguments": {
+            "query": "Fettuccine Alfredo"
+          },
+          "observation": {
+            "status": "success",
+            "matches_count": 1,
+            "recipes": [
+              {
+                "id": "rec_creamy_alfredo",
+                "title": "Fettuccine Alfredo",
+                "base_servings": 2,
+                "ingredients": [
+                  {
+                    "name": "fettuccine pasta",
+                    "quantity": 200,
+                    "unit": "g",
+                    "allergens": [
+                      "gluten"
+                    ]
+                  },
+                  {
+                    "name": "heavy cream",
+                    "quantity": 150,
+                    "unit": "ml",
+                    "allergens": [
+                      "dairy"
+                    ]
+                  },
+                  {
+                    "name": "parmesan cheese",
+                    "quantity": 60,
+                    "unit": "g",
+                    "allergens": [
+                      "dairy"
+                    ]
+                  },
+                  {
+                    "name": "butter",
+                    "quantity": 30,
+                    "unit": "g",
+                    "allergens": [
+                      "dairy"
+                    ]
+                  },
+                  {
+                    "name": "garlic",
+                    "quantity": 2,
+                    "unit": "cloves",
+                    "allergens": []
+                  }
+                ],
+                "method": [
+                  "Boil fettuccine pasta in salted water until al dente.",
+                  "Melt butter in a pan over medium heat and saut\u00e9 minced garlic.",
+                  "Stir in heavy cream and simmer for 2 minutes.",
+                  "Reduce heat, stir in grated parmesan cheese until creamy.",
+                  "Toss cooked pasta into sauce and season with black pepper."
+                ]
+              }
+            ]
+          },
+          "lap_tokens": 702,
+          "lap_cost_usd": 5.71e-05,
+          "lap_latency_s": 0.929
+        },
+        {
+          "step_index": 2,
+          "lap": 2,
+          "tool_name": "scale_recipe",
+          "arguments": {
+            "target_servings": 4,
+            "recipe_id": "rec_creamy_alfredo"
+          },
+          "observation": {
+            "status": "success",
+            "recipe_id": "rec_creamy_alfredo",
+            "title": "Fettuccine Alfredo",
+            "base_servings": 2,
+            "target_servings": 4,
+            "scale_factor": 2.0,
+            "scaled_ingredients": [
+              {
+                "name": "fettuccine pasta",
+                "quantity": 400.0,
+                "unit": "g",
+                "allergens": [
+                  "gluten"
+                ]
+              },
+              {
+                "name": "heavy cream",
+                "quantity": 300.0,
+                "unit": "ml",
+                "allergens": [
+                  "dairy"
+                ]
+              },
+              {
+                "name": "parmesan cheese",
+                "quantity": 120.0,
+                "unit": "g",
+                "allergens": [
+                  "dairy"
+                ]
+              },
+              {
+                "name": "butter",
+                "quantity": 60.0,
+                "unit": "g",
+                "allergens": [
+                  "dairy"
+                ]
+              },
+              {
+                "name": "garlic",
+                "quantity": 4.0,
+                "unit": "cloves",
+                "allergens": []
+              }
+            ],
+            "method": [
+              "Boil fettuccine pasta in salted water until al dente.",
+              "Melt butter in a pan over medium heat and saut\u00e9 minced garlic.",
+              "Stir in heavy cream and simmer for 2 minutes.",
+              "Reduce heat, stir in grated parmesan cheese until creamy.",
+              "Toss cooked pasta into sauce and season with black pepper."
+            ]
+          },
+          "lap_tokens": 998,
+          "lap_cost_usd": 8.18e-05,
+          "lap_latency_s": 1.406
+        },
+        {
+          "step_index": 3,
+          "lap": 3,
+          "tool_name": "substitute_ingredient",
+          "arguments": {
+            "ingredient_name": "heavy cream",
+            "avoid_allergen": "dairy"
+          },
+          "observation": {
+            "status": "success",
+            "original_ingredient": "heavy cream",
+            "avoided_allergen": "dairy",
+            "replacement_ingredient": "almond milk creamer",
+            "quantity_ratio": 1.0,
+            "inherent_allergens": [
+              "tree_nuts"
+            ],
+            "culinary_notes": "Silky base, contains tree nuts."
+          },
+          "lap_tokens": 1301,
+          "lap_cost_usd": 0.0001041,
+          "lap_latency_s": 1.379
+        },
+        {
+          "step_index": 4,
+          "lap": 4,
+          "tool_name": "substitute_ingredient",
+          "arguments": {
+            "avoid_allergen": "tree_nuts",
+            "ingredient_name": "almond milk creamer"
+          },
+          "observation": {
+            "status": "success",
+            "original_ingredient": "almond milk creamer",
+            "avoided_allergen": "tree_nuts",
+            "replacement_ingredient": "canned coconut cream",
+            "quantity_ratio": 0.9,
+            "inherent_allergens": [],
+            "culinary_notes": "Nut-free & dairy-free rich fat."
+          },
+          "lap_tokens": 1417,
+          "lap_cost_usd": 0.0001139,
+          "lap_latency_s": 0.987
+        },
+        {
+          "step_index": 5,
+          "lap": 5,
+          "tool_name": "substitute_ingredient",
+          "arguments": {
+            "ingredient_name": "parmesan cheese",
+            "avoid_allergen": "dairy"
+          },
+          "observation": {
+            "status": "success",
+            "original_ingredient": "parmesan cheese",
+            "avoided_allergen": "dairy",
+            "replacement_ingredient": "nutritional yeast flakes",
+            "quantity_ratio": 0.5,
+            "inherent_allergens": [],
+            "culinary_notes": "Savory, cheesy umami without dairy."
+          },
+          "lap_tokens": 1533,
+          "lap_cost_usd": 0.0001219,
+          "lap_latency_s": 1.027
+        },
+        {
+          "step_index": 6,
+          "lap": 6,
+          "tool_name": "substitute_ingredient",
+          "arguments": {
+            "ingredient_name": "butter",
+            "avoid_allergen": "dairy"
+          },
+          "observation": {
+            "status": "success",
+            "original_ingredient": "butter",
+            "avoided_allergen": "dairy",
+            "replacement_ingredient": "vegan plant butter",
+            "quantity_ratio": 1.0,
+            "inherent_allergens": [],
+            "culinary_notes": "Solid at room temp, melts identically."
+          },
+          "lap_tokens": 1642,
+          "lap_cost_usd": 0.0001294,
+          "lap_latency_s": 1.306
+        }
+      ],
+      "final_recipe": {
+        "title": "Fettuccine Alfredo",
+        "servings": 4,
+        "ingredients": [
+          {
+            "name": "fettuccine pasta",
+            "quantity": 400.0,
+            "unit": "g",
+            "allergens": [
+              "gluten"
+            ]
+          },
+          {
+            "name": "canned coconut cream",
+            "quantity": 270.0,
+            "unit": "ml",
+            "allergens": []
+          },
+          {
+            "name": "nutritional yeast flakes",
+            "quantity": 60.0,
+            "unit": "g",
+            "allergens": []
+          },
+          {
+            "name": "vegan plant butter",
+            "quantity": 60.0,
+            "unit": "g",
+            "allergens": []
+          },
+          {
+            "name": "garlic",
+            "quantity": 4.0,
+            "unit": "cloves",
+            "allergens": []
+          }
+        ],
+        "method": [
+          "Boil fettuccine pasta in salted water until al dente.",
+          "Melt vegan plant butter in a pan over medium heat and saut\u00e9 minced garlic.",
+          "Stir in canned coconut cream and simmer for 2 minutes.",
+          "Reduce heat, stir in nutritional yeast flakes until creamy.",
+          "Toss cooked pasta into sauce and season with black pepper."
+        ],
+        "adaptation_notes": "Scaled recipe from 2 to 4 servings. Replaced heavy cream with almond milk creamer (which introduced tree nuts), then strictly substituted almond milk creamer with canned coconut cream to ensure freedom from both dairy and tree nuts. Replaced parmesan cheese with nutritional yeast flakes and butter with vegan plant butter to eliminate all dairy."
+      },
+      "raw_output_text": "```json\n{\n  \"title\": \"Fettuccine Alfredo\",\n  \"servings\": 4,\n  \"ingredients\": [\n    {\n      \"name\": \"fettuccine pasta\",\n      \"quantity\": 400.0,\n      \"unit\": \"g\",\n      \"allergens\": [\n        \"gluten\"\n      ]\n    },\n    {\n      \"name\": \"canned coconut cream\",\n      \"quantity\": 270.0,\n      \"unit\": \"ml\",\n      \"allergens\": []\n    },\n    {\n      \"name\": \"nutritional yeast flakes\",\n      \"quantity\": 60.0,\n      \"unit\": \"g\",\n      \"allergens\": []\n    },\n    {\n      \"name\": \"vegan plant butter\",\n      \"quantity\": 60.0,\n      \"unit\": \"g\",\n      \"allergens\": []\n    },\n    {\n      \"name\": \"garlic\",\n      \"quantity\": 4.0,\n      \"unit\": \"cloves\",\n      \"allergens\": []\n    }\n  ],\n  \"method\": [\n    \"Boil fettuccine pasta in salted water until al dente.\",\n    \"Melt vegan plant butter in a pan over medium heat and saut\u00e9 minced garlic.\",\n    \"Stir in canned coconut cream and simmer for 2 minutes.\",\n    \"Reduce heat, stir in nutritional yeast flakes until creamy.\",\n    \"Toss cooked pasta into sauce and season with black pepper.\"\n  ],\n  \"adaptation_notes\": \"Scaled recipe from 2 to 4 servings. Replaced heavy cream with almond milk creamer (which introduced tree nuts), then strictly substituted almond milk creamer with canned coconut cream to ensure freedom from both dairy and tree nuts. Replaced parmesan cheese with nutritional yeast flakes and butter with vegan plant butter to eliminate all dairy.\"\n}\n```"
+    },
+    "eval_record": {
+      "case_id": "req_09",
+      "type": "cascade",
+      "query": "Find Fettuccine Alfredo, scale to 4 servings. I am allergic to dairy AND tree nuts. Adapt the heavy cream so it is strictly free of both dairy and nuts.",
+      "tool_sequence": [
+        "search_recipes",
+        "scale_recipe",
+        "substitute_ingredient",
+        "substitute_ingredient",
+        "substitute_ingredient",
+        "substitute_ingredient"
+      ],
+      "trajectory_passed": false,
+      "outcome_passed": true,
+      "is_right_answer_wrong_path": true,
+      "tool_choice_accuracy": 1.0,
+      "argument_validity_rate": 1.0,
+      "optimal_steps": 4,
+      "actual_steps": 6,
+      "step_efficiency": 0.6667,
+      "steps_taken_over_needed": 1.5,
+      "tokens": 9733,
+      "cost_usd": 0.000864,
+      "latency_s": 8.98,
+      "argument_errors": [],
+      "outcome_errors": [],
+      "failure_modes": []
+    }
+  },
+  {
+    "case": {
+      "id": "req_10",
+      "type": "cascade",
+      "query": "Find Cold Sesame Peanut Noodles, scale to 4 servings. I have both a sesame allergy AND a peanut allergy. Replace the sesame oil safely with an oil free of both.",
+      "dish_name": "sesame noodles",
+      "recipe_id": "rec_sesame_noodles",
+      "target_servings": 4,
+      "avoid_allergens": [
+        "sesame",
+        "peanuts"
+      ],
+      "target_ingredient_to_swap": "sesame oil",
+      "intermediate_allergen_sub": "toasted peanut oil",
+      "expected_terminal_substitute": "perilla seed oil",
+      "optimal_steps": 4,
+      "accepts_alternate_paths": true,
+      "alternate_path_rationale": "Commutative ordering in multi-step swaps: Scaling portions can legitimately happen at step 2, step 3, or step 4, as long as both sesame oil -> toasted peanut oil -> perilla seed oil substitutions are completed.",
+      "valid_tool_sequences": [
+        [
+          "search_recipes",
+          "substitute_ingredient",
+          "scale_recipe",
+          "substitute_ingredient"
+        ],
+        [
+          "search_recipes",
+          "scale_recipe",
+          "substitute_ingredient",
+          "substitute_ingredient"
+        ],
+        [
+          "search_recipes",
+          "substitute_ingredient",
+          "substitute_ingredient",
+          "scale_recipe"
+        ]
+      ]
+    },
+    "run_output": {
+      "status": "completed",
+      "budget_fired": null,
+      "laps_completed": 7,
+      "latency_seconds": 10.83,
+      "total_tokens": 9529,
+      "total_cost_usd": 0.000848,
+      "tool_sequence": [
+        "search_recipes",
+        "scale_recipe",
+        "substitute_ingredient",
+        "substitute_ingredient",
+        "substitute_ingredient",
+        "substitute_ingredient"
+      ],
+      "trajectory_steps": [
+        {
+          "step_index": 1,
+          "lap": 1,
+          "tool_name": "search_recipes",
+          "arguments": {
+            "query": "Cold Sesame Peanut Noodles"
+          },
+          "observation": {
+            "status": "success",
+            "matches_count": 1,
+            "recipes": [
+              {
+                "id": "rec_sesame_noodles",
+                "title": "Cold Sesame Peanut Noodles",
+                "base_servings": 2,
+                "ingredients": [
+                  {
+                    "name": "ramen noodles",
+                    "quantity": 180,
+                    "unit": "g",
+                    "allergens": [
+                      "gluten"
+                    ]
+                  },
+                  {
+                    "name": "peanut butter",
+                    "quantity": 60,
+                    "unit": "g",
+                    "allergens": [
+                      "peanuts"
+                    ]
+                  },
+                  {
+                    "name": "sesame oil",
+                    "quantity": 15,
+                    "unit": "ml",
+                    "allergens": [
+                      "sesame"
+                    ]
+                  },
+                  {
+                    "name": "soy sauce",
+                    "quantity": 20,
+                    "unit": "ml",
+                    "allergens": [
+                      "soy",
+                      "gluten"
+                    ]
+                  },
+                  {
+                    "name": "toasted sesame seeds",
+                    "quantity": 10,
+                    "unit": "g",
+                    "allergens": [
+                      "sesame"
+                    ]
+                  }
+                ],
+                "method": [
+                  "Cook noodles until tender, drain and rinse under cold water.",
+                  "Whisk peanut butter, sesame oil, soy sauce, and 2 tbsp warm water into a smooth sauce.",
+                  "Toss cold noodles with sauce and garnish with toasted sesame seeds."
+                ]
+              }
+            ]
+          },
+          "lap_tokens": 700,
+          "lap_cost_usd": 5.68e-05,
+          "lap_latency_s": 0.912
+        },
+        {
+          "step_index": 2,
+          "lap": 2,
+          "tool_name": "scale_recipe",
+          "arguments": {
+            "target_servings": 4,
+            "recipe_id": "rec_sesame_noodles"
+          },
+          "observation": {
+            "status": "success",
+            "recipe_id": "rec_sesame_noodles",
+            "title": "Cold Sesame Peanut Noodles",
+            "base_servings": 2,
+            "target_servings": 4,
+            "scale_factor": 2.0,
+            "scaled_ingredients": [
+              {
+                "name": "ramen noodles",
+                "quantity": 360.0,
+                "unit": "g",
+                "allergens": [
+                  "gluten"
+                ]
+              },
+              {
+                "name": "peanut butter",
+                "quantity": 120.0,
+                "unit": "g",
+                "allergens": [
+                  "peanuts"
+                ]
+              },
+              {
+                "name": "sesame oil",
+                "quantity": 30.0,
+                "unit": "ml",
+                "allergens": [
+                  "sesame"
+                ]
+              },
+              {
+                "name": "soy sauce",
+                "quantity": 40.0,
+                "unit": "ml",
+                "allergens": [
+                  "soy",
+                  "gluten"
+                ]
+              },
+              {
+                "name": "toasted sesame seeds",
+                "quantity": 20.0,
+                "unit": "g",
+                "allergens": [
+                  "sesame"
+                ]
+              }
+            ],
+            "method": [
+              "Cook noodles until tender, drain and rinse under cold water.",
+              "Whisk peanut butter, sesame oil, soy sauce, and 2 tbsp warm water into a smooth sauce.",
+              "Toss cold noodles with sauce and garnish with toasted sesame seeds."
+            ]
+          },
+          "lap_tokens": 980,
+          "lap_cost_usd": 8.02e-05,
+          "lap_latency_s": 0.97
+        },
+        {
+          "step_index": 3,
+          "lap": 3,
+          "tool_name": "substitute_ingredient",
+          "arguments": {
+            "ingredient_name": "peanut butter",
+            "avoid_allergen": "peanuts"
+          },
+          "observation": {
+            "status": "success",
+            "original_ingredient": "peanut butter",
+            "avoided_allergen": "peanuts",
+            "replacement_ingredient": "almond butter",
+            "quantity_ratio": 1.0,
+            "inherent_allergens": [
+              "tree_nuts"
+            ],
+            "culinary_notes": "Rich flavor, contains tree nuts."
+          },
+          "lap_tokens": 1269,
+          "lap_cost_usd": 0.0001019,
+          "lap_latency_s": 1.419
+        },
+        {
+          "step_index": 4,
+          "lap": 4,
+          "tool_name": "substitute_ingredient",
+          "arguments": {
+            "ingredient_name": "sesame oil",
+            "avoid_allergen": "sesame"
+          },
+          "observation": {
+            "status": "success",
+            "original_ingredient": "sesame oil",
+            "avoided_allergen": "sesame",
+            "replacement_ingredient": "toasted peanut oil",
+            "quantity_ratio": 1.0,
+            "inherent_allergens": [
+              "peanuts"
+            ],
+            "culinary_notes": "Deep toasted aroma, contains peanuts."
+          },
+          "lap_tokens": 1380,
+          "lap_cost_usd": 0.0001105,
+          "lap_latency_s": 1.581
+        },
+        {
+          "step_index": 5,
+          "lap": 5,
+          "tool_name": "substitute_ingredient",
+          "arguments": {
+            "avoid_allergen": "peanuts",
+            "ingredient_name": "toasted peanut oil"
+          },
+          "observation": {
+            "status": "success",
+            "original_ingredient": "toasted peanut oil",
+            "avoided_allergen": "peanuts",
+            "replacement_ingredient": "perilla seed oil",
+            "quantity_ratio": 1.0,
+            "inherent_allergens": [],
+            "culinary_notes": "Nut-free & sesame-free toasted oil."
+          },
+          "lap_tokens": 1493,
+          "lap_cost_usd": 0.0001192,
+          "lap_latency_s": 2.251
+        },
+        {
+          "step_index": 6,
+          "lap": 6,
+          "tool_name": "substitute_ingredient",
+          "arguments": {
+            "avoid_allergen": "sesame",
+            "ingredient_name": "toasted sesame seeds"
+          },
+          "observation": {
+            "status": "success",
+            "original_ingredient": "toasted sesame seeds",
+            "avoided_allergen": "sesame",
+            "replacement_ingredient": "toasted hemp seeds",
+            "quantity_ratio": 1.0,
+            "inherent_allergens": [],
+            "culinary_notes": "Tiny nutty crunch without sesame."
+          },
+          "lap_tokens": 1606,
+          "lap_cost_usd": 0.0001276,
+          "lap_latency_s": 1.001
+        }
+      ],
+      "final_recipe": {
+        "title": "Cold Sesame Peanut Noodles",
+        "servings": 4,
+        "ingredients": [
+          {
+            "name": "ramen noodles",
+            "quantity": 360.0,
+            "unit": "g",
+            "allergens": [
+              "gluten"
+            ]
+          },
+          {
+            "name": "almond butter",
+            "quantity": 120.0,
+            "unit": "g",
+            "allergens": [
+              "tree_nuts"
+            ]
+          },
+          {
+            "name": "perilla seed oil",
+            "quantity": 30.0,
+            "unit": "ml",
+            "allergens": []
+          },
+          {
+            "name": "soy sauce",
+            "quantity": 40.0,
+            "unit": "ml",
+            "allergens": [
+              "soy",
+              "gluten"
+            ]
+          },
+          {
+            "name": "toasted hemp seeds",
+            "quantity": 20.0,
+            "unit": "g",
+            "allergens": []
+          }
+        ],
+        "method": [
+          "Cook noodles until tender, drain and rinse under cold water.",
+          "Whisk almond butter, perilla seed oil, soy sauce, and 4 tbsp warm water into a smooth sauce.",
+          "Toss cold noodles with sauce and garnish with toasted hemp seeds."
+        ],
+        "adaptation_notes": "Scaled recipe from 2 to 4 servings. Replaced peanut butter with almond butter to eliminate peanuts. Replaced sesame oil with toasted peanut oil, then safety-checked and replaced with perilla seed oil to avoid both peanut and sesame allergens. Replaced toasted sesame seeds with toasted hemp seeds to eliminate sesame."
+      },
+      "raw_output_text": "```json\n{\n  \"title\": \"Cold Sesame Peanut Noodles\",\n  \"servings\": 4,\n  \"ingredients\": [\n    {\n      \"name\": \"ramen noodles\",\n      \"quantity\": 360.0,\n      \"unit\": \"g\",\n      \"allergens\": [\n        \"gluten\"\n      ]\n    },\n    {\n      \"name\": \"almond butter\",\n      \"quantity\": 120.0,\n      \"unit\": \"g\",\n      \"allergens\": [\n        \"tree_nuts\"\n      ]\n    },\n    {\n      \"name\": \"perilla seed oil\",\n      \"quantity\": 30.0,\n      \"unit\": \"ml\",\n      \"allergens\": []\n    },\n    {\n      \"name\": \"soy sauce\",\n      \"quantity\": 40.0,\n      \"unit\": \"ml\",\n      \"allergens\": [\n        \"soy\",\n        \"gluten\"\n      ]\n    },\n    {\n      \"name\": \"toasted hemp seeds\",\n      \"quantity\": 20.0,\n      \"unit\": \"g\",\n      \"allergens\": []\n    }\n  ],\n  \"method\": [\n    \"Cook noodles until tender, drain and rinse under cold water.\",\n    \"Whisk almond butter, perilla seed oil, soy sauce, and 4 tbsp warm water into a smooth sauce.\",\n    \"Toss cold noodles with sauce and garnish with toasted hemp seeds.\"\n  ],\n  \"adaptation_notes\": \"Scaled recipe from 2 to 4 servings. Replaced peanut butter with almond butter to eliminate peanuts. Replaced sesame oil with toasted peanut oil, then safety-checked and replaced with perilla seed oil to avoid both peanut and sesame allergens. Replaced toasted sesame seeds with toasted hemp seeds to eliminate sesame.\"\n}\n```"
+    },
+    "eval_record": {
+      "case_id": "req_10",
+      "type": "cascade",
+      "query": "Find Cold Sesame Peanut Noodles, scale to 4 servings. I have both a sesame allergy AND a peanut allergy. Replace the sesame oil safely with an oil free of both.",
+      "tool_sequence": [
+        "search_recipes",
+        "scale_recipe",
+        "substitute_ingredient",
+        "substitute_ingredient",
+        "substitute_ingredient",
+        "substitute_ingredient"
+      ],
+      "trajectory_passed": false,
+      "outcome_passed": true,
+      "is_right_answer_wrong_path": true,
+      "tool_choice_accuracy": 1.0,
+      "argument_validity_rate": 1.0,
+      "optimal_steps": 4,
+      "actual_steps": 6,
+      "step_efficiency": 0.6667,
+      "steps_taken_over_needed": 1.5,
+      "tokens": 9529,
+      "cost_usd": 0.000848,
+      "latency_s": 10.83,
+      "argument_errors": [],
+      "outcome_errors": [],
+      "failure_modes": []
+    }
+  }
+]
