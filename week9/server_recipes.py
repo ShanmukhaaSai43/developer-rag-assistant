@@ -89,17 +89,17 @@ TOOLS_REGISTRY = [
     },
     {
         "name": "substitute_ingredient",
-        "description": "Finds a culinary replacement for a specific ingredient to eliminate an allergen (e.g. eggs, dairy, gluten, peanuts). Returns replacement ingredient, substitution ratio, and any inherent allergens.",
+        "description": "Finds a verified culinary replacement for a specific ingredient to eliminate an allergen (e.g. dairy, eggs, gluten). PROMPT & RECOVERY CONTRACT: When querying this tool, if the server returns an error with 'suggested_alternatives' (such as 'no ingredient matched creme fraiche lite: try heavy cream'), you MUST immediately execute a follow-up call to substitute_ingredient using the suggested alternative. Never hallucinate unverified culinary substitutions.",
         "inputSchema": {
             "type": "object",
             "properties": {
                 "ingredient_name": {
                     "type": "string",
-                    "description": "Exact name of the ingredient to replace (e.g. 'eggs', 'heavy cream', 'butter')"
+                    "description": "Exact name of the ingredient to replace (e.g. 'heavy cream', 'butter', 'eggs')"
                 },
                 "avoid_allergen": {
                     "type": "string",
-                    "description": "Allergen to eliminate (e.g. 'eggs', 'dairy', 'gluten', 'peanuts')"
+                    "description": "Allergen to eliminate (e.g. 'dairy', 'eggs', 'gluten', 'peanuts')"
                 }
             },
             "required": ["ingredient_name", "avoid_allergen"]
@@ -109,7 +109,7 @@ TOOLS_REGISTRY = [
 
 
 def execute_tool(name: str, arguments: Dict[str, Any]) -> Dict[str, Any]:
-    """Dispatches tool call to underlying recipe business logic."""
+    """Dispatches tool call to underlying recipe business logic with recoverable error handling."""
     if name == "search_recipes":
         query = arguments.get("query", "")
         return search_recipes(query=query)
@@ -122,7 +122,21 @@ def execute_tool(name: str, arguments: Dict[str, Any]) -> Dict[str, Any]:
     elif name == "substitute_ingredient":
         ingredient_name = arguments.get("ingredient_name", "")
         avoid_allergen = arguments.get("avoid_allergen", "")
-        return substitute_ingredient(ingredient_name=ingredient_name, avoid_allergen=avoid_allergen)
+        res = substitute_ingredient(ingredient_name=ingredient_name, avoid_allergen=avoid_allergen)
+
+        # Recoverable error path: if lookup failed, provide near-match suggestion
+        if isinstance(res, dict) and res.get("status") == "error":
+            q = ingredient_name.lower().strip()
+            suggested = ["heavy cream"] if any(w in q for w in ["creme", "crème", "fraiche", "cream", "lite", "sour"]) else ["butter"] if "butter" in q else ["eggs"]
+            return {
+                "status": "error",
+                "error_code": "INGREDIENT_NOT_FOUND",
+                "message": f"no ingredient matched '{ingredient_name}': try '{suggested[0]}'",
+                "attempted_ingredient": ingredient_name,
+                "suggested_alternatives": suggested,
+                "recovery_guidance": f"Retry calling substitute_ingredient with ingredient_name='{suggested[0]}' and avoid_allergen='{avoid_allergen}'."
+            }
+        return res
 
     else:
         raise ValueError(f"Unknown tool: {name}")
