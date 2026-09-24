@@ -1,0 +1,202 @@
+{
+  "model_call_location": "The model call (LLM inference) happens strictly on the Host/Client side between tools/list (when tool schemas are injected into model context) and tools/call (when the model selects a tool and generates its arguments); the model NEVER runs inside the MCP Server.",
+  "transport": "stdio",
+  "protocol_version": "2024-11-05",
+  "target_server": "ingredient-database-server",
+  "wire_exchanges": [
+    {
+      "step": 1,
+      "direction": "Client -> Server",
+      "type": "JSON-RPC Request",
+      "method": "initialize",
+      "raw_message": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "initialize",
+        "params": {
+          "protocolVersion": "2024-11-05",
+          "capabilities": {
+            "roots": {
+              "listChanged": false
+            },
+            "sampling": {}
+          },
+          "clientInfo": {
+            "name": "recipe-react-agent",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "hand_annotations": {
+        "jsonrpc": "Specifies JSON-RPC protocol version 2.0; must be exact string '2.0' for standard compliance.",
+        "id": "Unique request identifier (integer 1) assigned by client to match incoming asynchronous server responses.",
+        "method": "The RPC method name being invoked: 'initialize' initiates the MCP protocol handshake.",
+        "params": "Object containing client metadata: 'protocolVersion' (agreed MCP spec version 2024-11-05), client 'capabilities' (supported MCP extensions like sampling and roots), and 'clientInfo' (identifying the client application and version)."
+      }
+    },
+    {
+      "step": 2,
+      "direction": "Server -> Client",
+      "type": "JSON-RPC Response",
+      "method": "initialize",
+      "raw_message": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "protocolVersion": "2024-11-05",
+          "capabilities": {
+            "tools": {
+              "listChanged": false
+            }
+          },
+          "serverInfo": {
+            "name": "ingredient-database-server",
+            "version": "1.1.0",
+            "vendor": "Content Team / Nutrition Service"
+          }
+        }
+      },
+      "hand_annotations": {
+        "jsonrpc": "Standard JSON-RPC 2.0 envelope string confirming protocol framing.",
+        "id": "Matches request identifier (1), allowing the client to correlate this handshake reply with its initial request.",
+        "result": "Payload returned on success containing negotiated 'protocolVersion', server 'capabilities' (advertising tool support without dynamic change notifications), and 'serverInfo' declaring vendor provenance."
+      }
+    },
+    {
+      "step": 3,
+      "direction": "Client -> Server",
+      "type": "JSON-RPC Notification",
+      "method": "notifications/initialized",
+      "raw_message": {
+        "jsonrpc": "2.0",
+        "method": "notifications/initialized"
+      },
+      "hand_annotations": {
+        "jsonrpc": "Standard JSON-RPC 2.0 header.",
+        "method": "Specifies 'notifications/initialized', signaling to the server that client-side initialization is complete and regular requests may now commence.",
+        "id": "Intentionally OMITTED: Per JSON-RPC 2.0 specification, notifications have no ID and do not solicit or expect any server response."
+      }
+    },
+    {
+      "step": 4,
+      "direction": "Client -> Server",
+      "type": "JSON-RPC Request",
+      "method": "tools/list",
+      "raw_message": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "method": "tools/list",
+        "params": {}
+      },
+      "hand_annotations": {
+        "jsonrpc": "Standard JSON-RPC 2.0 protocol string.",
+        "id": "Unique request identifier (integer 2) for tracking the tool enumeration call.",
+        "method": "MCP method 'tools/list' requesting the server's catalog of callable tools.",
+        "params": "Empty parameter object (can optionally hold cursor strings for paginated tool catalogs)."
+      }
+    },
+    {
+      "step": 5,
+      "direction": "Server -> Client",
+      "type": "JSON-RPC Response",
+      "method": "tools/list",
+      "raw_message": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "tools": [
+            {
+              "name": "get_ingredient_details",
+              "description": "Lookup official ingredient specifications by ingredient name. Exposes comprehensive allergen flags, food category, and storage instructions from the content team's ingredient database.",
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "ingredient_name": {
+                    "type": "string",
+                    "description": "The common or culinary name of the ingredient (e.g. 'heavy cream', 'coconut cream', 'parmesan cheese')"
+                  }
+                },
+                "required": [
+                  "ingredient_name"
+                ]
+              }
+            },
+            {
+              "name": "get_nutrition_facts",
+              "description": "Retrieves verified nutritional profile (calories, protein, carbs, fat, fiber, sodium) per 100g or scaled to specified quantity in grams.",
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "ingredient_name": {
+                    "type": "string",
+                    "description": "Name of the ingredient to query nutrition for"
+                  },
+                  "quantity_g": {
+                    "type": "number",
+                    "description": "Optional quantity in grams to calculate total nutrients for (defaults to 100g)"
+                  }
+                },
+                "required": [
+                  "ingredient_name"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "hand_annotations": {
+        "jsonrpc": "Standard JSON-RPC 2.0 envelope string.",
+        "id": "Corresponds to request ID 2 from the client's tools/list inquiry.",
+        "result": "Contains the 'tools' array describing each capability: tool name, functional docstring/description, and standard JSON Schema 'inputSchema' defining expected arguments and required fields."
+      }
+    },
+    {
+      "step": 6,
+      "direction": "Client -> Server",
+      "type": "JSON-RPC Request",
+      "method": "tools/call",
+      "raw_message": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "method": "tools/call",
+        "params": {
+          "name": "get_nutrition_facts",
+          "arguments": {
+            "ingredient_name": "coconut cream",
+            "quantity_g": 100
+          }
+        }
+      },
+      "hand_annotations": {
+        "jsonrpc": "Standard JSON-RPC 2.0 version specifier.",
+        "id": "Unique request identifier (integer 3) to correlate with tool execution output.",
+        "method": "MCP method 'tools/call' directing the server to execute a specific discovered tool.",
+        "params": "Object detailing the execution: 'name' specifies target tool ('get_nutrition_facts'), and 'arguments' supplies model-generated key-value parameters matching inputSchema."
+      }
+    },
+    {
+      "step": 7,
+      "direction": "Server -> Client",
+      "type": "JSON-RPC Response",
+      "method": "tools/call",
+      "raw_message": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"status\": \"success\",\n  \"ingredient\": \"Coconut Cream\",\n  \"quantity_g\": 100.0,\n  \"nutrition\": {\n    \"calories_kcal\": 330.0,\n    \"protein_g\": 3.6,\n    \"carbohydrates_g\": 7.0,\n    \"fat_g\": 34.7,\n    \"fiber_g\": 2.2,\n    \"sodium_mg\": 15.0\n  },\n  \"is_per_100g_standard\": true\n}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      "hand_annotations": {
+        "jsonrpc": "Standard JSON-RPC 2.0 envelope.",
+        "id": "Matches request identifier 3 from the client's tools/call request.",
+        "result": "Execution payload containing 'content' array (text blocks with serialized JSON observation) and 'isError' boolean flag (false indicates successful culinary lookup)."
+      }
+    }
+  ]
+}
