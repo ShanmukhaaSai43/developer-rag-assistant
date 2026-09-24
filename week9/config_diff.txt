@@ -1,0 +1,19 @@
+diff --git a/week9/mcp_servers.json b/week9/mcp_servers.json
+index c8ba377..3ca2136 100644
+--- a/week9/mcp_servers.json
++++ b/week9/mcp_servers.json
+@@ -7,6 +7,14 @@
+         "week9.server_recipes"
+       ],
+       "description": "Primary recipe search, scaling, and substitution MCP server"
++    },
++    "ingredient-database-server": {
++      "command": ".venv/Scripts/python.exe",
++      "args": [
++        "-m",
++        "week9.server_ingredients"
++      ],
++      "description": "Content team ingredient database: allergen flags and per-100g nutrition"
+     }
+   }
+ }
