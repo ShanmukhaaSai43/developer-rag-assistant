@@ -1,0 +1,2 @@
+TIMESTAMP=2026-09-24T20:09:27.360634+00:00 | CALLER=recipe-agent-prod | TOOL=get_ingredient_details | INGREDIENT='coconut cream' | STATUS=ALLOWED
+TIMESTAMP=2026-09-24T20:09:27.365887+00:00 | CALLER=recipe-agent-prod | TOOL=get_nutrition_facts | INGREDIENT='coconut cream' | STATUS=DENIED_INSUFFICIENT_SCOPE
