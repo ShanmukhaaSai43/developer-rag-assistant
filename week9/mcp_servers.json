@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "recipe-server": {
+      "command": ".venv/Scripts/python.exe",
+      "args": [
+        "-m",
+        "week9.server_recipes"
+      ],
+      "description": "Primary recipe search, scaling, and substitution MCP server"
+    }
+  }
+}
