@@ -1,0 +1,50 @@
+{
+  "$schema": "https://a2a-protocol.org/schemas/v1/agent-card.json",
+  "name": "kitchen-squad-orchestrator",
+  "version": "1.0.0",
+  "description": "Multi-agent kitchen squad orchestrator coordinating culinary substitution and allergen/nutrition specialists.",
+  "provider": {
+    "name": "AI Engineering League - Food Division",
+    "url": "https://genai.demo/week10"
+  },
+  "capabilities": {
+    "skills": [
+      {
+        "id": "culinary-substitution-analysis",
+        "description": "Evaluates chemical, microbial, and textural feasibility of recipe ingredient modifications."
+      },
+      {
+        "id": "allergen-nutrition-profiling",
+        "description": "Detects FDA Big 9 allergen risks and computes macronutrient shifts."
+      }
+    ],
+    "input_modes": [
+      "text/plain",
+      "application/json"
+    ],
+    "output_modes": [
+      "application/json",
+      "text/markdown"
+    ],
+    "streaming": false,
+    "authentication": {
+      "type": "bearer",
+      "token_scope": "kitchen:orchestrate"
+    }
+  },
+  "a2a_task_lifecycle_mapping": {
+    "standard_states": [
+      "submitted",
+      "working",
+      "input-required",
+      "completed",
+      "failed"
+    ],
+    "injected_failure_case_mapping": {
+      "case_id": "sub_02",
+      "recommended_state": "input-required",
+      "rationale": "Rather than terminating as 'failed', the task should pause at 'input-required' to prompt the user to manually confirm their allergen list or accept an unverified allergen caveat."
+    },
+    "a2a_vs_rest_value": "A2A provides standard state machine lifecycles (pausing at input-required for human-in-the-loop clarification without dropping state) and standardized AgentCard capability discovery, whereas plain REST treats everything as a brittle synchronous request/response that hard-fails on 500."
+  }
+}
