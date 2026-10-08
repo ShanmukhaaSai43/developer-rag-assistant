@@ -1,0 +1,22 @@
+===============================================================================================
+      WEEK 11 EVALUATION SUITE RUNNER — PROMPT VERSION: v1.1.0
+===============================================================================================
+Case ID                  | Category             | Prompt Snippet               | Status    
+-----------------------------------------------------------------------------------------------
+eval_001                 | vegan_substitution   | What can I substitute for eg | [PASS]    
+eval_002                 | gluten_free          | Gluten-free alternative to w | [PASS]    
+eval_003                 | sugar_substitute     | Can I replace granulated sug | [PASS]    
+eval_004                 | allergen_check       | Is soy sauce gluten-free?    | [PASS]    
+eval_005                 | fat_substitution     | Healthy oil substitute for b | [PASS]    
+eval_006                 | dairy_free           | What is a dairy-free swap fo | [PASS]    
+eval_007                 | nut_free             | Nut-free alternative to almo | [PASS]    
+eval_008                 | low_sodium           | Low-sodium swap for soy sauc | [PASS]    
+eval_009                 | vegan_substitution   | Vegan substitute for gelatin | [PASS]    
+eval_010_dairy_free_ghee | allergen_dairy_free  | Give me a rich dairy-free su | [PASS]    
+-----------------------------------------------------------------------------------------------
+
+FINAL SUMMARY RESULTS:
+• Total Evaluation Cases: 10
+• Suite Pass Count:       10 / 10 (100.0%)
+• Suite Health State:     [GREEN]
+===============================================================================================

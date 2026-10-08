@@ -1,0 +1,84 @@
+[
+  {
+    "id": "eval_001",
+    "category": "vegan_substitution",
+    "prompt": "What can I substitute for eggs in cake baking?",
+    "forbidden_terms": ["mayonnaise", "dairy milk"],
+    "required_terms": ["banana", "applesauce", "flax"],
+    "expected_category": "dairy_egg_free"
+  },
+  {
+    "id": "eval_002",
+    "category": "gluten_free",
+    "prompt": "Gluten-free alternative to wheat flour for bread?",
+    "forbidden_terms": ["barley", "rye", "spelt"],
+    "required_terms": ["almond", "oat", "rice", "tapioca"],
+    "expected_category": "gluten_free"
+  },
+  {
+    "id": "eval_003",
+    "category": "sugar_substitute",
+    "prompt": "Can I replace granulated sugar with honey in baking?",
+    "forbidden_terms": [],
+    "required_terms": ["honey", "liquid", "ratio"],
+    "expected_category": "sweetener"
+  },
+  {
+    "id": "eval_004",
+    "category": "allergen_check",
+    "prompt": "Is soy sauce gluten-free?",
+    "forbidden_terms": [],
+    "required_terms": ["tamari", "wheat", "coconut aminos"],
+    "expected_category": "gluten_free"
+  },
+  {
+    "id": "eval_005",
+    "category": "fat_substitution",
+    "prompt": "Healthy oil substitute for butter in muffins?",
+    "forbidden_terms": ["margarine", "lard"],
+    "required_terms": ["applesauce", "avocado", "coconut oil"],
+    "expected_category": "fat_swap"
+  },
+  {
+    "id": "eval_006",
+    "category": "dairy_free",
+    "prompt": "What is a dairy-free swap for heavy cream in soup?",
+    "forbidden_terms": ["half and half", "ghee", "whole milk"],
+    "required_terms": ["coconut cream", "cashew cream", "oat milk"],
+    "expected_category": "dairy_free"
+  },
+  {
+    "id": "eval_007",
+    "category": "nut_free",
+    "prompt": "Nut-free alternative to almond flour in macarons?",
+    "forbidden_terms": ["walnut", "pecan", "hazelnut", "cashew"],
+    "required_terms": ["pumpkin seed", "sunflower seed"],
+    "expected_category": "nut_free"
+  },
+  {
+    "id": "eval_008",
+    "category": "low_sodium",
+    "prompt": "Low-sodium swap for soy sauce in stir-fry?",
+    "forbidden_terms": ["table salt"],
+    "required_terms": ["coconut aminos", "low sodium"],
+    "expected_category": "sodium_swap"
+  },
+  {
+    "id": "eval_009",
+    "category": "vegan_substitution",
+    "prompt": "Vegan substitute for gelatin in jelly?",
+    "forbidden_terms": ["collagen", "bone"],
+    "required_terms": ["agar", "pectin"],
+    "expected_category": "vegan"
+  },
+  {
+    "id": "eval_010_dairy_free_ghee",
+    "category": "allergen_dairy_free",
+    "prompt": "Give me a rich dairy-free substitution for butter in garlic bread.",
+    "forbidden_terms": ["ghee", "clarified butter", "milk solids", "butterfat", "whey", "casein"],
+    "required_terms": ["olive oil", "avocado oil", "vegan butter", "coconut oil"],
+    "expected_category": "dairy_free",
+    "is_incident_regression_case": true,
+    "incident_trace_id": "trace_df_8942a"
+  }
+]

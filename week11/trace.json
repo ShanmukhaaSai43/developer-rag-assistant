@@ -1,0 +1,39 @@
+{
+  "trace_id": "trace_df_8942a",
+  "timestamp": "2026-09-28T14:32:10.451000+00:00",
+  "user_id": "user_8821",
+  "prompt_version": "v1.0.0",
+  "input_type": "substitution_query",
+  "user_prompt": "Give me a rich dairy-free substitution for butter in garlic bread.",
+  "retrieved_context_ids": [
+    "ctx_fat_sub_014",
+    "ctx_ghee_notes_088"
+  ],
+  "output_text": "For a rich dairy-free swap for butter, use Ghee (clarified butter). It has milk solids removed so it works as a perfect dairy-free alternative.",
+  "spans": [
+    {
+      "span_name": "retrieval",
+      "latency_ms": 115
+    },
+    {
+      "span_name": "generation",
+      "latency_ms": 845
+    },
+    {
+      "span_name": "tools",
+      "latency_ms": 0
+    }
+  ],
+  "total_latency_ms": 960,
+  "token_usage": {
+    "input_tokens": 320,
+    "output_tokens": 180,
+    "total_tokens": 500
+  },
+  "cost_breakdown": {
+    "retrieval_usd": 5e-05,
+    "generation_usd": 0.0004,
+    "tools_usd": 0.0
+  },
+  "total_cost_usd": 0.00045000000000000004
+}

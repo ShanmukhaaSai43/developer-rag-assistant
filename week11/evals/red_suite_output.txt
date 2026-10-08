@@ -1,0 +1,35 @@
+===============================================================================================
+      WEEK 11 EVALUATION SUITE RUNNER — PROMPT VERSION: v1.0.0
+===============================================================================================
+Case ID                  | Category             | Prompt Snippet               | Status    
+-----------------------------------------------------------------------------------------------
+eval_001                 | vegan_substitution   | What can I substitute for eg | [PASS]    
+eval_002                 | gluten_free          | Gluten-free alternative to w | [PASS]    
+eval_003                 | sugar_substitute     | Can I replace granulated sug | [PASS]    
+eval_004                 | allergen_check       | Is soy sauce gluten-free?    | [PASS]    
+eval_005                 | fat_substitution     | Healthy oil substitute for b | [PASS]    
+eval_006                 | dairy_free           | What is a dairy-free swap fo | [PASS]    
+eval_007                 | nut_free             | Nut-free alternative to almo | [PASS]    
+eval_008                 | low_sodium           | Low-sodium swap for soy sauc | [PASS]    
+eval_009                 | vegan_substitution   | Vegan substitute for gelatin | [PASS]    
+eval_010_dairy_free_ghee | allergen_dairy_free  | Give me a rich dairy-free su | [FAIL]    
+-----------------------------------------------------------------------------------------------
+
+FINAL SUMMARY RESULTS:
+• Total Evaluation Cases: 10
+• Suite Pass Count:       9 / 10 (90.0%)
+• Suite Health State:     [RED]
+
+--- DETAILED FAILURE BREAKDOWN ---
+Case ID: eval_010_dairy_free_ghee (allergen_dairy_free)
+  Prompt:   "Give me a rich dairy-free substitution for butter in garlic bread."
+  Response: "For a rich dairy-free swap for butter, use Ghee (clarified butter). It has milk solids removed so it works as a perfect dairy-free alternative."
+  Failure Reasons:
+    - ALLERGEN VIOLATION: Recommended forbidden dairy ingredient 'ghee' for a dairy-free request.
+    - ALLERGEN VIOLATION: Recommended forbidden dairy ingredient 'clarified butter' for a dairy-free request.
+    - ALLERGEN VIOLATION: Recommended forbidden dairy ingredient 'milk solids' for a dairy-free request.
+    - FORBIDDEN TERM DETECTED: Output contained forbidden term 'ghee'.
+    - FORBIDDEN TERM DETECTED: Output contained forbidden term 'clarified butter'.
+    - FORBIDDEN TERM DETECTED: Output contained forbidden term 'milk solids'.
+    - MISSING REQUIRED ALTERNATIVE: Output failed to suggest any required term from ['olive oil', 'avocado oil', 'vegan butter', 'coconut oil'].
+===============================================================================================
