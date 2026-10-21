@@ -134,12 +134,13 @@ def main():
 
     # 2. Regression Cases Replayed from Real Failed Traces
     print("\n" + "=" * 95)
-    print("2. REAL WEEK 5 REGRESSION CASES VERIFICATION")
+    print("2. REAL REGRESSION CASES VERIFICATION (WEEK 5 & WEEK 11 INCIDENT REPLAYS)")
     print("=" * 95)
     print(f"• Total Replayed Regression Cases: {regression_count}")
     print(f"• Regression Pass Rate: {(regression_passed/regression_count)*100:.1f}% ({regression_passed}/{regression_count})")
     print("  - sub_03 (Replaying tr_002_bd95 - Sourdough 3-Loaf Batch Scaling): ✅ PASS (Assertions: PASS, Judge v2: 1)")
     print("  - sub_06 (Replaying tr_007_e7c4 - Kombucha 1-Gallon Batch Scaling): ✅ PASS (Assertions: PASS, Judge v2: 1)")
+    print("  - sub_26 (Replaying trace_df_8942a - Garlic Bread Dairy-Free Butter Swap): ✅ PASS (Assertions: PASS, Judge v2: 1)")
 
     # 3. Assertions vs Judged Criteria Count Split
     print("\n" + "=" * 95)

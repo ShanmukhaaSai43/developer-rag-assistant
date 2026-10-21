@@ -1,0 +1,53 @@
+{
+  "trace_id": "tr_maya_nut_safety_771a",
+  "timestamp": "2026-10-17T17:08:51.247613+00:00",
+  "user_id": "anon_kitchen_guest",
+  "sanitized_user_prompt": "My daughter [NAME_REDACTED] has a severe [MEDICAL_SEVERITY: HIGH] tree nut allergy. Can she eat the 2025 shortbread?",
+  "output_text": "**No, Maya cannot eat the 2025 shortbread.** \n\nAccording to our exact allergen check for `[rcp_shortbread_2025 (reformulated-2025)]`, this recipe contains **tree nuts** (due to a 2025 supplier reformulation that swapped dairy butter for a macadamia and walnut oil blend). \n\nBecause Maya has a severe, life-threatening tree nut allergy, consuming this recipe presents a severe risk of anaphylaxis. Do not let her eat it.",
+  "citations": [],
+  "spans": [
+    {
+      "span_name": "llm_step_1",
+      "trace_id": "tr_maya_nut_safety_771a",
+      "latency_ms": 895.82,
+      "tokens": 974
+    },
+    {
+      "span_name": "mcp_tool:search_recipes",
+      "trace_id": "tr_maya_nut_safety_771a",
+      "latency_ms": 2.13,
+      "cost_usd": 1e-05
+    },
+    {
+      "span_name": "llm_step_2",
+      "trace_id": "tr_maya_nut_safety_771a",
+      "latency_ms": 765.12,
+      "tokens": 1293
+    },
+    {
+      "span_name": "mcp_tool:check_recipe_allergens",
+      "trace_id": "tr_maya_nut_safety_771a",
+      "latency_ms": 2.34,
+      "cost_usd": 1e-05
+    },
+    {
+      "span_name": "llm_step_3",
+      "trace_id": "tr_maya_nut_safety_771a",
+      "latency_ms": 1212.57,
+      "tokens": 1543
+    }
+  ],
+  "total_latency_ms": 2877.98,
+  "token_usage": {
+    "input_tokens": 3653,
+    "output_tokens": 157,
+    "total_tokens": 3810
+  },
+  "cost_breakdown": {
+    "llm_input_usd": 0.000274,
+    "llm_output_usd": 4.7e-05,
+    "mcp_tools_usd": 2e-05
+  },
+  "total_cost_usd": 0.000341,
+  "pii_health_boundary_held": true
+}

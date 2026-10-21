@@ -1,6 +1,6 @@
 {
   "judge_version": "v1_zero_shot",
-  "total_cases": 25,
+  "total_cases": 26,
   "matches": 24,
   "disagreements_count": 1,
   "agreement_before_pct": 96.0,
@@ -314,6 +314,16 @@
       "human_rationale": "Green tea provides adequate purines and tannins to feed the SCOBY culture for successful Jun-style kombucha.",
       "judge_v1_label": 1,
       "judge_v1_rationale": "Sencha green tea provides the necessary nitrogen and methylxanthines required by the SCOBY to ferment successfully, functioning identically to black tea while yielding a lighter flavor profile.",
+      "agreement": true
+    },
+    {
+      "id": "sub_26",
+      "dish_name": "Garlic Bread (Dairy-Free)",
+      "proposed_substitution": "Extra Virgin Olive Oil 1:1 with minced garlic (Strictly No Ghee)",
+      "taxonomy_mode": "allergen_safety_and_dietary",
+      "is_regression_case": true,
+      "human_label": 1,
+      "judge_v1_label": 1,
       "agreement": true
     }
   ]

@@ -1,6 +1,6 @@
 {
   "judge_version": "v2_few_shot_calibrated",
-  "total_cases": 25,
+  "total_cases": 26,
   "matches": 25,
   "disagreements_count": 0,
   "agreement_after_pct": 100.0,
@@ -304,6 +304,18 @@
       "human_rationale": "Green tea provides adequate purines and tannins to feed the SCOBY culture for successful Jun-style kombucha.",
       "judge_v2_label": 1,
       "judge_v2_rationale": "Sencha green tea provides sufficient nitrogen and purines to successfully fuel the symbiotic culture of bacteria and yeast (SCOBY), resulting in a chemically viable and delicious fermentation.",
+      "agreement": true
+    },
+    {
+      "id": "sub_26",
+      "dish_name": "Garlic Bread (Dairy-Free)",
+      "proposed_substitution": "Extra Virgin Olive Oil 1:1 with minced garlic (Strictly No Ghee)",
+      "taxonomy_mode": "allergen_safety_and_dietary",
+      "is_regression_case": true,
+      "human_label": 1,
+      "human_rationale": "Plant-based olive oil successfully substitutes butter fat for crispy garlic bread while strictly adhering to dairy-free allergen requirements.",
+      "judge_v2_label": 1,
+      "judge_v2_rationale": "Extra virgin olive oil provides equivalent lipid coverage, crisping capability, and garlic carrier properties as butter while guaranteeing 100% dairy-free safety.",
       "agreement": true
     }
   ]

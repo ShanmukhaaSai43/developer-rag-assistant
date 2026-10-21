@@ -1,4 +1,46 @@
-# 🚀 Developer Documentation RAG Assistant
+# 🍽️ Week 12 Capstone: Pantry-to-Plate Assistant (Variant B)
+
+> Production-grade, allergy-safe culinary agent integrating **MCP Tools over JSON-RPC 2.0**, **Structured SQLite Recipe Ledger**, **Distributed Telemetry with Health PII Masking**, **Two-Stage Safety Evaluations**, and a **Closed Failure-to-Test Loop**.
+
+### ⚡ Single-Command Quickstart (Stranger Ready)
+```bash
+# 1. Ask any cooking or allergen safety question:
+.venv/Scripts/python.exe -m week12.main --query "Is the 2025 Scottish shortbread safe for someone with a tree nut allergy?"
+
+# 2. Run the Full 30-Case Evaluation Suite (Stage 1 Assertions + Stage 2 LLM Judge):
+.venv/Scripts/python.exe -m week12.main --eval
+
+# 3. Run the 12-Case Trajectory Benchmark (Computes Tool-Choice Accuracy & Outcome-vs-Trajectory Gap):
+.venv/Scripts/python.exe -m week12.main --trajectory
+
+# 4. Run the Closed Failure-to-Test Loop Demonstration (RED failure -> GREEN permanent guard):
+.venv/Scripts/python.exe -m week12.main --closed-loop
+
+# 5. Launch the React Web UI & Backend API on http://127.0.0.1:8000:
+.venv/Scripts/python.exe -m week12.main --ui
+
+# 6. Or run the React Vite Dev Server (Hot-Reloading on http://localhost:5173):
+cd pantry-ui && npm run dev
+```
+
+### 📋 Week 12 Artifact Deliverables
+| Rubric Deliverable | File Path | Status |
+|:---|:---|:---:|
+| **Single Entry Point** | [`week12/main.py`](week12/main.py) | Verified |
+| **Evaluation Report** | [`week12/eval_report.md`](week12/eval_report.md) | Verified (96.7% Judge Agreement, -83.3% Allergen Drop) |
+| **Failure Taxonomy** | [`week12/taxonomy.md`](week12/taxonomy.md) | 10 Modes Re-Scored + Downstream Substitution |
+| **Trajectory Evaluation** | [`week12/trajectory_eval.py`](week12/trajectory_eval.py) | Verified (+25.0% Outcome-vs-Trajectory Gap) |
+| **Closed Failure Loop** | [`week12/closed_loop_test.py`](week12/closed_loop_test.py) | Verified (RED -> GREEN permanent guard) |
+| **Distributed Trace Sample** | [`week12/trace_sample.json`](week12/trace_sample.json) | Complete 5-Span Trace ($0.000349, Health PII Masked) |
+| **10× Scaling Plan** | [`week12/tenx_plan.md`](week12/tenx_plan.md) | Cost Analysis ($17.45/day for 50k queries) |
+| **Top 3 Weaknesses** | [`week12/weaknesses.md`](week12/weaknesses.md) | Dated Wednesday |
+| **System Architecture** | [`week12/architecture.md`](week12/architecture.md) | 1-Page ASCII Architecture |
+| **Squad 4 Peer Audit** | [`week12/fresh_eyes_note.md`](week12/fresh_eyes_note.md) | Priya S. Audit Note |
+| **10-Min Demo Script** | [`week12/demo_script.md`](week12/demo_script.md) | Covers 4-Part Standard |
+
+---
+
+# 🚀 Developer Documentation RAG Assistant (Earlier Modules)
 
 An end-to-end **Retrieval-Augmented Generation (RAG)** pipeline for technical developer documentation powered by **Google Gemini Neural Embeddings** (`gemini-embedding-001`), **Vector Similarity Search**, and **Live Gemini LLM Generation** (`gemini-3.6-flash`).
 

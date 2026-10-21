@@ -1,0 +1,35 @@
+{
+  "id": "sub_26",
+  "incident_trace_id": "trace_df_8942a",
+  "dish_name": "Garlic Bread (Dairy-Free Butter Swap)",
+  "original_ingredient": "Butter (Dairy Fat)",
+  "proposed_substitution": "Extra Virgin Olive Oil 1:1 with minced garlic (Strictly No Ghee)",
+  "taxonomy_mode": "allergen_safety_and_dietary",
+  "is_regression_case": true,
+  "incident_details": {
+    "prompt_version": "v1.0.0",
+    "complaint": "someone said it recommended a dairy-free substitution that wasn't dairy-free, sometime last week.",
+    "failing_output": "For a rich dairy-free swap for butter, use Ghee (clarified butter). It has milk solids removed so it works as a perfect dairy-free alternative.",
+    "root_cause": "Context chunk ctx_ghee_notes_088 stated ghee has milk solids removed, causing the prompt to falsely treat it as dairy-free."
+  },
+  "fixed_output_v1_1_0": {
+    "title": "Crispy Garlic Bread with Extra Virgin Olive Oil",
+    "servings": "4 servings (approx 350g)",
+    "ingredients": [
+      {"name": "Baguette or Italian Bread", "weight": "250g", "bakers_percentage": "100.0%"},
+      {"name": "Extra Virgin Olive Oil", "weight": "60g", "bakers_percentage": "24.0%"},
+      {"name": "Fresh Garlic Cloves (Minced)", "weight": "15g", "bakers_percentage": "6.0%"},
+      {"name": "Fresh Parsley (Chopped)", "weight": "5g", "bakers_percentage": "2.0%"},
+      {"name": "Fine Sea Salt", "weight": "3g", "bakers_percentage": "1.2%"}
+    ],
+    "allergen_note": "Contains Wheat (Gluten). 100% Dairy-Free and Vegan. Strictly does not contain Ghee or butterfat.",
+    "baking_temperature": "400°F (205°C)",
+    "method_steps": [
+      "Preheat oven to 400°F (205°C).",
+      "Slice baguette horizontally into halves.",
+      "In a small bowl, whisk 60g extra virgin olive oil with 15g minced garlic, 5g chopped parsley, and 3g fine sea salt.",
+      "Brush seasoned oil generously over cut bread surfaces.",
+      "Bake on a baking sheet at 400°F (205°C) for 10 to 12 minutes until golden and crisp."
+    ]
+  }
+}
