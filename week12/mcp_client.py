@@ -32,6 +32,7 @@ class PantryPlateMCPClient:
         self.request_counter = 0
         self.discovered_tools: List[Dict[str, Any]] = []
         self.server_info: Dict[str, Any] = {}
+        self._tool_cache: Dict[str, Any] = {}
 
     def start(self):
         """Starts the MCP server subprocess and executes initialize handshake."""
@@ -70,7 +71,11 @@ class PantryPlateMCPClient:
         return self.discovered_tools
 
     def call_tool(self, name: str, arguments: Dict[str, Any], trace_id: Optional[str] = None) -> Any:
-        """Invokes a tool on the MCP server via tools/call."""
+        """Invokes a tool on the MCP server via tools/call with in-memory caching."""
+        cache_key = f"{name}:{json.dumps(arguments, sort_keys=True)}"
+        if cache_key in self._tool_cache:
+            return self._tool_cache[cache_key]
+
         payload = {
             "name": name,
             "arguments": arguments
@@ -87,9 +92,14 @@ class PantryPlateMCPClient:
         content_items = result.get("content", [])
         if content_items and content_items[0].get("type") == "text":
             try:
-                return json.loads(content_items[0]["text"])
+                parsed = json.loads(content_items[0]["text"])
+                self._tool_cache[cache_key] = parsed
+                return parsed
             except json.JSONDecodeError:
-                return content_items[0]["text"]
+                text_res = content_items[0]["text"]
+                self._tool_cache[cache_key] = text_res
+                return text_res
+        self._tool_cache[cache_key] = result
         return result
 
     def _send_request(self, method: str, params: Dict[str, Any]) -> Dict[str, Any]:

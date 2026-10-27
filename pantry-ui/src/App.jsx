@@ -118,11 +118,16 @@ export function App() {
     setInputQuery('');
     setIsLoading(true);
 
+    const historyPayload = messages.slice(-6).map(m => ({
+      role: m.sender === 'user' ? 'user' : 'model',
+      text: m.text
+    }));
+
     try {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query })
+        body: JSON.stringify({ query, history: historyPayload })
       });
 
       if (!res.ok) throw new Error(`Server returned HTTP ${res.status}`);
@@ -136,7 +141,11 @@ export function App() {
           latencyMs: data.total_latency_ms,
           costUsd: data.cost_usd,
           toolsCalled: data.tools_called || [],
-          spansCount: data.spans ? data.spans.length : 0
+          cached: data.cached || false,
+          semanticCache: data.semantic_cache || false,
+          similarityScore: data.similarity_score || null,
+          matchedQuery: data.matched_query || null,
+          earlyGuardrail: data.early_guardrail || false
         },
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
@@ -293,8 +302,22 @@ export function App() {
                         <span className="tel-tag">🆔 {m.telemetry.traceId}</span>
                         <span className="tel-tag">⚡ {Math.round(m.telemetry.latencyMs)} ms</span>
                         <span className="tel-tag">💰 ${m.telemetry.costUsd?.toFixed(6)} USD</span>
+                        {m.telemetry.semanticCache ? (
+                          <span className="tel-tag" style={{ background: 'rgba(56, 189, 248, 0.2)', color: '#38bdf8', borderColor: 'rgba(56, 189, 248, 0.4)' }}>
+                            ⚡ Semantic Cache Hit ({m.telemetry.similarityScore}%)
+                          </span>
+                        ) : m.telemetry.cached ? (
+                          <span className="tel-tag" style={{ background: 'rgba(34, 197, 94, 0.2)', color: '#4ade80', borderColor: 'rgba(34, 197, 94, 0.4)' }}>
+                            ⚡ Exact Cache Hit
+                          </span>
+                        ) : null}
+                        {m.telemetry.earlyGuardrail && (
+                          <span className="tel-tag" style={{ background: 'rgba(239, 68, 68, 0.2)', color: '#f87171', borderColor: 'rgba(239, 68, 68, 0.4)' }}>
+                            🛡️ Early Guardrail
+                          </span>
+                        )}
                         <span className="tel-tag tel-tools">
-                          🛠️ Tools: {m.telemetry.toolsCalled.length > 0 ? m.telemetry.toolsCalled.join(', ') : 'Direct Response'}
+                          🛠️ Tools: {m.telemetry.toolsCalled.length > 0 ? m.telemetry.toolsCalled.join(', ') : (m.telemetry.cached ? (m.telemetry.semanticCache ? 'Semantic Cache' : 'Prompt Cache') : 'Direct Response')}
                         </span>
                       </div>
                     )}

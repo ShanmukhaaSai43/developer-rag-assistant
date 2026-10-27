@@ -27,9 +27,27 @@ from week12.agent import PantryToPlateAgent
 from week12.init_db import DB_PATH, init_database
 from week12.tools import scale_recipe_ingredients, get_food_safety_rule
 
+import threading
+from typing import Optional
+
 # Ensure database ledger exists
 if not DB_PATH.exists():
     init_database()
+
+AGENT_LOCK = threading.Lock()
+SHARED_AGENT: Optional[PantryToPlateAgent] = None
+
+def get_shared_agent() -> PantryToPlateAgent:
+    """Returns or lazily creates a persistent warm agent instance."""
+    global SHARED_AGENT
+    if SHARED_AGENT is None or not SHARED_AGENT.mcp_client.process or SHARED_AGENT.mcp_client.process.poll() is not None:
+        if SHARED_AGENT:
+            try:
+                SHARED_AGENT.close()
+            except Exception:
+                pass
+        SHARED_AGENT = PantryToPlateAgent()
+    return SHARED_AGENT
 
 class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
     daemon_threads = True
@@ -169,15 +187,16 @@ class PantryApiHandler(BaseHTTPRequestHandler):
                 return
 
             trace_id = body.get("trace_id")
-            agent = PantryToPlateAgent()
-            try:
-                res = agent.run(query, trace_id=trace_id)
-                self._send_json(200, res)
-            except Exception as e:
-                traceback.print_exc()
-                self._send_json(500, {"error": str(e), "traceback": traceback.format_exc()})
-            finally:
-                agent.close()
+            session_id = body.get("session_id", "default")
+            history = body.get("history")
+            with AGENT_LOCK:
+                agent = get_shared_agent()
+                try:
+                    res = agent.run(query, trace_id=trace_id, session_id=session_id, history=history)
+                    self._send_json(200, res)
+                except Exception as e:
+                    traceback.print_exc()
+                    self._send_json(500, {"error": str(e), "traceback": traceback.format_exc()})
             return
 
         elif url_path == "/api/closed-loop":
@@ -238,10 +257,20 @@ def run_server(port: int = 8000):
     print(f"  PANTRY-TO-PLATE API SERVER RUNNING ON http://127.0.0.1:{port}")
     print("  Endpoints: /api/health, /api/recipes, /api/chat, /api/closed-loop")
     print("=" * 70)
+    
+    # Pre-warm shared agent in background thread so first request is instant
+    threading.Thread(target=get_shared_agent, daemon=True).start()
+
     try:
         server.serve_forever()
     except KeyboardInterrupt:
         print("\nShutting down API server...")
+        global SHARED_AGENT
+        if SHARED_AGENT:
+            try:
+                SHARED_AGENT.close()
+            except Exception:
+                pass
         server.server_close()
 
 if __name__ == "__main__":
