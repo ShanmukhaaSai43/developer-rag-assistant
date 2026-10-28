@@ -27,12 +27,97 @@ from week12.agent import PantryToPlateAgent
 from week12.init_db import DB_PATH, init_database
 from week12.tools import scale_recipe_ingredients, get_food_safety_rule
 
+import re
+import fractions
 import threading
 from typing import Optional
 
 # Ensure database ledger exists
 if not DB_PATH.exists():
     init_database()
+
+ALLERGEN_MAP = {
+    "tree_nuts": ["walnut", "almond", "pecan", "cashew", "pistachio", "macadamia", "hazelnut", "brazil nut", "pine nut", "chestnut"],
+    "peanuts": ["peanut", "peanut butter", "peanut oil"],
+    "dairy": ["milk", "butter", "cream", "cheese", "yogurt", "whey", "casein", "ghee", "parmesan", "cheddar", "mozzarella"],
+    "gluten": ["flour", "wheat", "barley", "rye", "bread", "pasta", "semolina", "spelt", "couscous"],
+    "eggs": ["egg", "eggs", "egg white", "egg yolk", "mayonnaise"],
+    "soy": ["soy", "soya", "tofu", "edamame", "tempeh", "soy sauce", "tamari"],
+    "fish": ["salmon", "tuna", "cod", "trout", "halibut", "anchovy", "fish"],
+    "crustacean": ["shrimp", "prawn", "crab", "lobster"],
+    "sesame": ["sesame", "tahini", "sesame oil"]
+}
+
+SAFE_TEMP_MAP = {
+    "chicken": 74.0,
+    "poultry": 74.0,
+    "turkey": 74.0,
+    "duck": 74.0,
+    "pork": 63.0,
+    "beef": 63.0,
+    "lamb": 63.0,
+    "fish": 63.0,
+    "ground beef": 71.0,
+    "burger": 71.0
+}
+
+def parse_ingredient_line(line: str) -> Optional[dict]:
+    """Parses a text line like '2 cups all-purpose flour' or '1/2 cup butter' into {name, quantity, unit}."""
+    line = line.strip().lstrip("-*• ")
+    if not line:
+        return None
+    
+    match = re.match(r"^(\d+\s+\d+/\d+|\d+/\d+|\d+(?:\.\d+)?)\s*([a-zA-Z]+)?\s+(.+)$", line)
+    if match:
+        qty_str, unit_str, name_str = match.groups()
+        try:
+            if " " in qty_str:
+                parts = qty_str.split()
+                qty = float(parts[0]) + float(fractions.Fraction(parts[1]))
+            elif "/" in qty_str:
+                qty = float(fractions.Fraction(qty_str))
+            else:
+                qty = float(qty_str)
+        except Exception:
+            qty = 1.0
+        
+        common_units = {
+            "cup", "cups", "tbsp", "tablespoon", "tablespoons", "tsp", "teaspoon", "teaspoons",
+            "g", "gram", "grams", "kg", "kilogram", "kilograms", "oz", "ounce", "ounces",
+            "lb", "lbs", "pound", "pounds", "ml", "l", "liter", "liters", "pinch", "pinches",
+            "clove", "cloves", "can", "cans", "slice", "slices", "large", "medium", "small", "piece", "pieces"
+        }
+        if unit_str and unit_str.lower() in common_units:
+            unit = unit_str.lower()
+            name = name_str.strip()
+        else:
+            unit = "unit"
+            name = f"{unit_str} {name_str}".strip() if unit_str else name_str.strip()
+            
+        return {"name": name, "quantity": round(qty, 2), "unit": unit}
+    else:
+        return {"name": line, "quantity": 1.0, "unit": "to taste"}
+
+def detect_allergens(ingredients: list, title: str) -> list:
+    """Detects inherent allergens from ingredient names and recipe title (handles plurals)."""
+    detected = set()
+    all_text = f"{title} " + " ".join([ing["name"] for ing in ingredients]).lower()
+    for allergen, keywords in ALLERGEN_MAP.items():
+        for kw in keywords:
+            pattern = rf"\b{re.escape(kw)}s?\b"
+            if re.search(pattern, all_text):
+                detected.add(allergen)
+                break
+    return sorted(list(detected))
+
+def detect_safe_temp(ingredients: list, title: str) -> Optional[float]:
+    """Detects mandatory safe internal temperature if meat/poultry/fish is present (handles plurals)."""
+    all_text = f"{title} " + " ".join([ing["name"] for ing in ingredients]).lower()
+    for item, temp in SAFE_TEMP_MAP.items():
+        pattern = rf"\b{re.escape(item)}s?\b"
+        if re.search(pattern, all_text):
+            return temp
+    return None
 
 AGENT_LOCK = threading.Lock()
 SHARED_AGENT: Optional[PantryToPlateAgent] = None
@@ -242,6 +327,110 @@ class PantryApiHandler(BaseHTTPRequestHandler):
             target_servings = body.get("target_servings", 32)
             res = scale_recipe_ingredients(recipe_id, target_servings)
             self._send_json(200, res)
+            return
+
+        elif url_path == "/api/custom-recipe":
+            title = body.get("title", "").strip() or "My Custom Recipe"
+            base_servings = int(body.get("base_servings", 4) or 4)
+            prep_time = int(body.get("prep_time_minutes", 15) or 15)
+            cook_time = int(body.get("cook_time_minutes", 30) or 30)
+            
+            raw_ingredients = body.get("ingredients_text", "")
+            if isinstance(raw_ingredients, list):
+                ingredients_lines = raw_ingredients
+            else:
+                ingredients_lines = [l.strip() for l in str(raw_ingredients).split("\n") if l.strip()]
+
+            parsed_ingredients = []
+            for line in ingredients_lines:
+                if isinstance(line, dict):
+                    parsed_ingredients.append(line)
+                else:
+                    parsed = parse_ingredient_line(line)
+                    if parsed:
+                        parsed_ingredients.append(parsed)
+
+            if not parsed_ingredients:
+                parsed_ingredients = [{"name": "seasoning", "quantity": 1.0, "unit": "tsp"}]
+
+            raw_method = body.get("method_text", "")
+            if isinstance(raw_method, list):
+                method_steps = raw_method
+            else:
+                method_steps = [s.strip().lstrip("0123456789.-) ") for s in str(raw_method).split("\n") if s.strip()]
+            if not method_steps:
+                method_steps = [
+                    "Prepare ingredients according to recipe specifications.",
+                    "Cook to safe internal temperature and serve hot."
+                ]
+
+            # Auto-detect inherent allergens and safe cooking temperature
+            allergens = detect_allergens(parsed_ingredients, title)
+            safe_temp = detect_safe_temp(parsed_ingredients, title)
+
+            # Persist directly into SQLite ledger
+            recipe_id = "rcp_custom_user"
+            recipe_key = "rcp_custom_user"
+            version = "custom-user"
+            
+            conn = sqlite3.connect(DB_PATH)
+            cursor = conn.cursor()
+            cursor.execute("""
+                INSERT OR REPLACE INTO recipes (
+                    id, recipe_key, title, version, is_current,
+                    prep_time_minutes, cook_time_minutes, base_servings,
+                    ingredients_json, allergens_contains, allergens_may_contain,
+                    method_json, safe_internal_temp_c, reformulation_notes
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """, (
+                recipe_id, recipe_key, title, version, 1,
+                prep_time, cook_time, base_servings,
+                json.dumps(parsed_ingredients),
+                json.dumps(allergens),
+                json.dumps([]),
+                json.dumps(method_steps),
+                safe_temp,
+                f"User-submitted custom recipe: {title}"
+            ))
+            conn.commit()
+            conn.close()
+
+            # Invalidate any cached tool observations in warm agent
+            with AGENT_LOCK:
+                if SHARED_AGENT and hasattr(SHARED_AGENT, "mcp_client") and hasattr(SHARED_AGENT.mcp_client, "_tool_cache"):
+                    SHARED_AGENT.mcp_client._tool_cache.clear()
+
+            suggested_questions = [
+                f"Is my custom {title} safe for someone with a nut allergy?",
+                f"Scale my {title} to {base_servings * 2} servings. What are the quantities and baking time?",
+                f"What food safety precautions or internal temperature should I follow for my {title}?",
+                f"Can you summarize my {title} with exact citation and allergen warnings?"
+            ]
+
+            recipe_record = {
+                "recipe_id": recipe_id,
+                "recipe_key": recipe_key,
+                "title": title,
+                "version": version,
+                "prep_time_minutes": prep_time,
+                "cook_time_minutes": cook_time,
+                "base_servings": base_servings,
+                "allergens_contains": allergens,
+                "allergens_may_contain": [],
+                "ingredients": parsed_ingredients,
+                "method_steps": method_steps,
+                "safe_internal_temp_c": safe_temp,
+                "reformulation_notes": f"User-submitted custom recipe: {title}"
+            }
+
+            self._send_json(200, {
+                "status": "success",
+                "message": f"Successfully registered custom recipe '{title}' as [{recipe_id} ({version})]",
+                "recipe": recipe_record,
+                "detected_allergens": allergens,
+                "safe_internal_temp_c": safe_temp,
+                "suggested_questions": suggested_questions
+            })
             return
 
         else:

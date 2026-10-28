@@ -24,6 +24,59 @@ export function App() {
     status: 'connected'
   });
 
+  const [customForm, setCustomForm] = useState({
+    title: "Grandma's Walnut Banana Bread",
+    base_servings: 8,
+    prep_time_minutes: 15,
+    cook_time_minutes: 55,
+    ingredients_text: "3 ripe bananas\n1 cup chopped walnuts\n2 cups all-purpose flour\n1/2 cup dairy butter\n2 large eggs\n1 tsp baking soda\n1/2 cup sugar",
+    method_text: "1. Mash ripe bananas in a mixing bowl until smooth.\n2. Cream butter and sugar, then beat in eggs.\n3. Fold in flour, baking soda, and chopped walnuts.\n4. Bake in a greased loaf pan at 175°C (350°F) for 55 minutes."
+  });
+  const [customSubmitting, setCustomSubmitting] = useState(false);
+  const [customAnalysis, setCustomAnalysis] = useState(null);
+
+  const PRESET_RECIPES = [
+    {
+      name: "Walnut Banana Bread",
+      emoji: "🍞",
+      tag: "Contains Tree Nuts",
+      data: {
+        title: "Grandma's Walnut Banana Bread",
+        base_servings: 8,
+        prep_time_minutes: 15,
+        cook_time_minutes: 55,
+        ingredients_text: "3 ripe bananas\n1 cup chopped walnuts\n2 cups all-purpose flour\n1/2 cup dairy butter\n2 large eggs\n1 tsp baking soda\n1/2 cup sugar",
+        method_text: "1. Mash ripe bananas in a mixing bowl until smooth.\n2. Cream butter and sugar, then beat in eggs.\n3. Fold in flour, baking soda, and chopped walnuts.\n4. Bake in a greased loaf pan at 175°C (350°F) for 55 minutes."
+      }
+    },
+    {
+      name: "Lemon Rosemary Chicken",
+      emoji: "🍗",
+      tag: "Poultry 74°C Target",
+      data: {
+        title: "Lemon Rosemary Roast Whole Chicken",
+        base_servings: 6,
+        prep_time_minutes: 20,
+        cook_time_minutes: 75,
+        ingredients_text: "1.5 kg whole chicken\n2 tbsp olive oil\n3 sprigs fresh rosemary\n1 large lemon, halved\n4 cloves garlic\n1 tsp sea salt",
+        method_text: "1. Pat chicken dry and season skin with olive oil, salt, and fresh rosemary.\n2. Stuff cavity with lemon halves and garlic cloves.\n3. Roast at 200°C (400°F) for 75 minutes.\n4. Check internal temperature with a thermometer to ensure thigh reaches 74°C (165°F)."
+      }
+    },
+    {
+      name: "Oat & Seed Energy Bites",
+      emoji: "🌱",
+      tag: "Nut-Free & Dairy-Free",
+      data: {
+        title: "Sunflower & Oat Energy Bites",
+        base_servings: 12,
+        prep_time_minutes: 15,
+        cook_time_minutes: 0,
+        ingredients_text: "2 cups rolled oats\n1/2 cup sunflower seed butter\n1/3 cup pure maple syrup\n2 tbsp chia seeds\n1/4 cup dairy-free chocolate chips",
+        method_text: "1. Combine rolled oats, sunflower seed butter, chia seeds, and maple syrup in a bowl.\n2. Fold in dairy-free dark chocolate chips.\n3. Roll into 12 balls and refrigerate for 30 minutes before serving."
+      }
+    }
+  ];
+
   const messagesEndRef = useRef(null);
 
   // Auto-scroll chat
@@ -196,6 +249,37 @@ export function App() {
     }
   };
 
+  const handleCustomSubmit = async (e) => {
+    if (e) e.preventDefault();
+    setCustomSubmitting(true);
+    try {
+      const res = await fetch('/api/custom-recipe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(customForm)
+      });
+      const data = await res.json();
+      if (data.status === 'success') {
+        setCustomAnalysis(data);
+        if (data.recipe) {
+          setRecipes(prev => {
+            const filtered = prev.filter(r => r.recipe_id !== data.recipe.recipe_id);
+            return [data.recipe, ...filtered];
+          });
+        }
+      }
+    } catch (err) {
+      alert("Failed to submit custom recipe: " + err.message);
+    } finally {
+      setCustomSubmitting(false);
+    }
+  };
+
+  const askCustomQuestion = (question) => {
+    setActiveTab('chat');
+    handleSend(question);
+  };
+
   // Helper for scaling math
   const scaleGrams = (baseGrams, baseServings, targetServings) => {
     return Math.round((baseGrams * targetServings) / baseServings);
@@ -230,6 +314,12 @@ export function App() {
           onClick={() => setActiveTab('chat')}
         >
           💬 Head Chef Chat & Agent
+        </button>
+        <button 
+          className={`tab-btn ${activeTab === 'custom' ? 'active' : ''}`}
+          onClick={() => setActiveTab('custom')}
+        >
+          🍳 Submit Custom Recipe
         </button>
         <button 
           className={`tab-btn ${activeTab === 'recipes' ? 'active' : ''}`}
@@ -396,6 +486,239 @@ export function App() {
                 <li>✅ <strong>Mandatory 74°C:</strong> Chicken cooked without 74°C is an automatic failure.</li>
               </ul>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* TAB: CUSTOM RECIPE */}
+      {activeTab === 'custom' && (
+        <div className="custom-recipe-container">
+          <div style={{ marginBottom: '24px' }}>
+            <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.6rem', color: '#fff' }}>
+              🍳 Submit Your Custom Recipe & Ask AI Chef
+            </h2>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.92rem' }}>
+              Register your own family dish or formulation directly into the SQLite Kitchen Ledger. The Head Chef Agent will dynamically parse ingredients, detect inherent allergens, verify food safety temperatures, and allow real-time portion scaling.
+            </p>
+          </div>
+
+          {/* Quick-fill Presets */}
+          <div className="presets-bar glass-panel" style={{ padding: '16px 20px', marginBottom: '24px', display: 'flex', alignItems: 'center', gap: '14px', flexWrap: 'wrap' }}>
+            <span style={{ fontSize: '0.85rem', fontWeight: '700', color: 'var(--primary)' }}>
+              ⚡ Quick Pre-fills:
+            </span>
+            {PRESET_RECIPES.map((preset, idx) => (
+              <button
+                key={idx}
+                type="button"
+                className="chip-btn"
+                style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 14px' }}
+                onClick={() => {
+                  setCustomForm(preset.data);
+                  setCustomAnalysis(null);
+                }}
+              >
+                <span>{preset.emoji}</span>
+                <strong>{preset.name}</strong>
+                <span style={{ fontSize: '0.72rem', opacity: 0.8, color: '#fbbf24' }}>({preset.tag})</span>
+              </button>
+            ))}
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: customAnalysis ? '1fr 1fr' : '1fr', gap: '24px', alignItems: 'start' }}>
+            {/* Form */}
+            <form onSubmit={handleCustomSubmit} className="glass-panel" style={{ padding: '24px', borderRadius: 'var(--radius-lg)' }}>
+              <div style={{ marginBottom: '18px' }}>
+                <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: '700', color: '#fff', marginBottom: '6px' }}>
+                  Recipe Title
+                </label>
+                <input
+                  type="text"
+                  className="chat-input"
+                  style={{ width: '100%', borderRadius: '8px', padding: '10px 14px' }}
+                  value={customForm.title}
+                  onChange={(e) => setCustomForm({ ...customForm, title: e.target.value })}
+                  placeholder="e.g. Grandma's Walnut Banana Bread"
+                  required
+                />
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '14px', marginBottom: '18px' }}>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: '700', color: '#fff', marginBottom: '6px' }}>
+                    Base Servings
+                  </label>
+                  <input
+                    type="number"
+                    min="1"
+                    max="100"
+                    className="chat-input"
+                    style={{ width: '100%', borderRadius: '8px', padding: '10px 14px' }}
+                    value={customForm.base_servings}
+                    onChange={(e) => setCustomForm({ ...customForm, base_servings: parseInt(e.target.value) || 1 })}
+                    required
+                  />
+                </div>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: '700', color: '#fff', marginBottom: '6px' }}>
+                    Prep Time (min)
+                  </label>
+                  <input
+                    type="number"
+                    min="0"
+                    max="300"
+                    className="chat-input"
+                    style={{ width: '100%', borderRadius: '8px', padding: '10px 14px' }}
+                    value={customForm.prep_time_minutes}
+                    onChange={(e) => setCustomForm({ ...customForm, prep_time_minutes: parseInt(e.target.value) || 0 })}
+                  />
+                </div>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: '700', color: '#fff', marginBottom: '6px' }}>
+                    Cook Time (min)
+                  </label>
+                  <input
+                    type="number"
+                    min="0"
+                    max="600"
+                    className="chat-input"
+                    style={{ width: '100%', borderRadius: '8px', padding: '10px 14px' }}
+                    value={customForm.cook_time_minutes}
+                    onChange={(e) => setCustomForm({ ...customForm, cook_time_minutes: parseInt(e.target.value) || 0 })}
+                  />
+                </div>
+              </div>
+
+              <div style={{ marginBottom: '18px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                  <label style={{ fontSize: '0.82rem', fontWeight: '700', color: '#fff' }}>
+                    Ingredients (one per line)
+                  </label>
+                  <span style={{ fontSize: '0.74rem', color: 'var(--text-dim)' }}>
+                    e.g. 1 cup walnuts, 2 cups flour, 1/2 cup butter
+                  </span>
+                </div>
+                <textarea
+                  rows={6}
+                  className="chat-input"
+                  style={{ width: '100%', borderRadius: '8px', padding: '12px', fontFamily: 'var(--font-mono)', fontSize: '0.88rem', resize: 'vertical' }}
+                  value={customForm.ingredients_text}
+                  onChange={(e) => setCustomForm({ ...customForm, ingredients_text: e.target.value })}
+                  placeholder="3 ripe bananas&#10;1 cup chopped walnuts&#10;2 cups all-purpose flour&#10;1/2 cup dairy butter"
+                  required
+                />
+              </div>
+
+              <div style={{ marginBottom: '22px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                  <label style={{ fontSize: '0.82rem', fontWeight: '700', color: '#fff' }}>
+                    Preparation & Cooking Steps
+                  </label>
+                  <span style={{ fontSize: '0.74rem', color: 'var(--text-dim)' }}>
+                    Step-by-step instructions
+                  </span>
+                </div>
+                <textarea
+                  rows={5}
+                  className="chat-input"
+                  style={{ width: '100%', borderRadius: '8px', padding: '12px', fontSize: '0.88rem', resize: 'vertical' }}
+                  value={customForm.method_text}
+                  onChange={(e) => setCustomForm({ ...customForm, method_text: e.target.value })}
+                  placeholder="1. Mash bananas in a bowl.&#10;2. Cream butter and sugar, then mix in eggs.&#10;3. Fold in flour and bake at 175°C."
+                  required
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="action-btn"
+                style={{ width: '100%', padding: '14px', fontSize: '1rem', fontWeight: '700', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}
+                disabled={customSubmitting}
+              >
+                {customSubmitting ? (
+                  <>
+                    <span className="status-dot"></span>
+                    Registering in SQLite & Analyzing with MCP Tools...
+                  </>
+                ) : (
+                  <>
+                    <span>🚀 Register & Analyze with AI Chef</span>
+                  </>
+                )}
+              </button>
+            </form>
+
+            {/* Analysis & Live Questions Panel */}
+            {customAnalysis && (
+              <div className="glass-panel" style={{ padding: '24px', borderRadius: 'var(--radius-lg)', border: '1px solid rgba(56, 189, 248, 0.4)', background: 'linear-gradient(180deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.8) 100%)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
+                  <span style={{ fontSize: '1.8rem' }}>✨</span>
+                  <div>
+                    <h3 style={{ fontFamily: 'var(--font-heading)', color: '#fff', fontSize: '1.25rem' }}>
+                      Registered: {customAnalysis.recipe?.title}
+                    </h3>
+                    <span style={{ fontSize: '0.78rem', fontFamily: 'var(--font-mono)', color: '#38bdf8' }}>
+                      Citation Tag: [rcp_custom_user (custom-user)]
+                    </span>
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', gap: '12px', margin: '14px 0', flexWrap: 'wrap' }}>
+                  <span className="status-pill" style={{ color: '#4ade80', borderColor: 'rgba(74, 222, 128, 0.3)' }}>
+                    ✅ Persisted to SQLite Ledger
+                  </span>
+                  <span className="status-pill" style={{ color: '#a5b4fc', borderColor: 'rgba(165, 180, 252, 0.3)' }}>
+                    🍽️ {customAnalysis.recipe?.base_servings} Servings ({customAnalysis.recipe?.prep_time_minutes + customAnalysis.recipe?.cook_time_minutes}m total)
+                  </span>
+                </div>
+
+                {/* Detected Allergens */}
+                <div style={{ margin: '16px 0', padding: '14px', background: 'rgba(0,0,0,0.3)', borderRadius: '10px' }}>
+                  <div style={{ fontSize: '0.8rem', fontWeight: '700', color: '#94a3b8', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                    🔍 Auto-Detected Inherent Allergens:
+                  </div>
+                  <div className="allergen-tags" style={{ margin: 0 }}>
+                    {customAnalysis.detected_allergens && customAnalysis.detected_allergens.length > 0 ? (
+                      customAnalysis.detected_allergens.map(a => (
+                        <span key={a} className="allergen-tag allergen-contains">
+                          ⚠️ Contains {a.replace('_', ' ')}
+                        </span>
+                      ))
+                    ) : (
+                      <span className="allergen-tag allergen-none">
+                        ✅ Zero Inherent Allergens Detected
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Safe Cooking Temp */}
+                {customAnalysis.safe_internal_temp_c && (
+                  <div style={{ margin: '14px 0', padding: '14px', background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.3)', borderRadius: '10px', color: '#fca5a5' }}>
+                    <strong>🌡️ Mandatory Food Safety Temperature:</strong> {customAnalysis.safe_internal_temp_c}°C (165°F) minimum internal temperature required before serving.
+                  </div>
+                )}
+
+                {/* Suggested Action Chips */}
+                <div style={{ marginTop: '20px' }}>
+                  <div style={{ fontSize: '0.85rem', fontWeight: '700', color: '#fff', marginBottom: '10px' }}>
+                    💬 Ask Head Chef Agent About Your Recipe:
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    {customAnalysis.suggested_questions?.map((q, idx) => (
+                      <button
+                        key={idx}
+                        className="chip-btn"
+                        style={{ textAlign: 'left', padding: '10px 14px', lineHeight: '1.4' }}
+                        onClick={() => askCustomQuestion(q)}
+                      >
+                        👉 {q}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}
